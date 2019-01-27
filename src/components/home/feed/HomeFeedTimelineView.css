@@ -1,0 +1,22 @@
+.HomeFeedTimelineView {
+  display: inline-block;
+  width: 10%;
+}
+
+.HomeFeedTimelineView .timeline {
+  background: #637cea;
+  border-radius: 2px;
+  height: 100vh;
+  margin: 14px auto 0;
+  transform: translateX(-50%);
+  width: 4px;
+}
+
+.HomeFeedTimelineView .timeline .ball {
+  background: #637cea;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  transform: translate(-50%, -50%);
+  margin-left: 2px;
+}

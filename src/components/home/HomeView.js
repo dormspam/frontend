@@ -3,15 +3,10 @@ import "./HomeView.css";
 
 import HomeHeaderView from "./HomeHeaderView";
 import HomeFilterView from "./HomeFilterView";
-import HomeFeedView from "./HomeFeedView";
+import HomeFeedView from "./feed/HomeFeedView";
 
 class HomeView extends Component {
   render() {
-    var event = {
-      name: "hello world",
-      description: "asdf"
-    };
-
     return (
       <div className="HomeView">
         <HomeHeaderView />
