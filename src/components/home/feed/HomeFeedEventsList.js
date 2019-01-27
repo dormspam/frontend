@@ -6,7 +6,7 @@ import HomeFeedEventsListSection from "./HomeFeedEventsListSection";
 class HomeFeedEventsList extends Component {
   render() {
     return (
-      <div className="HomeFeedEventsList">
+      <div className={"HomeFeedEventsList" + (this.props.expanded ? " expanded" : "")}>
         <HomeFeedEventsListSection />
       </div>
     );
