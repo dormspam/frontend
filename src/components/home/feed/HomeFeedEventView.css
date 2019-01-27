@@ -8,6 +8,10 @@
   width: 100%;
 }
 
+.HomeFeedEventView.selected {
+  background: #bababa;
+}
+
 .HomeFeedEventView:hover {
-  background: #dadada;
+  background: #bababa;
 }

@@ -7,7 +7,7 @@ class HomeFeedEventsList extends Component {
   render() {
     return (
       <div className={"HomeFeedEventsList" + (this.props.expanded ? " expanded" : "")}>
-        <HomeFeedEventsListSection />
+        <HomeFeedEventsListSection selectedEvent={this.props.selectedEvent} onSelectEvent={this.props.onSelectEvent} />
       </div>
     );
   }
