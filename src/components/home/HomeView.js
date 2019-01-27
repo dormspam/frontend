@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./HomeView.css";
 
 import HomeHeaderCalendar from "./header/HomeHeaderCalendar";
-import HomeHeaderView from "./HomeHeaderView";
+import HomeHeaderView from "./header/HomeHeaderView";
 import HomeFilterView from "./filter/HomeFilterView";
 import HomeFeedView from "./feed/HomeFeedView";
 

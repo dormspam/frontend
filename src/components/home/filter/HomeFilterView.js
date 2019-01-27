@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./HomeFilterView.css";
 
 import HomeFilterWeekBar from "./HomeFilterWeekBar";
 
