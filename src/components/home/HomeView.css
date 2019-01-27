@@ -1,9 +1,7 @@
-.HomeView {
-  min-height: 100vh;
-}
-
 .HomeView .column {
   display: inline-block;
+  height: 100vh;
+  overflow-y: scroll;
   padding: 64px;
   vertical-align: top;
 }

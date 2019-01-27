@@ -1,0 +1,11 @@
+.HomeHeaderView {
+  margin-bottom: 48px;
+}
+
+.HomeHeaderView .logo {
+  color: #5f63d4;
+  font-family: "Fredoka One", cursive;
+  font-size: 36px;
+  text-align: center;
+  text-transform: uppercase;
+}

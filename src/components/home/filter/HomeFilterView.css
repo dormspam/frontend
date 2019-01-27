@@ -1,0 +1,10 @@
+.HomeFilterView h1 {
+  color: #707d93;
+  font-size: 28px;
+  font-weight: 400;
+  margin-bottom: 24px;
+}
+
+.HomeFilterView h1 strong {
+  font-weight: 700;
+}
