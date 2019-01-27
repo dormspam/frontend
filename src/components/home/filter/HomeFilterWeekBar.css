@@ -14,15 +14,27 @@
 .HomeFilterWeekBar .left-button {
   width: 0;
   height: 0;
+<<<<<<< HEAD
   border-top: 8px solid transparent;
   border-bottom: 8px solid transparent;
   border-right: 10px solid #D8D8D8;
+=======
+  border-top: 11px solid transparent;
+  border-bottom: 11px solid transparent;
+  border-right: 15px solid #D8D8D8;
+>>>>>>> a1c123893dee7fdc20a908be6c7f6369b25a6a90
 }
 
 .HomeFilterWeekBar .right-button {
   width: 0;
   height: 0;
+<<<<<<< HEAD
   border-top: 8px solid transparent;
   border-bottom: 8px solid transparent;
   border-left: 10px solid #D8D8D8;
+=======
+  border-top: 11px solid transparent;
+  border-bottom: 11px solid transparent;
+  border-left: 15px solid #D8D8D8;
+>>>>>>> a1c123893dee7fdc20a908be6c7f6369b25a6a90
 }
