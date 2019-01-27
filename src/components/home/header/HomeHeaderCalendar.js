@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Calendar from 'react-calendar';
+import "./HomeHeaderCalendar.css";
 
 class HomeHeaderCalendar extends Component {
   constructor(props) {
