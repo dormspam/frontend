@@ -1,29 +1,68 @@
 import React, { Component } from "react";
-import Calendar from 'react-calendar';
 import "./HomeHeaderCalendar.css";
+
+import HomeHeaderCalendarDayItem from "./HomeHeaderCalendarDayItem";
 
 class HomeHeaderCalendar extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      date: new Date(),
+      day: new Date(),
     };
-
-    this.onChange = this.onChange.bind(this);
-  }
-
-  onChange(date) {
-    this.setState({ date });
   }
 
   render() {
     return (
       <div className="HomeHeaderCalendar">
-        <Calendar
-          onChange={this.onChange}
-          value={this.state.date}
-        />
+        <div className="header">
+          <div className="left-button" />
+          <h2>February</h2>
+          <div className="right-button" />
+        </div>
+        <div className="calendar">
+
+          <HomeHeaderCalendarDayItem />
+          <HomeHeaderCalendarDayItem />
+          <HomeHeaderCalendarDayItem />
+          <HomeHeaderCalendarDayItem />
+          <HomeHeaderCalendarDayItem />
+          <HomeHeaderCalendarDayItem />
+          <HomeHeaderCalendarDayItem />
+
+          <HomeHeaderCalendarDayItem />
+          <HomeHeaderCalendarDayItem />
+          <HomeHeaderCalendarDayItem />
+          <HomeHeaderCalendarDayItem />
+          <HomeHeaderCalendarDayItem />
+          <HomeHeaderCalendarDayItem />
+          <HomeHeaderCalendarDayItem />
+
+          <HomeHeaderCalendarDayItem />
+          <HomeHeaderCalendarDayItem />
+          <HomeHeaderCalendarDayItem />
+          <HomeHeaderCalendarDayItem />
+          <HomeHeaderCalendarDayItem />
+          <HomeHeaderCalendarDayItem />
+          <HomeHeaderCalendarDayItem />
+
+          <HomeHeaderCalendarDayItem />
+          <HomeHeaderCalendarDayItem />
+          <HomeHeaderCalendarDayItem />
+          <HomeHeaderCalendarDayItem />
+          <HomeHeaderCalendarDayItem />
+          <HomeHeaderCalendarDayItem />
+          <HomeHeaderCalendarDayItem />
+
+          <HomeHeaderCalendarDayItem />
+          <HomeHeaderCalendarDayItem />
+          <HomeHeaderCalendarDayItem />
+          <HomeHeaderCalendarDayItem />
+          <HomeHeaderCalendarDayItem />
+          <HomeHeaderCalendarDayItem />
+          <HomeHeaderCalendarDayItem />
+        </div>
+
       </div>
     );
   }
