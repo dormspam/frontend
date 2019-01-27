@@ -1,0 +1,26 @@
+.HomeFilterWeekBar {
+  margin-top: 16px;
+}
+
+.HomeFilterWeekBar .weekdays {
+  margin: 0 auto;
+  width: 480px;
+}
+
+.HomeFilterWeekBar .left-button {
+  float: left;
+  width: 0;
+  height: 0;
+  border-top: 11px solid transparent;
+  border-bottom: 11px solid transparent;
+  border-right: 15px solid #637cea;
+}
+
+.HomeFilterWeekBar .right-button {
+  float: right;
+  width: 0;
+  height: 0;
+  border-top: 11px solid transparent;
+  border-bottom: 11px solid transparent;
+  border-left: 15px solid #637cea;
+}

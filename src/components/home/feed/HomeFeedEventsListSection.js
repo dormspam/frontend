@@ -29,6 +29,7 @@ class HomeFeedEventsListSection extends Component {
     const events = [hackmit, integrationbee, bigpie];
     const eventTags = events.map(
       event => <HomeFeedEventView
+                  key={event.id}
                   event={event}
                   selected={this.props.selectedEvent.id === event.id}
                   onClick={this.props.onSelectEvent} />
@@ -36,7 +37,7 @@ class HomeFeedEventsListSection extends Component {
 
     return (
       <div className="HomeFeedEventsListSection">
-        <h2>Tuesday 6:00pm</h2>
+        <h2>6:00pm</h2>
         {eventTags}
       </div>
     );
