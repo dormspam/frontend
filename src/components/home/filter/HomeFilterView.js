@@ -11,14 +11,7 @@ class HomeFilterView extends Component {
 
     return (
       <div className="HomeFilterView">
-<<<<<<< HEAD
-        <h1>
-          <span className="bold">Tuesday, </span>
-          February 5
-        </h1>
-=======
-        <h1><strong>{weekDay}</strong>, {date}</h1>
->>>>>>> a1c123893dee7fdc20a908be6c7f6369b25a6a90
+        <h1><span className="bold">{weekDay}</span>, {date}</h1>
         <HomeFilterWeekBar />
       </div>
     );
