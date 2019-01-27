@@ -4,7 +4,10 @@
 
 .HomeHeaderView .logo {
   color: #5f63d4;
+  font-size: 1.8em;
   font-family: "Fredoka One", cursive;
+  font-weight: 400;
+  letter-spacing: 0.1em;
   text-align: center;
   text-transform: uppercase;
 }

@@ -4,16 +4,19 @@
 
 .HomeView .column {
   display: inline-block;
-  padding: 64px;
   vertical-align: top;
 }
 
 .HomeView .left {
-  background: #f7f7f7;
+  background: #F9F9F9;
+  padding: 60px;
+  padding-left: 8%;
+  padding-right: 8%;
   width: 66%;
 }
 
 .HomeView .right {
-  background: #fff;
+  background: #FFF;
+  padding: 60px;
   width: 34%;
 }

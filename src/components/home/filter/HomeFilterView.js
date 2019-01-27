@@ -7,7 +7,10 @@ class HomeFilterView extends Component {
   render() {
     return (
       <div className="HomeFilterView">
-        <h1>Tuesday, February 5</h1>
+        <h1>
+          <span className="bold">Tuesday, </span>
+          February 5
+        </h1>
         <HomeFilterWeekBar />
       </div>
     );

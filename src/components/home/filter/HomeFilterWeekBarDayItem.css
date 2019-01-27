@@ -3,6 +3,8 @@
 }
 
 .HomeFilterWeekBarDayItem .weekday {
+  font-size: 0.7em;
+  letter-spacing: 0.1em;
   color: #C7C7C7;
   margin-bottom: 4px;
   text-align: center;
@@ -17,6 +19,7 @@
 }
 
 .HomeFilterWeekBarDayItem .circle {
+  font-size: 0.9em;
   border-radius: 16px;
   height: 32px;
   width: 32px;

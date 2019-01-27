@@ -2,27 +2,27 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 16px;
+  margin-top: 2em;
 }
 
 .HomeFilterWeekBar .weekdays {
   display: flex;
   justify-content: space-between;
-  width: 440px;
+  width: 70%;
 }
 
 .HomeFilterWeekBar .left-button {
   width: 0;
   height: 0;
-  border-top: 11px solid transparent;
-  border-bottom: 11px solid transparent;
-  border-right: 15px solid #637cea;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 10px solid #D8D8D8;
 }
 
 .HomeFilterWeekBar .right-button {
   width: 0;
   height: 0;
-  border-top: 11px solid transparent;
-  border-bottom: 11px solid transparent;
-  border-left: 15px solid #637cea;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 10px solid #D8D8D8;
 }

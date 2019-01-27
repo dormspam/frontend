@@ -9,7 +9,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="DormspamApp">
-          <link href="https://fonts.googleapis.com/css?family=Fredoka+One|Nunito" rel="stylesheet" />
+          <link href="https://fonts.googleapis.com/css?family=Fredoka+One|Nunito:300,400,600,700" rel="stylesheet" />
           <Route exact path="/" component={HomeView} />
           <Route exact path="/event/:id" component={EventView} />
         </div>
