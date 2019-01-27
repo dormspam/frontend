@@ -1,9 +1,5 @@
 .HomeFeedEventsList {
   display: inline-block;
   vertical-align: top;
-  width: 50%;
-}
-
-.HomeFeedEventsList.expanded {
   width: 90%;
 }
