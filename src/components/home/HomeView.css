@@ -1,5 +1,19 @@
 .HomeView {
-  margin: 0 auto;
-  max-width: 960px;
   min-height: 100vh;
+}
+
+.HomeView .column {
+  display: inline-block;
+  padding: 64px;
+  vertical-align: top;
+}
+
+.HomeView .left {
+  background: #f7f7f7;
+  width: 66%;
+}
+
+.HomeView .right {
+  background: #fff;
+  width: 34%;
 }
