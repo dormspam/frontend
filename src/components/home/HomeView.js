@@ -2,8 +2,15 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./HomeView.css";
 
+import EventModal from "./EventModal";
+
 class HomeView extends Component {
   render() {
+    var event = {
+      name: "hello world",
+      description: "asdf"
+    };
+
     return (
       <div className="App">
         <header className="App-header">
@@ -19,6 +26,7 @@ class HomeView extends Component {
           >
             Learn React
           </a>
+          <EventModal event={event} />
         </header>
       </div>
     );
