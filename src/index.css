@@ -11,3 +11,7 @@ html, body, #root {
 
   font-family: "Nunito", sans-serif;
 }
+
+.hidden {
+  display: none !important;
+}
