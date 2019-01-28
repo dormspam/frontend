@@ -4,25 +4,34 @@
   width: 224px;
 }
 
+.HomeHeaderCalendar h2 {
+  font-size: 0.8em;
+  font-weight: 400;
+  color: #707D93;
+  letter-spacing: 0.08em;
+}
+
 .HomeHeaderCalendar .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 224px;
+  width: 100%;
+  margin: auto;
+  margin-bottom: 1em;
 }
 
 .HomeHeaderCalendar .left-button {
   width: 0;
   height: 0;
-  border-top: 11px solid transparent;
-  border-bottom: 11px solid transparent;
-  border-right: 15px solid #D8D8D8;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 8px solid #D8D8D8;
 }
 
 .HomeHeaderCalendar .right-button {
   width: 0;
   height: 0;
-  border-top: 11px solid transparent;
-  border-bottom: 11px solid transparent;
-  border-left: 15px solid #D8D8D8;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 8px solid #D8D8D8;
 }

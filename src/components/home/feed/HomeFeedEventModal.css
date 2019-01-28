@@ -11,5 +11,17 @@
 }
 
 .HomeFeedEventModal h2 {
-  margin-bottom: 4px;
+  font-size: 0.9em;
+  font-weight: 400;
+  color: #55596B;
+  letter-spacing: 0.05em;
+  margin-top: 10px;
+  margin-bottom: 6px;
+}
+
+.HomeFeedEventModal p {
+  font-size: 0.9em;
+  font-weight: 400;
+  color: #55596B;
+  letter-spacing: 0.05em;
 }

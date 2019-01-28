@@ -4,7 +4,7 @@
 }
 
 .HomeFeedTimelineView .timeline {
-  background: #637cea;
+  background: #5F63D4;
   background: linear-gradient(#5F63D4, #BF9BD8);
   border-radius: 2px;
   height: 100vh;
@@ -14,10 +14,10 @@
 }
 
 .HomeFeedTimelineView .timeline .ball {
-  background: #637cea;
-  /* border-radius: 50%; */
+  background: #5F63D4;
+  border-radius: 50%;
   width: 12px;
   height: 12px;
   transform: translate(-50%, -50%);
-  margin-left: 6px;
+  margin-left: 2px;
 }

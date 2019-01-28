@@ -15,11 +15,11 @@
 }
 
 .HomeFeedEventView.selected {
-  background: #E8E8E8;
+  background: #E7E7E7;
 }
 
 .HomeFeedEventView.selected:hover {
-  background: #E8E8E8;
+  background: #E7E7E7;
   box-shadow: none;
   cursor: auto;
 }
