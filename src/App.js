@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import EventView from "./components/event/EventView";
 import HomeView from "./components/home/HomeView";
+import RegisterView from "./components/register/RegisterView";
 
 class App extends Component {
   render() {
@@ -21,6 +22,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={HomeView} />
             <Route exact path="/event/:id" component={EventView} />
+            <Route exact path="/register" component={RegisterView} />
           </Switch>
         </div>
       </BrowserRouter>

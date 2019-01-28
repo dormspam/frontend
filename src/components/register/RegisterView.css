@@ -1,0 +1,69 @@
+.RegisterView {
+  background: #f9f9f9;
+  width: 100vw;
+  height: 100vh;
+}
+
+.RegisterView .container {
+  background: #5f63d4;
+  display: block;
+  left: 50%;
+  padding: 28px 32px 32px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 360px;
+}
+
+.RegisterView .container h2 {
+  color: #fff;
+  font-family: "Nunito", sans-serif;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.RegisterView input {
+  background: #ebebeb;
+  border: none;
+  border-radius: 4px;
+  display: block;
+  font-family: "Nunito", sans-serif;
+  font-size: 14px;
+  height: 36px;
+  letter-spacing: 0.1em;
+  margin: 0 auto 16px;
+  outline: none;
+  text-align: center;
+  width: 100%;
+}
+
+.RegisterView button {
+  background: rgba(0, 0, 0, 0);
+  border: 2px solid #fff;
+  /* border-radius: 8px; */
+  color: #fff;
+  cursor: pointer;
+  display: block;
+  font-family: "Nunito", sans-serif;
+  font-size: 16px;
+  margin: 28px auto 0;
+  outline: none;
+  padding: 8px 16px;
+  transition: 0.25s ease all;
+}
+
+.RegisterView button:hover {
+  background: #fff;
+  color: #5f63d4;
+}
+
+.RegisterView .shapes {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+}
+
+.RegisterView .shapes use {
+  fill: none;
+  stroke: #5f63d4;
+}
