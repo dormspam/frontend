@@ -1,7 +1,4 @@
 .HomeSelectionWeekBar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin-top: 2em;
 }
 
@@ -10,6 +7,14 @@
   justify-content: space-between;
   width: 70%;
 }
+
+.HomeSelectionWeekBar .weekbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
 
 .HomeSelectionWeekBar .left-button {
   width: 0;

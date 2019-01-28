@@ -1,0 +1,77 @@
+.HomeSelectionFilter {
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+.HomeSelectionFilter .search {
+  font-family: "Nunito";
+  letter-spacing: 0.1em;
+  background-color: #EBEBEB;
+  padding-left: 30px;
+  width: 70%;
+  height: 30px;
+  border: none;
+  outline: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  width: 30%;
+}
+
+.dropdown .hide {
+  display: none;
+}
+
+.dropdown .show {
+  display: block;
+}
+
+.dropbutton {
+  font-family: "Nunito";
+  letter-spacing: 0.1em;
+  background-color: #5F63D4;
+  cursor: pointer;
+  color: #FFF;
+  width: 100%;
+  height: 30px;
+  border: none;
+  outline: none;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.active {
+  background-color: #FFF;
+  color: #707D93;
+}
+
+.inactive {
+  background-color: #5F63D4;
+}
+
+.dropbutton:focus {
+  background-color: #5257D3;
+  color: #FFF;
+}
+
+.dropcontent {
+  position: absolute;
+  background-color: #FFF;
+  z-index: 1;
+}
+
+.dropcontent button {
+  padding: 12px;
+  width: 200%;
+  border: none;
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.08);
+  outline: none;
+  text-align: left;
+  letter-spacing: 0.1em;
+}
+
+.dropcontent button:hover {
+  background-color: #F6F6F6;
+}

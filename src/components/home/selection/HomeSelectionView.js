@@ -3,16 +3,14 @@ import moment from "moment";
 import "./HomeSelectionView.css";
 
 import HomeSelectionWeekBar from "./HomeSelectionWeekBar";
+import HomeSelectionFilter from "./HomeSelectionFilter";
 
 class HomeSelectionView extends Component {
   render() {
-    const weekDay = moment().format("dddd");
-    const date = moment().format("MMMM D");
-
     return (
       <div className="HomeSelectionView">
-        <h1><span className="bold">{weekDay}</span>, {date}</h1>
         <HomeSelectionWeekBar />
+        <HomeSelectionFilter />
       </div>
     );
   }
