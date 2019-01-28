@@ -1,0 +1,37 @@
+.HomeSidebarCalendar .calendar {
+  display: flex;
+  flex-wrap: wrap;
+  width: 224px;
+}
+
+.HomeSidebarCalendar h2 {
+  font-size: 0.8em;
+  font-weight: 400;
+  color: #707D93;
+  letter-spacing: 0.08em;
+}
+
+.HomeSidebarCalendar .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: auto;
+  margin-bottom: 1em;
+}
+
+.HomeSidebarCalendar .left-button {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 8px solid #D8D8D8;
+}
+
+.HomeSidebarCalendar .right-button {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 8px solid #D8D8D8;
+}

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import "./HomeView.css";
 
-import HomeHeaderCalendar from "./header/HomeHeaderCalendar";
+import HomeSidebarCalendar from "./sidebar/HomeSidebarCalendar";
 import HomeHeaderView from "./header/HomeHeaderView";
-import HomeFilterView from "./filter/HomeFilterView";
-import HomeFeedEventModal from "./feed/HomeFeedEventModal";
+import HomeSelectionView from "./selection/HomeSelectionView";
+import HomeSidebarEventModal from "./sidebar/HomeSidebarEventModal";
 import HomeFeedView from "./feed/HomeFeedView";
 
 class HomeView extends Component {
@@ -37,12 +37,12 @@ class HomeView extends Component {
       <div className="HomeView">
         <div className="column left">
           <HomeHeaderView />
-          <HomeFilterView />
+          <HomeSelectionView />
           <HomeFeedView selectedEvent={this.state.event} onSelectEvent={this.handleSelectEvent} />
         </div>
         <div className="column right">
-          <HomeHeaderCalendar />
-          <HomeFeedEventModal event={this.state.event} />
+          <HomeSidebarCalendar />
+          <HomeSidebarEventModal event={this.state.event} />
         </div>
       </div>
     );

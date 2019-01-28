@@ -1,3 +1,7 @@
 .HomeFeedEventsListSection h2 {
+  font-size: 0.9em;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: #707D93;
   margin-bottom: 12px;
 }

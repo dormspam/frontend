@@ -1,0 +1,36 @@
+.HomeSelectionWeekBarDayItem {
+  display: inline-block;
+}
+
+.HomeSelectionWeekBarDayItem .weekday {
+  font-size: 0.7em;
+  letter-spacing: 0.1em;
+  color: #C7C7C7;
+  margin-bottom: 4px;
+  text-align: center;
+  width: 32px;
+}
+
+.HomeSelectionWeekBarDayItem.active .circle {
+  background: #5F63D4;
+  border-radius: 16px;
+  height: 32px;
+  width: 32px;
+}
+
+.HomeSelectionWeekBarDayItem .circle {
+  font-size: 0.9em;
+  border-radius: 16px;
+  height: 32px;
+  width: 32px;
+}
+
+.HomeSelectionWeekBarDayItem .circle .day {
+  color: #707D93;
+  line-height: 34px;
+  text-align: center;
+}
+
+.HomeSelectionWeekBarDayItem.active .circle .day {
+  color: #fff;
+}

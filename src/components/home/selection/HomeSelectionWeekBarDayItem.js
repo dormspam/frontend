@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import "./HomeFilterWeekBarDayItem.css";
+import "./HomeSelectionWeekBarDayItem.css";
 
-class HomeFilterWeekBarDayItem extends Component {
+class HomeSelectionWeekBarDayItem extends Component {
   render() {
     return (
-      <div className={"HomeFilterWeekBarDayItem" + (this.props.data.active ? " active" : "")}>
+      <div className={"HomeSelectionWeekBarDayItem" + (this.props.data.active ? " active" : "")}>
         <p className="weekday">{this.props.data.day}</p>
         <div className="circle">
           <p className="day">{this.props.data.date}</p>
@@ -14,4 +14,4 @@ class HomeFilterWeekBarDayItem extends Component {
   }
 }
 
-export default HomeFilterWeekBarDayItem;
+export default HomeSelectionWeekBarDayItem;

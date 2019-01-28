@@ -1,0 +1,28 @@
+.HomeSelectionWeekBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2em;
+}
+
+.HomeSelectionWeekBar .weekdays {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+}
+
+.HomeSelectionWeekBar .left-button {
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 10px solid #D8D8D8;
+}
+
+.HomeSelectionWeekBar .right-button {
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 10px solid #D8D8D8;
+}

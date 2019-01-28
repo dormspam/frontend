@@ -1,0 +1,27 @@
+.HomeSidebarEventModal {
+  display: inline-block;
+  margin-top: 48px;
+  vertical-align: top;
+  width: 100%;
+}
+
+.HomeSidebarEventModal img {
+  margin-bottom: 8px;
+  max-width: 100%;
+}
+
+.HomeSidebarEventModal h2 {
+  font-size: 0.9em;
+  font-weight: 400;
+  color: #55596B;
+  letter-spacing: 0.05em;
+  margin-top: 10px;
+  margin-bottom: 6px;
+}
+
+.HomeSidebarEventModal p {
+  font-size: 0.9em;
+  font-weight: 400;
+  color: #55596B;
+  letter-spacing: 0.05em;
+}

@@ -1,0 +1,29 @@
+.HomeSidebarWeekBarDayItem {
+  display: inline-block;
+}
+
+.HomeSidebarCalendarDayItem.active .circle {
+  background: #637cea;
+  border-radius: 16px;
+  height: 32px;
+  width: 32px;
+}
+
+.HomeSidebarCalendarDayItem .circle {
+  background: #EEEEEE;
+  border-radius: 16px;
+  height: 25px;
+  width: 25px;
+  margin: 0.3em;
+}
+
+.HomeSidebarCalendarDayItem .circle .day {
+  color: #B0B9C7;
+  font-size: 0.9em;
+  line-height: 32px;
+  text-align: center;
+}
+
+.HomeSidebarCalendarDayItem.active .circle .day {
+  color: #fff;
+}
