@@ -57,7 +57,7 @@ class PreferencesView extends Component {
     ))
 
     return (
-      <div className="PreferencesView">
+      <div className={"PreferencesView" + (this.props.hidden ? " hidden" : "")}>
         <div className="container">
           <h1>Select your preferences</h1>
           {categoryTags}

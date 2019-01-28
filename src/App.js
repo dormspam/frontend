@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import EventView from "./components/event/EventView";
 import HomeView from "./components/home/HomeView";
 import AuthView from "./components/auth/AuthView";
-import PreferencesView from "./components/preferences/PreferencesView";
+import SettingsView from "./components/settings/SettingsView";
 
 class App extends Component {
   render() {
@@ -25,7 +25,7 @@ class App extends Component {
             <Route exact path="/event/:id" component={EventView} />
             <Route exact path="/login" render={(props) => <AuthView type="login" />} />
             <Route exact path="/register" render={(props) => <AuthView type="register" />} />
-            <Route exact path="/preferences" component={PreferencesView} />
+            <Route exact path="/settings" component={SettingsView} />
           </Switch>
         </div>
       </BrowserRouter>

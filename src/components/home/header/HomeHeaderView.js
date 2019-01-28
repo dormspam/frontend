@@ -7,7 +7,7 @@ class HomeHeaderView extends Component {
       <div className="HomeHeaderView">
         <div className="empty-space" />
         <h1 className="logo">Dormspam</h1>
-        <a href="/register">
+        <a href="/settings">
           <img src="/img/settings.svg" alt="Settings" />
         </a>
       </div>
