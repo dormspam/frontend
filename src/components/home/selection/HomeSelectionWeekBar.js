@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import moment from "moment";
-import "./HomeFilterWeekBar.css";
+import "./HomeSelectionWeekBar.css";
 
-import HomeFilterWeekBarDayItem from "./HomeFilterWeekBarDayItem";
+import HomeSelectionWeekBarDayItem from "./HomeSelectionWeekBarDayItem";
 
-class HomeFilterWeekBar extends Component {
+class HomeSelectionWeekBar extends Component {
   render() {
     let dayTagsData = [];
     const weekStart = moment().startOf("week");
@@ -19,14 +19,14 @@ class HomeFilterWeekBar extends Component {
     }
 
     const dayTags = dayTagsData.map(
-      day => <HomeFilterWeekBarDayItem key={day.date} data={day} />
+      day => <HomeSelectionWeekBarDayItem key={day.date} data={day} />
     );
 
     return (
-      <div className="HomeFilterWeekBar">
+      <div className="HomeSelectionWeekBar">
         <div className="left-button" />
         <div className="weekdays">
-          {/* <HomeFilterWeekBarDayItem day='S' active={true}/> */}
+          {/* <HomeSelectionWeekBarDayItem day='S' active={true}/> */}
           {dayTags}
         </div>
         <div className="right-button" />
@@ -35,4 +35,4 @@ class HomeFilterWeekBar extends Component {
   }
 }
 
-export default HomeFilterWeekBar;
+export default HomeSelectionWeekBar;

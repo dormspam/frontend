@@ -1,21 +1,21 @@
 import React, { Component } from "react";
 import moment from "moment";
-import "./HomeFilterView.css";
+import "./HomeSelectionView.css";
 
-import HomeFilterWeekBar from "./HomeFilterWeekBar";
+import HomeSelectionWeekBar from "./HomeSelectionWeekBar";
 
-class HomeFilterView extends Component {
+class HomeSelectionView extends Component {
   render() {
     const weekDay = moment().format("dddd");
     const date = moment().format("MMMM D");
 
     return (
-      <div className="HomeFilterView">
+      <div className="HomeSelectionView">
         <h1><span className="bold">{weekDay}</span>, {date}</h1>
-        <HomeFilterWeekBar />
+        <HomeSelectionWeekBar />
       </div>
     );
   }
 }
 
-export default HomeFilterView;
+export default HomeSelectionView;

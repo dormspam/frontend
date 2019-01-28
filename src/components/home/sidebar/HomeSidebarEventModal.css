@@ -1,16 +1,16 @@
-.HomeFeedEventModal {
+.HomeSidebarEventModal {
   display: inline-block;
   margin-top: 48px;
   vertical-align: top;
   width: 100%;
 }
 
-.HomeFeedEventModal img {
+.HomeSidebarEventModal img {
   margin-bottom: 8px;
   max-width: 100%;
 }
 
-.HomeFeedEventModal h2 {
+.HomeSidebarEventModal h2 {
   font-size: 0.9em;
   font-weight: 400;
   color: #55596B;
@@ -19,7 +19,7 @@
   margin-bottom: 6px;
 }
 
-.HomeFeedEventModal p {
+.HomeSidebarEventModal p {
   font-size: 0.9em;
   font-weight: 400;
   color: #55596B;

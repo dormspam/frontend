@@ -1,21 +1,21 @@
-.HomeFilterView h1 {
+.HomeSelectionView h1 {
   color: #707d93;
   font-size: 28px;
   font-weight: 400;
   margin-bottom: 24px;
 }
 
-.HomeFilterView h1 strong {
+.HomeSelectionView h1 strong {
   font-weight: 700;
 }
 
-.HomeFilterView h1 {
+.HomeSelectionView h1 {
   font-size: 1.1em;
   font-weight: 400;
   letter-spacing: 0.05em;
 }
 
-.HomeFilterView .bold {
+.HomeSelectionView .bold {
   font-size: 1.2em;
   font-weight: 800;
 }

@@ -1,15 +1,15 @@
-.HomeFilterWeekBarDayItem {
+.HomeSidebarWeekBarDayItem {
   display: inline-block;
 }
 
-.HomeHeaderCalendarDayItem.active .circle {
+.HomeSidebarCalendarDayItem.active .circle {
   background: #637cea;
   border-radius: 16px;
   height: 32px;
   width: 32px;
 }
 
-.HomeHeaderCalendarDayItem .circle {
+.HomeSidebarCalendarDayItem .circle {
   background: #EEEEEE;
   border-radius: 16px;
   height: 25px;
@@ -17,13 +17,13 @@
   margin: 0.3em;
 }
 
-.HomeHeaderCalendarDayItem .circle .day {
+.HomeSidebarCalendarDayItem .circle .day {
   color: #B0B9C7;
   font-size: 0.9em;
   line-height: 32px;
   text-align: center;
 }
 
-.HomeHeaderCalendarDayItem.active .circle .day {
+.HomeSidebarCalendarDayItem.active .circle .day {
   color: #fff;
 }
