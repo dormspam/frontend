@@ -1,0 +1,48 @@
+.SettingsView .column {
+  display: inline-block;
+  height: 100vh;
+  overflow-y: scroll;
+  padding: 48px;
+  vertical-align: top;
+}
+
+.SettingsView .left {
+  width: 20vw;
+}
+
+.SettingsView .left h1 {
+  font-family: "Fredoka One", cursive;
+  margin-bottom: 36px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.SettingsView .left h1 a {
+  color: #5f63d4;
+  text-decoration: none;
+}
+
+.SettingsView .left ul {
+  list-style-type: none;
+}
+
+.SettingsView .left li {
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  transition: 0.25s ease all;
+}
+
+.SettingsView .left li:hover {
+  color: #5f64d4;
+}
+
+.SettingsView .left li.active {
+  color: #5f64d4;
+}
+
+.SettingsView .right {
+  background: #eaeaea;
+  width: 80vw;
+}
