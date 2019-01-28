@@ -5,7 +5,11 @@ class HomeHeaderView extends Component {
   render() {
     return (
       <div className="HomeHeaderView">
-        <h1 class="logo">Dormspam</h1>
+        <div className="empty-space" />
+        <h1 className="logo">Dormspam</h1>
+        <a href="/register">
+          <img src="/img/settings.svg" alt="Settings" />
+        </a>
       </div>
     );
   }
