@@ -1,5 +1,12 @@
 .HomeHeaderView {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 48px;
+}
+
+.HomeHeaderView .empty-space {
+  width: 24px;
 }
 
 .HomeHeaderView .logo {
@@ -8,4 +15,13 @@
   font-size: 36px;
   text-align: center;
   text-transform: uppercase;
+}
+
+.HomeHeaderView a {
+  width: 24px;
+}
+
+.HomeHeaderView a img {
+  width: 100%;
+  vertical-align: middle;
 }
