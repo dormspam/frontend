@@ -1,10 +1,10 @@
-.RegisterView {
+.AuthView {
   background: #f9f9f9;
   width: 100vw;
   height: 100vh;
 }
 
-.RegisterView .container {
+.AuthView .container {
   background: #5f63d4;
   display: block;
   left: 50%;
@@ -15,14 +15,14 @@
   width: 360px;
 }
 
-.RegisterView .container h2 {
+.AuthView .container h2 {
   color: #fff;
   font-family: "Nunito", sans-serif;
   margin-bottom: 24px;
   text-align: center;
 }
 
-.RegisterView input {
+.AuthView input {
   background: #ebebeb;
   border: none;
   border-radius: 4px;
@@ -37,10 +37,9 @@
   width: 100%;
 }
 
-.RegisterView button {
+.AuthView button {
   background: rgba(0, 0, 0, 0);
   border: 2px solid #fff;
-  /* border-radius: 8px; */
   color: #fff;
   cursor: pointer;
   display: block;
@@ -52,18 +51,18 @@
   transition: 0.25s ease all;
 }
 
-.RegisterView button:hover {
+.AuthView button:hover {
   background: #fff;
   color: #5f63d4;
 }
 
-.RegisterView .shapes {
+.AuthView .shapes {
   width: 100vw;
   height: 100vh;
   position: absolute;
 }
 
-.RegisterView .shapes use {
+.AuthView .shapes use {
   fill: none;
   stroke: #5f63d4;
 }

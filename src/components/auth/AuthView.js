@@ -1,7 +1,22 @@
 import React, { Component } from "react";
-import "./RegisterView.css";
+import "./AuthView.css";
 
-class RegisterView extends Component {
+class AuthView extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      data: {
+        "login": {
+          "title": "Log In"
+        },
+        "register": {
+          "title": "Register"
+        }
+      }[this.props.type]
+    };
+  }
+
   componentDidMount() {
     const script = document.createElement("script");
     script.src = "/shapes.js";
@@ -11,8 +26,10 @@ class RegisterView extends Component {
   }
 
   render() {
+    console.log(this.state);
+
     return (
-      <div className="RegisterView">
+      <div className="AuthView">
         <div className="shapes">
           <svg xmlns="http://www.w3.org/2000/svg" width="37.196" height="32.213" viewBox="0 0 37.196 32.213">
             <symbol id="triangle">
@@ -39,7 +56,7 @@ class RegisterView extends Component {
         </div>
 
         <div className="container">
-          <h2>Register</h2>
+          <h2>{this.state.data.title}</h2>
           <input type="text" placeholder="Email address" />
           <input type="password" placeholder="Password" />
           <button>Submit</button>
@@ -49,4 +66,4 @@ class RegisterView extends Component {
   }
 }
 
-export default RegisterView;
+export default AuthView;
