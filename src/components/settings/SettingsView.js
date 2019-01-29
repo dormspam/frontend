@@ -27,11 +27,18 @@ class SettingsView extends Component {
     });
 
     this.handleItemClick = this.handleItemClick.bind(this);
+    this.handleUserUpdate = this.handleUserUpdate.bind(this);
   }
 
   handleItemClick(event) {
     this.setState({
       currentItem: event.target.getAttribute("item")
+    });
+  }
+
+  handleUserUpdate(data) {
+    this.setState({
+      user: data
     });
   }
 
@@ -54,7 +61,7 @@ class SettingsView extends Component {
           </ul>
         </div>
         <div className="right column">
-          <PreferencesView hidden={this.state.currentItem !== "Preferences"} />
+          <PreferencesView hidden={this.state.currentItem !== "Preferences"} onUserUpdate={this.handleUserUpdate} user={this.state.user} />
         </div>
       </div>
     );
