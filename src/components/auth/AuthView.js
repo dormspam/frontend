@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 import "./AuthView.css";
 
 class AuthView extends Component {
@@ -25,9 +26,16 @@ class AuthView extends Component {
     document.body.appendChild(script);
   }
 
-  render() {
-    console.log(this.state);
+  handleSubmit() {
+    axios.post("http://localhost:5000/users" + (this.props.type === "login" ? "/login" : ""), {
+      email: document.getElementById("email").value,
+      password: document.getElementById("password").value
+    }).then(response => {
+      console.log(response)
+    });
+  }
 
+  render() {
     return (
       <div className="AuthView">
         <div className="shapes">
@@ -57,9 +65,9 @@ class AuthView extends Component {
 
         <div className="container">
           <h2>{this.state.data.title}</h2>
-          <input type="text" placeholder="Email address" />
-          <input type="password" placeholder="Password" />
-          <button>Submit</button>
+          <input id="email" type="text" placeholder="Email address" />
+          <input id="password" type="password" placeholder="Password" />
+          <button onClick={this.handleSubmit}>Submit</button>
         </div>
       </div>
     );
