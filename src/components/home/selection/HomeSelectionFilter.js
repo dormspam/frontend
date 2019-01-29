@@ -11,39 +11,41 @@ class HomeSelectionFilter extends Component {
       isOpen: false
     };
 
+    this.handleCategorySelect = this.handleCategorySelect.bind(this);
     this.switchFilter = this.switchFilter.bind(this);
   }
 
-  switchFilter(event) {
-    if (this.state.isOpen) {
-      this.setState({
-        isOpen: false
-      });
-    } else {
-      this.setState({
-        isOpen: true
-      });
+  handleCategorySelect(event) {
+    // Don't do anything if the user clicked the checkbox
+    if (event.target.tagName.toLowerCase() === "input") {
+      return;
     }
+
+    let checkbox = event.target.childNodes[0];
+    checkbox.checked = !checkbox.checked;
+  }
+
+  switchFilter(event) {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
   }
 
   render() {
+    let categories = ["Art", "Food", "Technology"];
+    let categoryTags = categories.map((category, i) => (
+      <button className="dropoption" key={i} index={i} onClick={this.handleCategorySelect}>
+        <input type="checkbox" />
+        &nbsp;&nbsp;&nbsp;{category}
+      </button>
+    ));
+
     return (
       <div className="HomeSelectionFilter">
         <div className="dropdown">
           <button className={"dropbutton" + (this.state.isOpen ? " active" : "")} onClick={this.switchFilter}>{this.state.isOpen ? this.state.openContent : this.state.closedContent}</button>
           <div className={"dropcontent" + (this.state.isOpen ? " show" : " hide")}>
-            <button className="dropoption">
-              <input type="checkbox" name="vehicle1" value="Bike" />
-              &nbsp;&nbsp;&nbsp;Art
-            </button>
-            <button className="dropoption">
-              <input type="checkbox" name="vehicle1" value="Bike" />
-              &nbsp;&nbsp;&nbsp;Food
-            </button>
-            <button className="dropoption">
-              <input type="checkbox" name="vehicle1" value="Bike" />
-              &nbsp;&nbsp;&nbsp;Technology
-            </button>
+            {categoryTags}
           </div>
         </div>
         <input className="search" type="text" name="search" placeholder="search by"></input>

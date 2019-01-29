@@ -68,6 +68,10 @@
   letter-spacing: 0.1em;
 }
 
+.HomeSelectionFilter .dropcontent button:active {
+  color: #000;
+}
+
 .HomeSelectionFilter .dropcontent button:hover {
   background-color: #F6F6F6;
 }
