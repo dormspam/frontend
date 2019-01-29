@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 import "./SettingsView.css";
 
 import PreferencesView from "./preferences/PreferencesView";
@@ -8,8 +9,22 @@ class SettingsView extends Component {
     super(props);
 
     this.state = {
-      currentItem: "Preferences"
+      currentItem: "Preferences",
+      loading: true
     };
+
+    axios.get("http://localhost.localdomain:5000/users/current", {
+      withCredentials: true
+    }).then(response => {
+      this.setState({
+        loading: false,
+        user: response.data
+      });
+
+      console.log(response.data);
+    }).catch(error => {
+      window.location.href = "http://localhost.localdomain:5000/users/oidc";
+    });
 
     this.handleItemClick = this.handleItemClick.bind(this);
   }
@@ -21,6 +36,10 @@ class SettingsView extends Component {
   }
 
   render() {
+    if (this.state.loading === true) {
+      return <div />;
+    }
+
     let settingsItems = ["Preferences", "Frequency", "Log Out"];
     let settingsItemTags = settingsItems.map(item => (
       <li className={item === this.state.currentItem ? "active" : ""} key={item} item={item} onClick={this.handleItemClick}>{item}</li>
