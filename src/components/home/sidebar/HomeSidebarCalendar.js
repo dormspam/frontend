@@ -66,6 +66,7 @@ class HomeSidebarCalendar extends Component {
         date: m.date(),
         active: m.isSame(this.state.today, 'day'),
         focus: m.isSame(this.state.m, 'month'),
+        isToday: m.format('MMM Do YY') === moment().format('MMM Do YY'),
       });
     }
 
@@ -76,6 +77,7 @@ class HomeSidebarCalendar extends Component {
                     day={day.date}
                     active={day.active}
                     focus={day.focus}
+                    isToday={day.isToday}
                     onClick={this.selectDay}
                   />
     );
@@ -84,7 +86,7 @@ class HomeSidebarCalendar extends Component {
       <div className="HomeSidebarCalendar">
         <div className="header">
           <div className="left-button" onClick={this.previousMonth}/>
-          <h2>{this.state.m.format('MMMM, YYYY')}</h2>
+          <h2>{this.state.m.format('MMMM YYYY')}</h2>
           <div className="right-button" onClick={this.nextMonth}/>
         </div>
         <div className="calendar">

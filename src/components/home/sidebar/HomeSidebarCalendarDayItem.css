@@ -2,43 +2,40 @@
   display: inline-block;
 }
 
-/* .HomeSidebarCalendarDayItem .weekday { */
-/*   font-size: 0.7em; */
-/*   letter-spacing: 0.1em; */
-/*   color: #C7C7C7; */
-/*   margin-bottom: 4px; */
-/*   text-align: center; */
-/*   width: 32px; */
-/* } */
-
-/* .HomeSidebarCalendarDayItem.active .circle { */
-/*   background: #5F63D4; */
-/*   border-radius: 16px; */
-/*   height: 32px; */
-/*   width: 32px; */
-/* } */
-
 .HomeSidebarCalendarDayItem .circle {
-  font-size: 0.9em;
+  font-size: 0.7em;
   border-radius: 16px;
+  border: 4px solid #FFF;
   height: 32px;
   width: 32px;
-  color: #707D93;
+  color: #C7C7C7;
   background-color: #FAFAFA;
-  line-height: 34px;
+  line-height: 28px;
   text-align: center;
   margin: 0em;
+  cursor: pointer;
 }
 
 .HomeSidebarCalendarDayItem.focus .circle {
   background-color: #EEEEEE;
+  color: #ACB5C6;
+}
+
+.HomeSidebarCalendarDayItem.today .circle {
+  background-color: #BBB;
+  color: #FFF;
 }
 
 .HomeSidebarCalendarDayItem.active .circle {
-  background-color: #5F63D4;
+  background-color: #BF9BD8;
   color: #fff;
 }
 
-/* .HomeSidebarCalendarDayItem.active .circle .day { */
-/*   color: #fff; */
-/* } */
+.HomeSidebarCalendarDayItem .circle:hover {
+  background-color: #CCCCCC;
+  color: #FFF;
+}
+
+.HomeSidebarCalendarDayItem.active .circle:hover {
+  background-color: #AA7CC9;
+}
