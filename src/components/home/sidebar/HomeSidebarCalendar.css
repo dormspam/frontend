@@ -33,6 +33,7 @@
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
   border-right: 8px solid #D8D8D8;
+  cursor: pointer;
 }
 
 .HomeSidebarCalendar .right-button {
@@ -41,4 +42,5 @@
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
   border-left: 8px solid #D8D8D8;
+  cursor: pointer;
 }
