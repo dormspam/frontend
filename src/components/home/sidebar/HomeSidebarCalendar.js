@@ -11,6 +11,28 @@ class HomeSidebarCalendar extends Component {
     this.state = {
       today: moment(),
     };
+
+    this.selectDay = this.selectDay.bind(this);
+  }
+
+  /* 0 is sunday, 1 is monday, etc */
+  selectDay(event) {
+    let target = event.target;
+
+    if (target.getAttribute("index") === null) {
+      target = target.parentElement;
+    }
+
+    if (target.getAttribute("index") === null) {
+      target = target.parentElement;
+    }
+
+    let m = target.getAttribute("moment");
+    console.log(m);
+
+    this.setState({
+      today: moment(m),
+    });
   }
 
   render() {
@@ -26,6 +48,7 @@ class HomeSidebarCalendar extends Component {
 
     for (let m = weekStart; m.isBefore(weekEnd); m.add(1, 'days')) {
       dayTagsData.push({
+        moment: m.format(),
         date: m.date(),
         active: m.isSame(this.state.today, 'day'),
         focus: m.isSame(this.state.today, 'month'),
@@ -35,9 +58,11 @@ class HomeSidebarCalendar extends Component {
     const dayTags = dayTagsData.map(
       (day, i) => <HomeSidebarCalendarDayItem
                     key={i}
+                    moment={day.moment}
                     day={day.date}
                     active={day.active}
                     focus={day.focus}
+                    onClick={this.selectDay}
                   />
     );
 

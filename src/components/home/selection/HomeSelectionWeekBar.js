@@ -6,12 +6,12 @@ import HomeSelectionWeekBarDayItem from "./HomeSelectionWeekBarDayItem";
 
 class HomeSelectionWeekBar extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       currentWeekStart: moment().startOf("week"),
       currentDate: moment()
-    }
+    };
 
     this.previousWeek = this.previousWeek.bind(this);
     this.nextWeek = this.nextWeek.bind(this);
