@@ -70,30 +70,23 @@ class HomeFeedView extends Component {
     };
 
     this.organizeData = this.organizeData.bind(this);
-    this.selectEvent = this.selectEvent.bind(this);
     this.getAllEvents = this.getAllEvents.bind(this);
     this.getEventsByTime = this.getEventsByTime.bind(this);
   }
 
   organizeData() {
-    let data = this.state.data;
+    let data = this.state.data.sort((a, b) => a.time - b.time);
     let formatted = {};
 
-    data = data.sort(function(a, b) {
-      return a.time - b.time;
-    })
-
-    for (let i=0; i < data.length; i++) {
+    for (let i = 0; i < data.length; i++) {
       if (data[i].time in formatted) {
         formatted[data[i].time].push(data[i]);
       } else {
         formatted[data[i].time] = [data[i]];
       }
     }
-    return formatted;
-  }
 
-  selectEvent() {
+    return formatted;
   }
 
   getAllEvents() {
@@ -102,41 +95,50 @@ class HomeFeedView extends Component {
     let eventsDisplay = [];
 
     sortedTimes.sort();
+
     for (let i=0; i < sortedTimes.length; i++) {
-      eventsDisplay.push(<div className="timeline">
-                            <div className="sideline">
-                              <div className="ball"></div>
-                            </div>
-                          </div>);
-      eventsDisplay.push(<div className="onetime">{sortedTimes[i]}</div>);
+      eventsDisplay.push(
+        <div className="timeline" key={sortedTimes[i] * 1000 + i}>
+          <div className="sideline">
+            <div className="ball"></div>
+          </div>
+        </div>
+      );
+
+      eventsDisplay.push(
+        <div className="onetime" key={-sortedTimes[i] * 1000 + i}>{sortedTimes[i]}</div>
+      );
+
       eventsDisplay = eventsDisplay.concat(this.getEventsByTime(data[sortedTimes[i]]));
     }
+
     return eventsDisplay;
   }
 
   getEventsByTime(events) {
     let formatted = [];
 
-    for (let i=0; i < events.length; i++) {
-      formatted.push(<div className="timeevents">
-                        <div className="sidespace"></div>
-                        <HomeFeedEventView
-                          key={events[i].id}
-                          event={events[i]}
-                          selected={this.props.selectedEvent.id === events[i].id}
-                          onClick={this.props.onSelectEvent} />
-                      </div>);
+    for (let i = 0; i < events.length; i++) {
+      formatted.push(
+        <div className="timeevents" key={events[i].id}>
+          <div className="sidespace" />
+          <HomeFeedEventView
+            event={events[i]}
+            selected={this.props.selectedEvent.id === events[i].id}
+            onClick={this.props.onSelectEvent} />
+        </div>
+      );
     }
+
     return formatted;
   }
 
   render() {
     this.organizeData();
-    const eventTags = this.getAllEvents();
 
     return (
       <div className="HomeFeedView">
-        {eventTags}
+        {this.getAllEvents()}
       </div>
     );
   }
