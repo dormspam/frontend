@@ -14,21 +14,21 @@
   outline: none;
 }
 
-.dropdown {
+.HomeSelectionFilter .dropdown {
   position: relative;
   display: inline-block;
   width: 30%;
 }
 
-.dropdown .hide {
+.HomeSelectionFilter .dropdown .hide {
   display: none;
 }
 
-.dropdown .show {
+.HomeSelectionFilter .dropdown .show {
   display: block;
 }
 
-.dropbutton {
+.HomeSelectionFilter .dropbutton {
   font-family: "Nunito";
   letter-spacing: 0.1em;
   background-color: #5F63D4;
@@ -42,27 +42,27 @@
   overflow: hidden;
 }
 
-.active {
+.HomeSelectionFilter .active {
   background-color: #FFF;
   color: #707D93;
 }
 
-.inactive {
+.HomeSelectionFilter .inactive {
   background-color: #5F63D4;
 }
 
-.dropbutton:focus {
+.HomeSelectionFilter .dropbutton:focus {
   background-color: #5257D3;
   color: #FFF;
 }
 
-.dropcontent {
+.HomeSelectionFilter .dropcontent {
   position: absolute;
   background-color: #FFF;
   z-index: 1;
 }
 
-.dropcontent button {
+.HomeSelectionFilter .dropcontent button {
   padding: 12px;
   width: 200%;
   border: none;
@@ -72,6 +72,6 @@
   letter-spacing: 0.1em;
 }
 
-.dropcontent button:hover {
+.HomeSelectionFilter .dropcontent button:hover {
   background-color: #F6F6F6;
 }

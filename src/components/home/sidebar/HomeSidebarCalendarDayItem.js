@@ -1,18 +1,14 @@
 import React, { Component } from "react";
 import "./HomeSidebarCalendarDayItem.css";
 
-class HomeSidebarCalendarDayItem extends Component {
+export default class HomeSidebarCalendarDayItem extends Component {
   render() {
     return (
-      // <div className={"HomeSidebarCalendarDayItem" + (this.props.data.active ? " active" : "")}>
-      <div className="HomeSidebarCalendarDayItem">
+      <div className={"HomeSidebarCalendarDayItem" + (this.props.active ? " active" : "") + (this.props.focus ? " focus" : "")}>
         <div className="circle">
-          {/* <p className="day">{this.props.data.date}</p> */}
-          <p className="day">10</p>
+          <p className="day">{this.props.day}</p>
         </div>
       </div>
     );
   }
 }
-
-export default HomeSidebarCalendarDayItem;

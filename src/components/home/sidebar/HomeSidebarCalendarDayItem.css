@@ -1,29 +1,43 @@
-.HomeSidebarWeekBarDayItem {
+.HomeSidebarCalendarDayItem {
   display: inline-block;
 }
 
-.HomeSidebarCalendarDayItem.active .circle {
-  background: #637cea;
+/* .HomeSidebarCalendarDayItem .weekday { */
+/*   font-size: 0.7em; */
+/*   letter-spacing: 0.1em; */
+/*   color: #C7C7C7; */
+/*   margin-bottom: 4px; */
+/*   text-align: center; */
+/*   width: 32px; */
+/* } */
+
+/* .HomeSidebarCalendarDayItem.active .circle { */
+/*   background: #5F63D4; */
+/*   border-radius: 16px; */
+/*   height: 32px; */
+/*   width: 32px; */
+/* } */
+
+.HomeSidebarCalendarDayItem .circle {
+  font-size: 0.9em;
   border-radius: 16px;
   height: 32px;
   width: 32px;
-}
-
-.HomeSidebarCalendarDayItem .circle {
-  background: #EEEEEE;
-  border-radius: 16px;
-  height: 25px;
-  width: 25px;
-  margin: 0.3em;
-}
-
-.HomeSidebarCalendarDayItem .circle .day {
-  color: #B0B9C7;
-  font-size: 0.9em;
-  line-height: 32px;
+  color: #707D93;
+  background-color: #FAFAFA;
+  line-height: 34px;
   text-align: center;
 }
 
-.HomeSidebarCalendarDayItem.active .circle .day {
+.HomeSidebarCalendarDayItem.focus .circle {
+  background-color: #EEEEEE;
+}
+
+.HomeSidebarCalendarDayItem.active .circle {
+  background-color: #5F63D4;
   color: #fff;
 }
+
+/* .HomeSidebarCalendarDayItem.active .circle .day { */
+/*   color: #fff; */
+/* } */
