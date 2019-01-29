@@ -14,7 +14,7 @@ class HomeSelectionFilter extends Component {
     this.switchFilter = this.switchFilter.bind(this);
   }
 
-  switchFilter() {
+  switchFilter(event) {
     if (this.state.isOpen) {
       this.setState({
         isOpen: false
