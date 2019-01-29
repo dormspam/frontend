@@ -10,9 +10,24 @@ class HomeSidebarCalendar extends Component {
 
     this.state = {
       today: moment(),
+      m: moment(),
     };
 
+    this.previousMonth = this.previousMonth.bind(this);
+    this.nextMonth = this.nextMonth.bind(this);
     this.selectDay = this.selectDay.bind(this);
+  }
+
+  previousMonth() {
+    this.setState({
+      m: this.state.m.subtract(1, 'months')
+    });
+  }
+
+  nextMonth() {
+    this.setState({
+      m: this.state.m.add(1, 'months')
+    });
   }
 
   /* 0 is sunday, 1 is monday, etc */
@@ -28,7 +43,6 @@ class HomeSidebarCalendar extends Component {
     }
 
     let m = target.getAttribute("moment");
-    console.log(m);
 
     this.setState({
       today: moment(m),
@@ -37,7 +51,7 @@ class HomeSidebarCalendar extends Component {
 
   render() {
     let dayTagsData = [];
-    const m = moment(this.state.today);
+    const m = moment(this.state.m);
 
     const monthStart = m.startOf("month");
     let monthEnd = moment(monthStart);
@@ -51,7 +65,7 @@ class HomeSidebarCalendar extends Component {
         moment: m.format(),
         date: m.date(),
         active: m.isSame(this.state.today, 'day'),
-        focus: m.isSame(this.state.today, 'month'),
+        focus: m.isSame(this.state.m, 'month'),
       });
     }
 
@@ -69,9 +83,9 @@ class HomeSidebarCalendar extends Component {
     return (
       <div className="HomeSidebarCalendar">
         <div className="header">
-          <div className="left-button" />
-          <h2>{this.state.today.format('MMMM')}</h2>
-          <div className="right-button" />
+          <div className="left-button" onClick={this.previousMonth}/>
+          <h2>{this.state.m.format('MMMM, YYYY')}</h2>
+          <div className="right-button" onClick={this.nextMonth}/>
         </div>
         <div className="calendar">
           {dayTags}
