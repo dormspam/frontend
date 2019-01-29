@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import "./HomeFeedView.css";
 
-import HomeFeedEventsList from "./HomeFeedEventsList";
-import HomeFeedTimelineView from "./HomeFeedTimelineView";
+import HomeFeedEventView from "./HomeFeedEventView";
 
 class HomeFeedView extends Component {
   constructor(props) {
@@ -57,7 +56,13 @@ class HomeFeedView extends Component {
         location: "Burton Conner",
         time: 5,
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin semper quis tortor sit amet tempus. Vestibulum suscipit mi ante, ac pharetra elit cursus eget. Etiam mollis mollis euismod. Aliquam a arcu eget velit accumsan luctus non ac tellus. Sed vitae elementum felis, quis pretium tellus. Sed odio justo, viverra maximus ipsum ac, sodales bibendum mi. Pellentesque dui erat, vestibulum ut augue a, bibendum commodo orci."
-
+      }, {
+        id: 7,
+        image: "https://i.imgur.com/mwHn1gK.jpg",
+        title: "Chicken Wings",
+        location: "Burton Conner",
+        time: 5,
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin semper quis tortor sit amet tempus. Vestibulum suscipit mi ante, ac pharetra elit cursus eget. Etiam mollis mollis euismod. Aliquam a arcu eget velit accumsan luctus non ac tellus. Sed vitae elementum felis, quis pretium tellus. Sed odio justo, viverra maximus ipsum ac, sodales bibendum mi. Pellentesque dui erat, vestibulum ut augue a, bibendum commodo orci."
       }];
 
     this.state = {
@@ -115,10 +120,11 @@ class HomeFeedView extends Component {
     for (let i=0; i < events.length; i++) {
       formatted.push(<div className="timeevents">
                         <div className="sidespace"></div>
-                        <div className={"oneevent "} onClick={this.selectEvent}>
-                          <h2 className="eventtitle">{events[i].title}</h2>
-                          <p>{events[i].location}</p>
-                        </div>
+                        <HomeFeedEventView
+                          key={events[i].id}
+                          event={events[i]}
+                          selected={this.props.selectedEvent.id === events[i].id}
+                          onClick={this.props.onSelectEvent} />
                       </div>);
     }
     return formatted;
@@ -131,8 +137,6 @@ class HomeFeedView extends Component {
     return (
       <div className="HomeFeedView">
         {eventTags}
-        <HomeFeedTimelineView />
-        <HomeFeedEventsList selectedEvent={this.props.selectedEvent} onSelectEvent={this.props.onSelectEvent} />
       </div>
     );
   }

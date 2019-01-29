@@ -1,13 +1,18 @@
 .HomeFeedEventView {
+  display: inline-block;
   font-size: 0.8em;
-  color: #707D93;
+  color: #55596B;
   letter-spacing: 0.08em;
   background: #F2F2F2;
   cursor: pointer;
-  margin-bottom: 16px;
-  padding: 16px 30px;
+  padding: 12px 30px;
   transition: 0.25s ease background;
-  width: 100%;
+  width: 92%;
+  margin-bottom: 1.5em;
+}
+
+.HomeFeedEventView h2 {
+  font-size: 1.2em;
 }
 
 .HomeFeedEventView .bold {

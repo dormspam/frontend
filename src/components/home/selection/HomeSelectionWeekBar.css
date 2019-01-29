@@ -22,6 +22,7 @@
   border-top: 8px solid transparent;
   border-bottom: 8px solid transparent;
   border-right: 10px solid #D8D8D8;
+  cursor: pointer;
 }
 
 .HomeSelectionWeekBar .right-button {
@@ -30,4 +31,5 @@
   border-top: 8px solid transparent;
   border-bottom: 8px solid transparent;
   border-left: 10px solid #D8D8D8;
+  cursor: pointer;
 }

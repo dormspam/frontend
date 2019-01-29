@@ -27,6 +27,7 @@
   background-color: #FAFAFA;
   line-height: 34px;
   text-align: center;
+  margin: 0em;
 }
 
 .HomeSidebarCalendarDayItem.focus .circle {
