@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./SettingsView.css";
 
+import FrequencyView from "./frequency/FrequencyView";
 import PreferencesView from "./preferences/PreferencesView";
 
 class SettingsView extends Component {
@@ -9,7 +10,7 @@ class SettingsView extends Component {
     super(props);
 
     this.state = {
-      currentItem: "Preferences",
+      currentItem: "Frequency",
       loading: true
     };
 
@@ -61,6 +62,7 @@ class SettingsView extends Component {
           </ul>
         </div>
         <div className="right column">
+          <FrequencyView hidden={this.state.currentItem !== "Frequency"} onUserUpdate={this.handleUserUpdate} user={this.state.user} />
           <PreferencesView hidden={this.state.currentItem !== "Preferences"} onUserUpdate={this.handleUserUpdate} user={this.state.user} />
         </div>
       </div>

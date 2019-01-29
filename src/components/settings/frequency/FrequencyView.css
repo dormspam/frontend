@@ -1,37 +1,35 @@
-.PreferencesView {
+.FrequencyView {
   height: 100%;
 }
 
-.PreferencesView .container {
+.FrequencyView .container {
   left: 50%;
   position: relative;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 704px;
 }
 
-.PreferencesView .container h1 {
+.FrequencyView .container h1 {
   color: #5f63d4;
   margin-bottom: 16px;
   text-align: center;
 }
 
-.PreferencesView .category {
-  align-items: center;
-  border: 2px solid #5f63d4;
-  cursor: pointer;
-  display: inline-flex;
-  margin: 16px;
-  padding: 8px 16px;
-  width: 320px;
+.FrequencyView .container .line {
+  display: table;
+  margin: 0 auto;
 }
 
-.PreferencesView .category input {
-  margin-right: 12px;
-  width: 24px;
+.FrequencyView .container p, .FrequencyView .container select {
+  display: inline-block;
+  vertical-align: top;
 }
 
-.PreferencesView button {
+.FrequencyView .container p {
+  margin: 0 12px 4px;
+}
+
+.FrequencyView button {
   background: #5f63d4;
   border: 2px solid #5f63d4;
   color: #fff;
@@ -39,13 +37,13 @@
   display: block;
   font-family: "Nunito", sans-serif;
   font-size: 16px;
-  margin: 28px auto 0;
+  margin: 24px auto 0;
   outline: none;
   padding: 8px 16px;
   transition: 0.25s ease all;
 }
 
-.PreferencesView button:hover {
+.FrequencyView button:hover {
   background: rgba(0, 0, 0, 0);
   color: #5f63d4;
 }
