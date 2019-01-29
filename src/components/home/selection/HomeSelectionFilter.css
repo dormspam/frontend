@@ -43,17 +43,12 @@
 }
 
 .HomeSelectionFilter .active {
-  background-color: #FFF;
-  color: #707D93;
+  background-color: #5257D3;
+  color: #FFF;
 }
 
 .HomeSelectionFilter .inactive {
   background-color: #5F63D4;
-}
-
-.HomeSelectionFilter .dropbutton:focus {
-  background-color: #5257D3;
-  color: #FFF;
 }
 
 .HomeSelectionFilter .dropcontent {
@@ -63,6 +58,7 @@
 }
 
 .HomeSelectionFilter .dropcontent button {
+  background: #fff;
   padding: 12px;
   width: 200%;
   border: none;
@@ -70,6 +66,10 @@
   outline: none;
   text-align: left;
   letter-spacing: 0.1em;
+}
+
+.HomeSelectionFilter .dropcontent button:active {
+  color: #000;
 }
 
 .HomeSelectionFilter .dropcontent button:hover {
