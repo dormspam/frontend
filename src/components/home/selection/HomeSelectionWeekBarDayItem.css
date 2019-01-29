@@ -11,8 +11,15 @@
   width: 32px;
 }
 
+.HomeSelectionWeekBarDayItem.today .circle {
+  background: #EBEBEB;
+  border-radius: 16px;
+  height: 32px;
+  width: 32px;
+}
+
 .HomeSelectionWeekBarDayItem.active .circle {
-  background: #5F63D4;
+  background: #BF9BD8;
   border-radius: 16px;
   height: 32px;
   width: 32px;

@@ -1,6 +1,6 @@
 .HomeFeedTimelineView {
   display: inline-block;
-  width: 10%;
+  width: 6%;
 }
 
 .HomeFeedTimelineView .timeline {
@@ -9,6 +9,7 @@
   border-radius: 2px;
   height: 100vh;
   margin: 0;
+  margin-left: 6px;
   transform: translateX(-50%);
   width: 3px;
 }

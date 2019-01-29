@@ -20,7 +20,7 @@ class HomeSelectionWeekBar extends Component {
 
   previousWeek() {
     this.setState({
-      currentWeekStart: moment(this.state.currentWeekStart).add(-7, 'days')
+      currentWeekStart: moment(this.state.currentWeekStart).subtract(7, 'days')
     });
   }
 
@@ -59,8 +59,8 @@ class HomeSelectionWeekBar extends Component {
         index: i,
         day: moment(this.state.currentWeekStart).add(i, 'days').format('ddd').toUpperCase(),
         date: moment(this.state.currentWeekStart).add(i, 'days').date(),
-        active: (moment(this.state.currentWeekStart).add(i, 'days').day() === moment(this.state.currentDate).day()) && (moment(this.state.currentWeekStart).add(i, 'days').month() === moment(this.state.currentDate).month()) && (moment(this.state.currentWeekStart).add(i, 'days').month() === moment(this.state.currentDate).month()),
-        isToday: moment(this.state.currentWeekStart).add(i, 'days') === moment().day()
+        active: moment(this.state.currentWeekStart).add(i, 'days').format('MMM Do YY') === moment(this.state.currentDate).format('MMM Do YY'),
+        isToday: moment(this.state.currentWeekStart).add(i, 'days').format('MMM Do YY') === moment().format('MMM Do YY')
       });
     }
 
@@ -75,11 +75,11 @@ class HomeSelectionWeekBar extends Component {
       <div className="HomeSelectionWeekBar">
         <h1><span className="bold">{this.state.currentDate.format('dddd')}</span>, {this.state.currentDate.format('MMMM Do')}</h1>
         <div className="weekbar">
-          <div className="left-button" />
+          <div className="left-button" onClick={this.previousWeek} />
           <div className="weekdays">
             {dayTags}
           </div>
-          <div className="right-button" />
+          <div className="right-button" onClick={this.nextWeek} />
         </div>
       </div>
     );

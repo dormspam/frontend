@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://dormsp.am",
   "dependencies": {
+    "axios": "^0.18.0",
     "moment": "^2.24.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
