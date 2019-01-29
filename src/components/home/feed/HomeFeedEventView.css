@@ -33,3 +33,13 @@
   background: #FFF;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.05);
 }
+
+.HomeFeedEventView .description {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .HomeFeedEventView .description.selected {
+    display: block;
+  }
+}

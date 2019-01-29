@@ -2,7 +2,6 @@
   display: inline-block;
   height: 100vh;
   overflow-y: scroll;
-  padding: 64px;
   vertical-align: top;
 }
 
@@ -16,6 +15,15 @@
 
 .HomeView .right {
   background: #FFF;
-  padding: 60px;
+  padding: 3%;
   width: 34%;
+}
+
+@media (max-width: 800px) {
+  .HomeView .left {
+    width: 100%;
+  }
+  .HomeView .right {
+    display: none;
+  }
 }

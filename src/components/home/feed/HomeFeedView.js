@@ -44,7 +44,7 @@ class HomeFeedView extends Component {
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin semper quis tortor sit amet tempus. Vestibulum suscipit mi ante, ac pharetra elit cursus eget. Etiam mollis mollis euismod. Aliquam a arcu eget velit accumsan luctus non ac tellus. Sed vitae elementum felis, quis pretium tellus. Sed odio justo, viverra maximus ipsum ac, sodales bibendum mi. Pellentesque dui erat, vestibulum ut augue a, bibendum commodo orci."
       }, {
         id: 5,
-        image: "http://www.mit.edu/~pax/images/2018finalists.jpg",
+        image: "",
         title: "Bleep Bloop",
         location: ":)",
         time: 4,
