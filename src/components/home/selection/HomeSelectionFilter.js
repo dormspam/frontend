@@ -46,7 +46,7 @@ class HomeSelectionFilter extends Component {
             </button>
           </div>
         </div>
-        <input className="search" type="text" name="search" placeholder="search by"></input>
+        <input className="search" type="text" name="search" placeholder="Filter by content, category, or author..."></input>
         <br />
       </div>
     );

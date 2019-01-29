@@ -1,3 +1,87 @@
 .HomeFeedView {
-  padding-top: 48px;
+  padding-top: 30px;
+}
+
+.HomeFeedView .timerow {
+  width: 100%;
+}
+
+.HomeFeedView .timeline {
+  display: inline-block;
+  width: 8%;
+}
+
+.HomeFeedView .timeevents {
+  display: inline-block;
+  width: 100%;
+  border-left: 3px solid #5F63D4;
+  margin-left: 4px;
+}
+
+.HomeFeedView .sidespace {
+  display: inline-block;
+  height: 5px;
+  width: 8%;
+}
+
+.HomeFeedView .onetime {
+  display: inline-block;
+  font-size: 0.8em;
+  color: #707D93;
+  letter-spacing: 0.08em;
+  width: 92%;
+  transform: translate(10px, -5px);
+  padding-top: 0px;
+  margin: 0;
+}
+
+.HomeFeedView .oneevent {
+  display: inline-block;
+  font-size: 0.8em;
+  color: #55596B;
+  letter-spacing: 0.08em;
+  background: #F2F2F2;
+  cursor: pointer;
+  padding: 12px 30px;
+  transition: 0.25s ease background;
+  width: 92%;
+  margin-bottom: 1.5em;
+}
+
+.HomeFeedView .oneevent h2 {
+  font-size: 1.2em;
+}
+
+.HomeFeedView .oneevent:hover {
+  background: #FFF;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.05);
+}
+
+.HomeFeedView .oneevent.selected {
+  background: #5F63D4;
+}
+
+.HomeFeedView .oneevent.selected:hover {
+  background: #5F63D4;
+  box-shadow: none;
+  cursor: auto;
+}
+
+.HomeFeedView .sideline {
+  background: #5F63D4;
+  height: 40px;
+  margin: 0;
+  margin-left: 6px;
+  margin-bottom: -24px;
+  transform: translateX(-66%);
+  width: 3px;
+}
+
+.HomeFeedView .sideline .ball {
+  background: #5F63D4;
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  transform: translate(-50%, 0%);
+  margin-left: 2px;
 }

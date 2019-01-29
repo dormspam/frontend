@@ -5,9 +5,132 @@ import HomeFeedEventsList from "./HomeFeedEventsList";
 import HomeFeedTimelineView from "./HomeFeedTimelineView";
 
 class HomeFeedView extends Component {
+  constructor(props) {
+    super(props);
+
+    const mockData = [{
+        id: 0,
+        image: "https://hackmit.org/assets/graphics/hackcover7.png",
+        title: "HackMIT",
+        location: "Kresge Auditorium",
+        time: 6,
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin semper quis tortor sit amet tempus. Vestibulum suscipit mi ante, ac pharetra elit cursus eget. Etiam mollis mollis euismod. Aliquam a arcu eget velit accumsan luctus non ac tellus. Sed vitae elementum felis, quis pretium tellus. Sed odio justo, viverra maximus ipsum ac, sodales bibendum mi. Pellentesque dui erat, vestibulum ut augue a, bibendum commodo orci."
+      }, {
+        id: 1,
+        image: "https://hackmit.org/assets/graphics/hackcover7.png",
+        title: "Hack Lodge",
+        location: "Kresge Auditorium",
+        time: 7,
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin semper quis tortor sit amet tempus. Vestibulum suscipit mi ante, ac pharetra elit cursus eget. Etiam mollis mollis euismod. Aliquam a arcu eget velit accumsan luctus non ac tellus. Sed vitae elementum felis, quis pretium tellus. Sed odio justo, viverra maximus ipsum ac, sodales bibendum mi. Pellentesque dui erat, vestibulum ut augue a, bibendum commodo orci."
+      }, {
+        id: 2,
+        image: "http://www.mit.edu/~pax/images/2018finalists.jpg",
+        title: "MIT Integration Bee",
+        location: "Unknown",
+        time: 6,
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin semper quis tortor sit amet tempus. Vestibulum suscipit mi ante, ac pharetra elit cursus eget. Etiam mollis mollis euismod. Aliquam a arcu eget velit accumsan luctus non ac tellus. Sed vitae elementum felis, quis pretium tellus. Sed odio justo, viverra maximus ipsum ac, sodales bibendum mi. Pellentesque dui erat, vestibulum ut augue a, bibendum commodo orci."
+      }, {
+        id: 3,
+        image: "http://www.mit.edu/~pax/images/2018finalists.jpg",
+        title: "Sleep Time",
+        location: "East Campus",
+        time: 7,
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin semper quis tortor sit amet tempus. Vestibulum suscipit mi ante, ac pharetra elit cursus eget. Etiam mollis mollis euismod. Aliquam a arcu eget velit accumsan luctus non ac tellus. Sed vitae elementum felis, quis pretium tellus. Sed odio justo, viverra maximus ipsum ac, sodales bibendum mi. Pellentesque dui erat, vestibulum ut augue a, bibendum commodo orci."
+      }, {
+        id: 4,
+        image: "https://hackmit.org/assets/graphics/hackcover7.png",
+        title: "Hack Lodge",
+        location: "Kresge Auditorium",
+        time: 7,
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin semper quis tortor sit amet tempus. Vestibulum suscipit mi ante, ac pharetra elit cursus eget. Etiam mollis mollis euismod. Aliquam a arcu eget velit accumsan luctus non ac tellus. Sed vitae elementum felis, quis pretium tellus. Sed odio justo, viverra maximus ipsum ac, sodales bibendum mi. Pellentesque dui erat, vestibulum ut augue a, bibendum commodo orci."
+      }, {
+        id: 5,
+        image: "http://www.mit.edu/~pax/images/2018finalists.jpg",
+        title: "Bleep Bloop",
+        location: ":)",
+        time: 4,
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin semper quis tortor sit amet tempus. Vestibulum suscipit mi ante, ac pharetra elit cursus eget. Etiam mollis mollis euismod. Aliquam a arcu eget velit accumsan luctus non ac tellus. Sed vitae elementum felis, quis pretium tellus. Sed odio justo, viverra maximus ipsum ac, sodales bibendum mi. Pellentesque dui erat, vestibulum ut augue a, bibendum commodo orci."
+      }, {
+        id: 6,
+        image: "https://i.imgur.com/mwHn1gK.jpg",
+        title: "Chicken Wings",
+        location: "Burton Conner",
+        time: 5,
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin semper quis tortor sit amet tempus. Vestibulum suscipit mi ante, ac pharetra elit cursus eget. Etiam mollis mollis euismod. Aliquam a arcu eget velit accumsan luctus non ac tellus. Sed vitae elementum felis, quis pretium tellus. Sed odio justo, viverra maximus ipsum ac, sodales bibendum mi. Pellentesque dui erat, vestibulum ut augue a, bibendum commodo orci."
+
+      }];
+
+    this.state = {
+      data: mockData
+    };
+
+    this.organizeData = this.organizeData.bind(this);
+    this.selectEvent = this.selectEvent.bind(this);
+    this.getAllEvents = this.getAllEvents.bind(this);
+    this.getEventsByTime = this.getEventsByTime.bind(this);
+  }
+
+  organizeData() {
+    let data = this.state.data;
+    let formatted = {};
+
+    data = data.sort(function(a, b) {
+      return a.time - b.time;
+    })
+
+    for (let i=0; i < data.length; i++) {
+      if (data[i].time in formatted) {
+        formatted[data[i].time].push(data[i]);
+      } else {
+        formatted[data[i].time] = [data[i]];
+      }
+    }
+    return formatted;
+  }
+
+  selectEvent() {
+  }
+
+  getAllEvents() {
+    let data = this.organizeData();
+    let sortedTimes = Object.keys(data);
+    let eventsDisplay = [];
+
+    sortedTimes.sort();
+    for (let i=0; i < sortedTimes.length; i++) {
+      eventsDisplay.push(<div className="timeline">
+                            <div className="sideline">
+                              <div className="ball"></div>
+                            </div>
+                          </div>);
+      eventsDisplay.push(<div className="onetime">{sortedTimes[i]}</div>);
+      eventsDisplay = eventsDisplay.concat(this.getEventsByTime(data[sortedTimes[i]]));
+    }
+    return eventsDisplay;
+  }
+
+  getEventsByTime(events) {
+    let formatted = [];
+
+    for (let i=0; i < events.length; i++) {
+      formatted.push(<div className="timeevents">
+                        <div className="sidespace"></div>
+                        <div className={"oneevent "} onClick={this.selectEvent}>
+                          <h2 className="eventtitle">{events[i].title}</h2>
+                          <p>{events[i].location}</p>
+                        </div>
+                      </div>);
+    }
+    return formatted;
+  }
+
   render() {
+    this.organizeData();
+    const eventTags = this.getAllEvents();
+
     return (
       <div className="HomeFeedView">
+        {eventTags}
         <HomeFeedTimelineView />
         <HomeFeedEventsList selectedEvent={this.props.selectedEvent} onSelectEvent={this.props.onSelectEvent} />
       </div>

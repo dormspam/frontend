@@ -12,7 +12,7 @@
 }
 
 .HomeSelectionWeekBarDayItem.today .circle {
-  background: #EBEBEB;
+  background: #DEDEDE;
   border-radius: 16px;
   height: 32px;
   width: 32px;
@@ -36,6 +36,16 @@
   color: #707D93;
   line-height: 34px;
   text-align: center;
+}
+
+.HomeSelectionWeekBarDayItem .circle:hover {
+  background-color: #EBEBEB;
+  cursor: pointer;
+}
+
+.HomeSelectionWeekBarDayItem.active .circle:hover {
+  background-color: #A876CB;
+  cursor: pointer;
 }
 
 .HomeSelectionWeekBarDayItem.active .circle .day {
