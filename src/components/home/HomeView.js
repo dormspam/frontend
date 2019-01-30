@@ -13,20 +13,14 @@ class HomeView extends Component {
     super(props);
 
     this.state = {
-      date: moment().format("YYYY-MM-DD"),
       event: {
         id: -1
-      }
+      },
+      day: moment(),
     };
 
-    this.handleDateUpdate = this.handleDateUpdate.bind(this);
     this.handleSelectEvent = this.handleSelectEvent.bind(this);
-  }
-
-  handleDateUpdate(date) {
-    this.setState({
-      date: date
-    });
+    this.handleSelectDay = this.handleSelectDay.bind(this);
   }
 
   handleSelectEvent(event) {
@@ -41,17 +35,35 @@ class HomeView extends Component {
     }
   }
 
+  handleSelectDay(m) {
+    this.setState({
+      day: m,
+    });
+  }
+
   render() {
     return (
       <div className="HomeView">
         <div className="column left">
           <HomeHeaderView />
-          <HomeSelectionView onDateUpdate={this.handleDateUpdate} />
-          <HomeFeedView date={this.state.date} selectedEvent={this.state.event} onSelectEvent={this.handleSelectEvent} />
+          <HomeSelectionView
+            selectedDay={this.state.day}
+            onSelectDay={this.handleSelectDay}
+          />
+          <HomeFeedView
+            selectedDay={this.state.day}
+            selectedEvent={this.state.event}
+            onSelectEvent={this.handleSelectEvent}
+          />
         </div>
         <div className="column right">
-          <HomeSidebarCalendar />
-          <HomeSidebarEventModal event={this.state.event} />
+          <HomeSidebarCalendar
+            selectedDay={this.state.day}
+            onSelectDay={this.handleSelectDay}
+          />
+          <HomeSidebarEventModal
+            event={this.state.event}
+          />
         </div>
       </div>
     );

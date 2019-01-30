@@ -10,7 +10,7 @@ class HomeSelectionWeekBar extends Component {
 
     this.state = {
       currentWeekStart: moment().startOf("week"),
-      currentDate: moment()
+      currentDate: moment(),
     };
 
     this.previousWeek = this.previousWeek.bind(this);
@@ -18,15 +18,22 @@ class HomeSelectionWeekBar extends Component {
     this.selectDay = this.selectDay.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      currentDate: moment(nextProps.selectedDay),
+      currentWeekStart: moment(nextProps.selectedDay).startOf("week"),
+    });
+  }
+
   previousWeek() {
     this.setState({
-      currentWeekStart: moment(this.state.currentWeekStart).subtract(7, 'days')
+      currentWeekStart: moment(this.state.currentWeekStart).subtract(1, 'weeks')
     });
   }
 
   nextWeek() {
     this.setState({
-      currentWeekStart: moment(this.state.currentWeekStart).add(7, 'days')
+      currentWeekStart: moment(this.state.currentWeekStart).add(1, 'weeks')
     });
   }
 
@@ -50,7 +57,7 @@ class HomeSelectionWeekBar extends Component {
       currentDate: m
     });
 
-    this.props.onDateUpdate(m.format("YYYY-MM-DD"));
+    this.props.onSelectDay(moment(m));
   }
 
   render() {

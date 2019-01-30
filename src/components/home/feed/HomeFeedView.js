@@ -21,7 +21,7 @@ class HomeFeedView extends Component {
   componentWillReceiveProps(nextProps) {
     const self = this;
 
-    axios.get("https://dormspam-calendar.herokuapp.com/events/" + nextProps.date).then(response => {
+    axios.get("https://dormspam-calendar.herokuapp.com/events/" + nextProps.selectedDay.format("YYYY-MM-DD")).then(response => {
       self.setState({
         data: response.data
       });
