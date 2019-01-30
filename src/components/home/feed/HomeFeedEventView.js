@@ -15,7 +15,7 @@ class HomeFeedEventView extends Component {
   render() {
     return (
       <div className={"HomeFeedEventView" + (this.props.selected ? " selected" : "")} onClick={this.handleClick}>
-        <h3 className="bold">{this.props.event.title}</h3>
+        <h3 className="bold">{this.props.event.name}</h3>
         <p>{this.props.event.location}</p>
         <p className={"description" + (this.props.selected ? " selected" : "")}><br />{this.props.event.description}</p>
       </div>

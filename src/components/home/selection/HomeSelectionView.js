@@ -8,7 +8,7 @@ class HomeSelectionView extends Component {
   render() {
     return (
       <div className="HomeSelectionView">
-        <HomeSelectionWeekBar />
+        <HomeSelectionWeekBar onDateUpdate={this.props.onDateUpdate} />
         <HomeSelectionFilter />
       </div>
     );

@@ -49,6 +49,8 @@ class HomeSelectionWeekBar extends Component {
     this.setState({
       currentDate: m
     });
+
+    this.props.onDateUpdate(m.format("YYYY-MM-DD"));
   }
 
   render() {

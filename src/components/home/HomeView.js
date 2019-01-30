@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import moment from "moment";
 import "./HomeView.css";
 
 import HomeSidebarCalendar from "./sidebar/HomeSidebarCalendar";
@@ -12,12 +13,20 @@ class HomeView extends Component {
     super(props);
 
     this.state = {
+      date: moment().format("YYYY-MM-DD"),
       event: {
         id: -1
       }
     };
 
+    this.handleDateUpdate = this.handleDateUpdate.bind(this);
     this.handleSelectEvent = this.handleSelectEvent.bind(this);
+  }
+
+  handleDateUpdate(date) {
+    this.setState({
+      date: date
+    });
   }
 
   handleSelectEvent(event) {
@@ -37,8 +46,8 @@ class HomeView extends Component {
       <div className="HomeView">
         <div className="column left">
           <HomeHeaderView />
-          <HomeSelectionView />
-          <HomeFeedView selectedEvent={this.state.event} onSelectEvent={this.handleSelectEvent} />
+          <HomeSelectionView onDateUpdate={this.handleDateUpdate} />
+          <HomeFeedView date={this.state.date} selectedEvent={this.state.event} onSelectEvent={this.handleSelectEvent} />
         </div>
         <div className="column right">
           <HomeSidebarCalendar />

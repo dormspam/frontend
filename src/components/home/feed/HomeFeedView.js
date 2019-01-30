@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import axios from "axios";
+import moment from "moment";
 import "./HomeFeedView.css";
 
 import HomeFeedEventView from "./HomeFeedEventView";
@@ -7,66 +9,8 @@ class HomeFeedView extends Component {
   constructor(props) {
     super(props);
 
-    const mockData = [{
-        id: 0,
-        image: "https://hackmit.org/assets/graphics/hackcover7.png",
-        title: "HackMIT",
-        location: "Kresge Auditorium",
-        time: 6,
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin semper quis tortor sit amet tempus. Vestibulum suscipit mi ante, ac pharetra elit cursus eget. Etiam mollis mollis euismod. Aliquam a arcu eget velit accumsan luctus non ac tellus. Sed vitae elementum felis, quis pretium tellus. Sed odio justo, viverra maximus ipsum ac, sodales bibendum mi. Pellentesque dui erat, vestibulum ut augue a, bibendum commodo orci."
-      }, {
-        id: 1,
-        image: "https://hackmit.org/assets/graphics/hackcover7.png",
-        title: "Hack Lodge",
-        location: "Kresge Auditorium",
-        time: 7,
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin semper quis tortor sit amet tempus. Vestibulum suscipit mi ante, ac pharetra elit cursus eget. Etiam mollis mollis euismod. Aliquam a arcu eget velit accumsan luctus non ac tellus. Sed vitae elementum felis, quis pretium tellus. Sed odio justo, viverra maximus ipsum ac, sodales bibendum mi. Pellentesque dui erat, vestibulum ut augue a, bibendum commodo orci."
-      }, {
-        id: 2,
-        image: "http://www.mit.edu/~pax/images/2018finalists.jpg",
-        title: "MIT Integration Bee",
-        location: "Unknown",
-        time: 6,
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin semper quis tortor sit amet tempus. Vestibulum suscipit mi ante, ac pharetra elit cursus eget. Etiam mollis mollis euismod. Aliquam a arcu eget velit accumsan luctus non ac tellus. Sed vitae elementum felis, quis pretium tellus. Sed odio justo, viverra maximus ipsum ac, sodales bibendum mi. Pellentesque dui erat, vestibulum ut augue a, bibendum commodo orci."
-      }, {
-        id: 3,
-        image: "http://www.mit.edu/~pax/images/2018finalists.jpg",
-        title: "Sleep Time",
-        location: "East Campus",
-        time: 7,
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin semper quis tortor sit amet tempus. Vestibulum suscipit mi ante, ac pharetra elit cursus eget. Etiam mollis mollis euismod. Aliquam a arcu eget velit accumsan luctus non ac tellus. Sed vitae elementum felis, quis pretium tellus. Sed odio justo, viverra maximus ipsum ac, sodales bibendum mi. Pellentesque dui erat, vestibulum ut augue a, bibendum commodo orci."
-      }, {
-        id: 4,
-        image: "https://hackmit.org/assets/graphics/hackcover7.png",
-        title: "Hack Lodge",
-        location: "Kresge Auditorium",
-        time: 7,
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin semper quis tortor sit amet tempus. Vestibulum suscipit mi ante, ac pharetra elit cursus eget. Etiam mollis mollis euismod. Aliquam a arcu eget velit accumsan luctus non ac tellus. Sed vitae elementum felis, quis pretium tellus. Sed odio justo, viverra maximus ipsum ac, sodales bibendum mi. Pellentesque dui erat, vestibulum ut augue a, bibendum commodo orci."
-      }, {
-        id: 5,
-        image: "",
-        title: "Bleep Bloop",
-        location: ":)",
-        time: 4,
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin semper quis tortor sit amet tempus. Vestibulum suscipit mi ante, ac pharetra elit cursus eget. Etiam mollis mollis euismod. Aliquam a arcu eget velit accumsan luctus non ac tellus. Sed vitae elementum felis, quis pretium tellus. Sed odio justo, viverra maximus ipsum ac, sodales bibendum mi. Pellentesque dui erat, vestibulum ut augue a, bibendum commodo orci."
-      }, {
-        id: 6,
-        image: "https://i.imgur.com/mwHn1gK.jpg",
-        title: "Chicken Wings",
-        location: "Burton Conner",
-        time: 5,
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin semper quis tortor sit amet tempus. Vestibulum suscipit mi ante, ac pharetra elit cursus eget. Etiam mollis mollis euismod. Aliquam a arcu eget velit accumsan luctus non ac tellus. Sed vitae elementum felis, quis pretium tellus. Sed odio justo, viverra maximus ipsum ac, sodales bibendum mi. Pellentesque dui erat, vestibulum ut augue a, bibendum commodo orci."
-      }, {
-        id: 7,
-        image: "https://i.imgur.com/mwHn1gK.jpg",
-        title: "Chicken Wings",
-        location: "Burton Conner",
-        time: 5,
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin semper quis tortor sit amet tempus. Vestibulum suscipit mi ante, ac pharetra elit cursus eget. Etiam mollis mollis euismod. Aliquam a arcu eget velit accumsan luctus non ac tellus. Sed vitae elementum felis, quis pretium tellus. Sed odio justo, viverra maximus ipsum ac, sodales bibendum mi. Pellentesque dui erat, vestibulum ut augue a, bibendum commodo orci."
-      }];
-
     this.state = {
-      data: mockData
+      data: []
     };
 
     this.organizeData = this.organizeData.bind(this);
@@ -74,15 +18,25 @@ class HomeFeedView extends Component {
     this.getEventsByTime = this.getEventsByTime.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    const self = this;
+
+    axios.get("https://dormspam-calendar.herokuapp.com/events/" + nextProps.date).then(response => {
+      self.setState({
+        data: response.data
+      });
+    });
+  }
+
   organizeData() {
-    let data = this.state.data.sort((a, b) => a.time - b.time);
+    let data = this.state.data.sort((a, b) => a.start_time - b.start_time);
     let formatted = {};
 
     for (let i = 0; i < data.length; i++) {
-      if (data[i].time in formatted) {
-        formatted[data[i].time].push(data[i]);
+      if (data[i].start_time in formatted) {
+        formatted[data[i].start_time].push(data[i]);
       } else {
-        formatted[data[i].time] = [data[i]];
+        formatted[data[i].start_time] = [data[i]];
       }
     }
 
@@ -105,8 +59,10 @@ class HomeFeedView extends Component {
         </div>
       );
 
+      const timeString = moment(sortedTimes[i]).format("h:mm a");
+
       eventsDisplay.push(
-        <div className="onetime" key={-sortedTimes[i] * 1000 + i}>{sortedTimes[i]}</div>
+        <div className="onetime" key={-sortedTimes[i] * 1000 + i}>{timeString}</div>
       );
 
       eventsDisplay = eventsDisplay.concat(this.getEventsByTime(data[sortedTimes[i]]));
@@ -120,11 +76,11 @@ class HomeFeedView extends Component {
 
     for (let i = 0; i < events.length; i++) {
       formatted.push(
-        <div className="timeevents" key={events[i].id}>
+        <div className="timeevents" key={events[i].uid}>
           <div className="sidespace" />
           <HomeFeedEventView
             event={events[i]}
-            selected={this.props.selectedEvent.id === events[i].id}
+            selected={this.props.selectedEvent.uid === events[i].uid}
             onClick={this.props.onSelectEvent} />
         </div>
       );
