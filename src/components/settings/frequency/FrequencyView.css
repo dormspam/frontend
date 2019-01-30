@@ -10,6 +10,8 @@
 }
 
 .FrequencyView .container h1 {
+  font-size: 1.3em;
+  font-weight: 600;
   color: #5f63d4;
   margin-bottom: 16px;
   text-align: center;
@@ -27,23 +29,80 @@
 
 .FrequencyView .container p {
   margin: 0 12px 4px;
+  color: #707D93;
 }
 
-.FrequencyView button {
+.FrequencyView .btn-freq {
   background: #5f63d4;
   border: 2px solid #5f63d4;
   color: #fff;
   cursor: pointer;
   display: block;
   font-family: "Nunito", sans-serif;
-  font-size: 16px;
+  font-size: 0.8em;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   margin: 24px auto 0;
+  margin-top: 3em;
   outline: none;
-  padding: 8px 16px;
+  padding: 6px 20px;
   transition: 0.25s ease all;
 }
 
-.FrequencyView button:hover {
+.FrequencyView .btn-freq:hover {
   background: rgba(0, 0, 0, 0);
   color: #5f63d4;
+}
+
+label.custom-select {
+    position: relative;
+    display: inline-block;
+
+}
+
+.custom-select select {
+    display: inline-block;
+    width: 7em;
+    margin: 0;
+    font: inherit;
+    outline:none; /* remove focus ring from Webkit */
+    line-height: 1.2;
+    background: #EBEBEB;
+    color: #707D93;
+    border:0;
+}
+
+/* Select arrow styling */
+.custom-select:after {
+    content: "▼";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    font-size: 60%;
+    line-height: 30px;
+    padding: 0 7px;
+    background: #707D93;
+    color: white;
+    pointer-events: none;
+}
+
+.no-pointer-events .custom-select:after {
+    content: none;
+}
+
+
+@media (max-width: 800px) {
+  .FrequencyView {
+    height: 100%;
+  }
+
+  .FrequencyView .container {
+    left: 50%;
+    position: relative;
+    top: 50%;
+    transform: translate(-50%, 0%);
+    padding-top: 20vh;
+    padding-bottom: 20vh;
+  }
 }

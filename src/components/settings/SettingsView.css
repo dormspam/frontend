@@ -7,30 +7,43 @@
 }
 
 .SettingsView .left {
-  width: 20vw;
+  width: 25vw;
+  float: left;
 }
 
-.SettingsView .left h1 {
-  font-family: "Fredoka One", cursive;
-  margin-bottom: 36px;
-  text-align: center;
+.SettingsView .left a .bartitle {
+  font-size: 1.3em;
+  font-family: "Fredoka One";
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-align: left;
   text-transform: uppercase;
 }
 
-.SettingsView .left h1 a {
+.SettingsView .left a {
   color: #5f63d4;
+  text-decoration: none;
+}
+
+.SettingsView .headertop {
+  margin-bottom: 2em;
+}
+
+.SettingsView .headertop a {
+  font-size:  0.9em;
   text-decoration: none;
 }
 
 .SettingsView .left ul {
   list-style-type: none;
+  color: #B0B9C7;
 }
 
 .SettingsView .left li {
   cursor: pointer;
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 24px;
+  font-size: 0.9em;
+  font-weight: 400;
+  margin-bottom: 0.5em;
   transition: 0.25s ease all;
 }
 
@@ -43,6 +56,21 @@
 }
 
 .SettingsView .right {
-  background: #eaeaea;
-  width: 80vw;
+  background: #F9F9F9;
+  width: 75vw;
+  float: right;
+}
+
+@media (max-width: 800px) {
+  .SettingsView .left {
+    display: block;
+    width: 100vw;
+    height: 100%;
+  }
+
+  .SettingsView .right {
+    display: block;
+    width: 100vw;
+    height: 100%;
+  }
 }

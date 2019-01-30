@@ -55,15 +55,21 @@ class SettingsView extends Component {
 
     return (
       <div className="SettingsView">
-        <div className="left column">
-          <h1><a href="/">Dormspam</a></h1>
-          <ul>
-            {settingsItemTags}
-          </ul>
-        </div>
         <div className="right column">
           <FrequencyView hidden={this.state.currentItem !== "Frequency"} onUserUpdate={this.handleUserUpdate} user={this.state.user} />
           <PreferencesView hidden={this.state.currentItem !== "Preferences"} onUserUpdate={this.handleUserUpdate} user={this.state.user} />
+        </div>
+        <div className="left column">
+          <div className="headertop">
+            <a href="/">
+              <img src="/img/back.svg" alt="Settings" />
+              <br />
+              <span className="bartitle">Dormspam</span>
+            </a>
+          </div>
+          <ul>
+            {settingsItemTags}
+          </ul>
         </div>
       </div>
     );
