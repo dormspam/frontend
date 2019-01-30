@@ -109,7 +109,7 @@ class PreferencesView extends Component {
         <div className="container">
           <h1>Select your preferences</h1>
           {categoryTags}
-          <button onClick={this.handleSave}>Save</button>
+          <button className="btn-pref" onClick={this.handleSave}>Save</button>
         </div>
       </div>
     );

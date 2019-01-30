@@ -7,12 +7,12 @@
   position: relative;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 704px;
 }
 
 .PreferencesView .container h1 {
+  font-size: 1.3em;
   color: #5f63d4;
-  margin-bottom: 16px;
+  margin-bottom: 1.5em;
   text-align: center;
 }
 
@@ -21,31 +21,68 @@
   border: 2px solid #5f63d4;
   cursor: pointer;
   display: inline-flex;
-  margin: 16px;
-  padding: 8px 16px;
-  width: 320px;
+  margin: none;
+  background-color: #F2F2F2;
+  color: #55596B;
+  border: 0.5em solid #F9F9F9;
+  padding: 1em 2em;
+  width: 50%;
 }
 
-.PreferencesView .category input {
-  margin-right: 12px;
-  width: 24px;
+.PreferencesView .category:hover {
+  background-color: #FFFFFF;
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.05);
 }
 
-.PreferencesView button {
+.PreferencesView .text {
+  margin-left: 1em;
+}
+
+.PreferencesView h3 {
+  font-size: 0.9em;
+}
+
+.PreferencesView p {
+  font-size: 0.9em;
+}
+
+.PreferencesView .btn-pref {
   background: #5f63d4;
   border: 2px solid #5f63d4;
   color: #fff;
   cursor: pointer;
   display: block;
   font-family: "Nunito", sans-serif;
-  font-size: 16px;
-  margin: 28px auto 0;
+  font-size: 0.8em;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  margin: 24px auto 0;
+  margin-top: 3em;
   outline: none;
-  padding: 8px 16px;
+  padding: 6px 20px;
   transition: 0.25s ease all;
 }
 
-.PreferencesView button:hover {
+.PreferencesView .btn-pref:hover {
   background: rgba(0, 0, 0, 0);
   color: #5f63d4;
+}
+
+@media (max-width: 800px) {
+  .PreferencesView {
+    height: 100%;
+  }
+
+  .PreferencesView .container {
+    left: 50%;
+    position: relative;
+    top: 50%;
+    transform: translate(-50%, 0%);
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+  }
+
+  .PreferencesView .category {
+    width: 100%;
+  }
 }
