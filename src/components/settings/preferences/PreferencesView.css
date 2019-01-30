@@ -13,6 +13,7 @@
   font-size: 1.3em;
   color: #5f63d4;
   margin-bottom: 1.5em;
+  letter-spacing: 0.03em;
   text-align: center;
 }
 
@@ -25,13 +26,13 @@
   background-color: #F2F2F2;
   color: #55596B;
   border: 0.5em solid #F9F9F9;
+  letter-spacing: 0.02em;
   padding: 1em 2em;
   width: 50%;
 }
 
 .PreferencesView .category:hover {
   background-color: #FFFFFF;
-  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.05);
 }
 
 .PreferencesView .text {
