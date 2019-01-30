@@ -14,7 +14,7 @@ class SettingsView extends Component {
       loading: true
     };
 
-    axios.get("http://localhost.localdomain:5000/users/current", {
+    axios.get("https://dormspam-calendar.herokuapp.com/users/current", {
       withCredentials: true
     }).then(response => {
       this.setState({
@@ -24,7 +24,7 @@ class SettingsView extends Component {
 
       console.log(response.data);
     }).catch(error => {
-      window.location.href = "http://localhost.localdomain:5000/users/oidc";
+      window.location.href = "https://dormspam-calendar.herokuapp.com/users/oidc";
     });
 
     this.handleItemClick = this.handleItemClick.bind(this);

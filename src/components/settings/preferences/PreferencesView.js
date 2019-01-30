@@ -84,7 +84,7 @@ class PreferencesView extends Component {
   handleSave() {
     const self = this;
 
-    axios.put("http://localhost.localdomain:5000/users/current", {
+    axios.put("https://dormspam-calendar.herokuapp.com/users/current", {
       preferences: this.state.preferences
     }, {
       withCredentials: true
