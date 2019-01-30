@@ -52,7 +52,7 @@ class HomeFeedView extends Component {
 
     for (let i=0; i < sortedTimes.length; i++) {
       eventsDisplay.push(
-        <div className="timeline" key={sortedTimes[i] * 1000 + i}>
+        <div className="timeline" key={moment(sortedTimes[i]).valueOf() * 1000 + i}>
           <div className="sideline">
             <div className="ball"></div>
           </div>
@@ -62,7 +62,7 @@ class HomeFeedView extends Component {
       const timeString = moment(sortedTimes[i]).format("h:mm a");
 
       eventsDisplay.push(
-        <div className="onetime" key={-sortedTimes[i] * 1000 + i}>{timeString}</div>
+        <div className="onetime" key={-moment(sortedTimes[i]).valueOf() * 1000 + i}>{timeString}</div>
       );
 
       eventsDisplay = eventsDisplay.concat(this.getEventsByTime(data[sortedTimes[i]]));
@@ -91,6 +91,8 @@ class HomeFeedView extends Component {
 
   render() {
     this.organizeData();
+
+    console.log(this.getAllEvents());
 
     return (
       <div className="HomeFeedView">
