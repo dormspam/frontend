@@ -15,16 +15,13 @@
   font-size: 1.2em;
 }
 
-.HomeFeedEventView .bold {
-  color: #55596B;
-}
-
 .HomeFeedEventView.selected {
-  background: #E7E7E7;
+  background: #5F63D4;
+  color: #FFF;
 }
 
 .HomeFeedEventView.selected:hover {
-  background: #E7E7E7;
+  background: #5F63D4;
   box-shadow: none;
   cursor: auto;
 }
