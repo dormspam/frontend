@@ -75,3 +75,14 @@
 .HomeSelectionFilter .dropcontent button:hover {
   background-color: #F6F6F6;
 }
+
+@media (max-width: 800px) {
+  .HomeSelectionFilter .dropdown {
+    width: 100%;
+    margin-bottom: 1em;
+  }
+
+  .HomeSelectionFilter .search {
+    width: 100%;
+  }
+}

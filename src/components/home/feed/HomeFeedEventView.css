@@ -39,4 +39,8 @@
   .HomeFeedEventView .description.selected {
     display: block;
   }
+
+  .HomeFeedEventView.selected:hover {
+    cursor: pointer;
+  }
 }
