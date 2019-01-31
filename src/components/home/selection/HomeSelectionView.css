@@ -1,16 +1,13 @@
 .HomeSelectionView h1 {
   color: #55596B;
-  margin-bottom: 1.4em;
+  margin-bottom: 1em;
+  font-size: 0.9em;
+  font-weight: 400;
+  letter-spacing: 0.05em;
 }
 
 .HomeSelectionView h1 strong {
   font-weight: 700;
-}
-
-.HomeSelectionView h1 {
-  font-size: 1em;
-  font-weight: 400;
-  letter-spacing: 0.05em;
 }
 
 .HomeSelectionView .bold {

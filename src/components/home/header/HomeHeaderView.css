@@ -9,13 +9,18 @@
 }
 
 .HomeHeaderView .logo {
-  color: #5f63d4;
-  font-size: 1.7em;
+  color: #5F63D4;
+  font-size: 1.6em;
   font-family: "Fugaz One";
   font-weight: 400;
   letter-spacing: 0.1em;
   text-align: center;
   text-transform: uppercase;
+}
+
+.HomeHeaderView .logo::selection {
+  color: #F2F2F2;
+  background-color: #5F63D4;
 }
 
 .HomeHeaderView a {
