@@ -10,7 +10,7 @@ class SettingsView extends Component {
     super(props);
 
     this.state = {
-      currentItem: "Frequency",
+      currentItem: "Preferences",
       loading: true
     };
 
