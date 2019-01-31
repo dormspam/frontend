@@ -1,8 +1,6 @@
 .HomeSelectionView h1 {
-  color: #707d93;
-  font-size: 28px;
-  font-weight: 400;
-  margin-bottom: 24px;
+  color: #55596B;
+  margin-bottom: 1.4em;
 }
 
 .HomeSelectionView h1 strong {
@@ -10,7 +8,7 @@
 }
 
 .HomeSelectionView h1 {
-  font-size: 1.1em;
+  font-size: 1em;
   font-weight: 400;
   letter-spacing: 0.05em;
 }

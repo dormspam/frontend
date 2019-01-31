@@ -44,7 +44,7 @@ class FrequencyView extends Component {
           <h1>How often do you want your digest?</h1>
           <div className="line">
             <p>Once every</p>
-            <label class="custom-select">
+            <label className="custom-select">
               <select defaultValue={this.state.frequency} onChange={this.handleChange}>
                 {optionTags}
               </select>

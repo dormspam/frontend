@@ -22,7 +22,6 @@ class SettingsView extends Component {
         user: response.data
       });
 
-      console.log(response.data);
     }).catch(error => {
       window.location.href = "https://dormspam-calendar.herokuapp.com/users/oidc";
     });

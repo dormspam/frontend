@@ -39,7 +39,6 @@ class HomeSidebarCalendar extends Component {
   /* 0 is sunday, 1 is monday, etc */
   selectDay(event) {
     let target = event.target;
-    console.log(target);
 
     while (target.getAttribute("moment") === null) {
       target = target.parentElement;

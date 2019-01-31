@@ -7,15 +7,14 @@
 
 .HomeView .left {
   background: #F9F9F9;
-  padding: 60px;
-  padding-left: 8%;
-  padding-right: 8%;
+  padding: 6%;
+  padding-top: 4%;
   width: 66%;
 }
 
 .HomeView .right {
   background: #FFF;
-  padding: 3%;
+  padding: 4%;
   width: 34%;
 }
 

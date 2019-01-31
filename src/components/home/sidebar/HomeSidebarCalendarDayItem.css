@@ -27,15 +27,14 @@
 }
 
 .HomeSidebarCalendarDayItem.active .circle {
-  background-color: #BF9BD8;
+  background-color: #5F63D4;
   color: #fff;
 }
 
 .HomeSidebarCalendarDayItem .circle:hover {
-  background-color: #CCCCCC;
-  color: #FFF;
+  background-color: #E4E4E4;
 }
 
 .HomeSidebarCalendarDayItem.active .circle:hover {
-  background-color: #AA7CC9;
+  background-color: #464ACC;
 }

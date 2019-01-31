@@ -16,7 +16,7 @@ class App extends Component {
             <meta charset="utf-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
             <meta name="theme-color" content="#5f63d4" />
-            <link href="https://fonts.googleapis.com/css?family=Fredoka+One|Nunito:300,400,600,700" rel="stylesheet" />
+            <link href="https://fonts.googleapis.com/css?family=Fugaz+One|Nunito:300,400,600,700" rel="stylesheet" />
             <title>Dormspam</title>
           </Helmet>
 

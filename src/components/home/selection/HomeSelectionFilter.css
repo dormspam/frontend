@@ -1,5 +1,5 @@
 .HomeSelectionFilter {
-  margin-top: 40px;
+  margin-top: 1.5em;
   margin-bottom: 30px;
 }
 
@@ -31,7 +31,7 @@
 .HomeSelectionFilter .dropbutton {
   font-family: "Nunito";
   letter-spacing: 0.1em;
-  background-color: #5F63D4;
+  background-color: #D2D2D2;
   cursor: pointer;
   color: #FFF;
   width: 100%;
@@ -43,7 +43,7 @@
 }
 
 .HomeSelectionFilter .active {
-  background-color: #5257D3;
+  background-color: #D2D2D2;
   color: #FFF;
 }
 

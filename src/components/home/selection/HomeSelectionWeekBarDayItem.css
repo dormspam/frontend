@@ -19,7 +19,7 @@
 }
 
 .HomeSelectionWeekBarDayItem.active .circle {
-  background: #BF9BD8;
+  background: #5F63D4;
   border-radius: 16px;
   height: 32px;
   width: 32px;
@@ -33,7 +33,7 @@
 }
 
 .HomeSelectionWeekBarDayItem .circle .day {
-  color: #707D93;
+  color: #8691A4;
   line-height: 34px;
   text-align: center;
 }
@@ -44,10 +44,10 @@
 }
 
 .HomeSelectionWeekBarDayItem.active .circle:hover {
-  background-color: #A876CB;
+  background-color: #474BCC;
   cursor: pointer;
 }
 
 .HomeSelectionWeekBarDayItem.active .circle .day {
-  color: #fff;
+  color: #F9F9F9;
 }
