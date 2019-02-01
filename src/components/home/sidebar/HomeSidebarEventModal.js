@@ -7,7 +7,8 @@ class HomeSidebarEventModal extends Component {
       <div className={"HomeSidebarEventModal" + (this.props.event.id === -1 ? " hidden" : "")}>
         <img className={this.props.event.image === undefined ? " hidden" : ""} src={this.props.event.image} alt="Event promotional material" />
         <h2>{this.props.event.title}</h2>
-        <p>{this.props.event.description}</p>
+        <div dangerouslySetInnerHTML={{__html: this.props.event.description}} />
+        {/* <p>{this.props.event.description}</p> */}
       </div>
     );
   }
