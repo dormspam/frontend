@@ -13,6 +13,7 @@ class HomeSelectionFilter extends Component {
 
     this.handleCategorySelect = this.handleCategorySelect.bind(this);
     this.switchFilter = this.switchFilter.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleCategorySelect(event) {
@@ -29,6 +30,10 @@ class HomeSelectionFilter extends Component {
     this.setState({
       isOpen: !this.state.isOpen
     });
+  }
+
+  handleChange(event) {
+    this.props.onSearch(event.target.value);
   }
 
   render() {
@@ -48,7 +53,7 @@ class HomeSelectionFilter extends Component {
             {categoryTags}
           </div>
         </div>
-        <input className="search" type="text" name="search" placeholder="Filter by content, category, or author..."></input>
+        <input className="search" type="text" name="search" placeholder="Filter by content, category, or author..." onChange={this.handleChange}></input>
         <br />
       </div>
     );

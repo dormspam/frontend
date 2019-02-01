@@ -12,7 +12,7 @@ class HomeSelectionView extends Component {
           selectedDay={this.props.selectedDay}
           onSelectDay={this.props.onSelectDay}
         />
-        <HomeSelectionFilter />
+        <HomeSelectionFilter onSearch={this.props.onSearch} />
       </div>
     );
   }
