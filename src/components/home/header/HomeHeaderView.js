@@ -7,7 +7,7 @@ class HomeHeaderView extends Component {
     return (
       <div className="HomeHeaderView">
         <div className="empty-space" />
-        <h1 className="logo">Dormspam</h1>
+        <img className="logo" src="/img/dormspam.svg" alt="Logo" />
         <Link to="/settings">
           <img src="/img/settings.svg" alt="Settings" />
         </Link>
