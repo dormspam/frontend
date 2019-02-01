@@ -62,7 +62,19 @@ class HomeFeedView extends Component {
 
   saveEventData(inputData) {
     let times = [];
-    let data = inputData.sort((a, b) => moment(a.start_time).valueOf() > moment(b.start_time).valueOf());
+
+    let data = inputData.sort((a, b) => {
+      let aTime = moment(a.start_time).valueOf();
+      let bTime = moment(b.start_time).valueOf();
+
+      if (aTime > bTime) {
+        return 1;
+      } else if (aTime < bTime) {
+        return -1
+      }
+
+      return 0;
+    });
 
     for (var i = 0; i < data.length; i++) {
       if (times.length === 0) {
