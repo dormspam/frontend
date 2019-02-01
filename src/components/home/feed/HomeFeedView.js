@@ -27,17 +27,19 @@ class HomeFeedView extends Component {
 
   componentWillReceiveProps(nextProps) {
     const self = this;
+    const searching = nextProps.search.length > 0;
 
-    if (nextProps.search !== '') {
+    this.setState({
+      searching: searching
+    });
+
+    if (searching) {
       // make axios request here for search
       axios
         .get(process.env.REACT_APP_BACKEND_URL + "/events?q=" + nextProps.search)
         .then(res => {
           self.saveEventData(res.data);
         });
-      this.setState({
-        searching: true,
-      });
     } else {
       axios
         .get(process.env.REACT_APP_BACKEND_URL + "/events/" + nextProps.selectedDay.format("YYYY-MM-DD"))
@@ -91,12 +93,18 @@ class HomeFeedView extends Component {
       );
 
       for (var j = 0; j < this.state.data[i].length; j++) {
+        let selected = false;
+
+        if (this.props.selectedEvent !== null) {
+          selected = this.props.selectedEvent.uid === this.state.data[i][j].uid;
+        }
+
         elements.push(
           <div className="timeevents" key={this.state.data[i][j].uid}>
             <div className="sidespace" />
             <HomeFeedEventView
               event={this.state.data[i][j]}
-              selected={this.props.selectedEvent.uid === this.state.data[i][j].uid}
+              selected={selected}
               onClick={this.props.onSelectEvent} />
           </div>
         );

@@ -13,9 +13,7 @@ class HomeView extends Component {
     super(props);
 
     this.state = {
-      event: {
-        id: -1
-      },
+      event: null,
       day: moment(),
       search: '',
     };
@@ -26,11 +24,9 @@ class HomeView extends Component {
   }
 
   handleSelectEvent(event) {
-    if (this.state.event.id === event.id) {
+    if (this.state.event !== null && this.state.event.uid === event.uid) {
       this.setState({
-        event: {
-          id: -1
-        }
+        event: null
       });
     } else {
       this.setState({ event });

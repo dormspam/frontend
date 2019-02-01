@@ -3,12 +3,14 @@ import "./HomeSidebarEventModal.css";
 
 class HomeSidebarEventModal extends Component {
   render() {
+    if (this.props.event === null) {
+      return <div />;
+    }
+
     return (
-      <div className={"HomeSidebarEventModal" + (this.props.event.id === -1 ? " hidden" : "")}>
-        <img className={this.props.event.image === undefined ? " hidden" : ""} src={this.props.event.image} alt="Event promotional material" />
+      <div className="HomeSidebarEventModal">
         <h2>{this.props.event.title}</h2>
         <div dangerouslySetInnerHTML={{__html: this.props.event.description}} />
-        {/* <p>{this.props.event.description}</p> */}
       </div>
     );
   }
