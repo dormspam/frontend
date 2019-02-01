@@ -23,7 +23,6 @@ class SettingsView extends Component {
         loading: false,
         user: response.data
       });
-      console.log(response.data);
 
     }).catch(error => {
       window.location.href = process.env.REACT_APP_BACKEND_URL + "/users/oidc";
