@@ -15,6 +15,14 @@ class HomeFeedView extends Component {
     };
 
     this.saveEventData = this.saveEventData.bind(this);
+
+    const self = this;
+
+    axios
+      .get(process.env.REACT_APP_BACKEND_URL + "/events/" + moment().format("YYYY-MM-DD"))
+      .then(res => {
+      self.saveEventData(res.data);
+    });
   }
 
   componentWillReceiveProps(nextProps) {
