@@ -79,7 +79,7 @@ class SettingsView extends Component {
             <a href="/">
               <img src="/img/back.svg" alt="Settings" />
               <br />
-              <span className="bartitle">Dormspam</span>
+              <img className="logo" src="/img/dormspam.svg" alt="Logo" />
             </a>
           </div>
           <ul>

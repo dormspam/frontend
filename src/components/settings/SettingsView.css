@@ -11,13 +11,8 @@
   float: left;
 }
 
-.SettingsView .left a .bartitle {
-  font-size: 1.3em;
-  font-family: "Fredoka One";
-  font-weight: 400;
-  letter-spacing: 0.08em;
-  text-align: left;
-  text-transform: uppercase;
+.SettingsView .left a .logo {
+  width: 150px;
 }
 
 .SettingsView .left a {

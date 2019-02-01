@@ -8,81 +8,8 @@
   letter-spacing: 0.1em;
   background-color: #EBEBEB;
   padding-left: 30px;
-  width: 70%;
-  height: 30px;
-  border: none;
-  outline: none;
-}
-
-.HomeSelectionFilter .dropdown {
-  position: relative;
-  display: inline-block;
-  width: 30%;
-}
-
-.HomeSelectionFilter .dropdown .hide {
-  display: none;
-}
-
-.HomeSelectionFilter .dropdown .show {
-  display: block;
-}
-
-.HomeSelectionFilter .dropbutton {
-  font-family: "Nunito";
-  letter-spacing: 0.1em;
-  background-color: #D2D2D2;
-  cursor: pointer;
-  color: #FFF;
   width: 100%;
   height: 30px;
   border: none;
   outline: none;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.HomeSelectionFilter .active {
-  background-color: #D2D2D2;
-  color: #FFF;
-}
-
-.HomeSelectionFilter .inactive {
-  background-color: #5F63D4;
-}
-
-.HomeSelectionFilter .dropcontent {
-  position: absolute;
-  background-color: #FFF;
-  z-index: 1;
-}
-
-.HomeSelectionFilter .dropcontent button {
-  background: #fff;
-  padding: 12px;
-  width: 200%;
-  border: none;
-  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.08);
-  outline: none;
-  text-align: left;
-  letter-spacing: 0.1em;
-}
-
-.HomeSelectionFilter .dropcontent button:active {
-  color: #000;
-}
-
-.HomeSelectionFilter .dropcontent button:hover {
-  background-color: #F6F6F6;
-}
-
-@media (max-width: 800px) {
-  .HomeSelectionFilter .dropdown {
-    width: 100%;
-    margin-bottom: 1em;
-  }
-
-  .HomeSelectionFilter .search {
-    width: 100%;
-  }
 }

@@ -37,23 +37,9 @@ class HomeSelectionFilter extends Component {
   }
 
   render() {
-    let categories = ["Art", "Food", "Technology"];
-    let categoryTags = categories.map((category, i) => (
-      <button className="dropoption" key={i} index={i} onClick={this.handleCategorySelect}>
-        <input type="checkbox" />
-        &nbsp;&nbsp;&nbsp;{category}
-      </button>
-    ));
-
     return (
       <div className="HomeSelectionFilter">
-        <div className="dropdown">
-          <button className={"dropbutton" + (this.state.isOpen ? " active" : "")} onClick={this.switchFilter}>{this.state.isOpen ? this.state.openContent : this.state.closedContent}</button>
-          <div className={"dropcontent" + (this.state.isOpen ? " show" : " hide")}>
-            {categoryTags}
-          </div>
-        </div>
-        <input className="search" type="text" name="search" placeholder="Filter by content, category, or author..." onChange={this.handleChange}></input>
+        <input className="search" type="text" name="search" placeholder="Filter by content, category, or author..." onChange={this.handleChange} />
         <br />
       </div>
     );
