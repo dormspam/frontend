@@ -3,6 +3,7 @@
   height: 100vh;
   overflow-y: scroll;
   vertical-align: top;
+  transition: 0.5s ease width;
 }
 
 .HomeView .left {
@@ -12,17 +13,26 @@
   width: 66%;
 }
 
+.HomeView .left.inactive {
+  width: 50%;
+}
+
 .HomeView .right {
   background: #FFF;
   padding: 4%;
   width: 34%;
 }
 
+.HomeView .right.active {
+  width: 50%;
+}
+
 @media (max-width: 800px) {
   .HomeView .left {
-    width: 100%;
+    width: 100% !important;
   }
+
   .HomeView .right {
-    display: none;
+    display: none !important;
   }
 }

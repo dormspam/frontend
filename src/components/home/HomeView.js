@@ -47,7 +47,7 @@ class HomeView extends Component {
   render() {
     return (
       <div className="HomeView">
-        <div className="column left">
+        <div className={"column left" + (this.state.event !== null ? " inactive" : "")}>
           <HomeHeaderView />
           <HomeSelectionView
             onSearch={this.handleSearch}
@@ -61,7 +61,7 @@ class HomeView extends Component {
             onSelectEvent={this.handleSelectEvent}
           />
         </div>
-        <div className="column right">
+        <div className={"column right" + (this.state.event !== null ? " active" : "")}>
           <HomeSidebarCalendar
             selectedDay={this.state.day}
             onSelectDay={this.handleSelectDay}
