@@ -63,19 +63,11 @@ class HomeFeedView extends Component {
   render() {
     let elements = [];
 
-<<<<<<< HEAD
-    for (let i=0; i < sortedTimes.length; i++) {
-      eventsDisplay.push(
-        <div className="timeline" key={moment(sortedTimes[i]).valueOf() * 1000 + i}>
-          <div className="sideline" style={{background: this.getColorForTime(sortedTimes[i])}}>
-            <div className="ball" style={{background: this.getColorForTime(sortedTimes[i])}}></div>
-=======
     for (var i = 0; i < this.state.data.length; i++) {
       elements.push(
         <div className="timeline" key={"times" + i + "1"}>
           <div className="sideline">
             <div className="ball"></div>
->>>>>>> michaelsilver/search
           </div>
         </div>
       );
@@ -86,39 +78,10 @@ class HomeFeedView extends Component {
         timeString = moment(this.state.data[i][0].start_time).format("MMMM Do YYYY, h:mm a");
       }
 
-<<<<<<< HEAD
-  getEventsByTime(events) {
-    let formatted = [];
-
-    for (let i = 0; i < events.length; i++) {
-      formatted.push(
-        <div className="timeevents" key={events[i].uid} style={{borderLeft: '3px solid ' + this.getColorForTime(events[i].start_time)}}>
-          <div className="sidespace" />
-          <HomeFeedEventView
-            event={events[i]}
-            selected={this.props.selectedEvent.uid === events[i].uid}
-            color={this.getColorForTime(events[i].start_time)}
-            onClick={this.props.onSelectEvent} />
-        </div>
-=======
       elements.push(
         <div className="onetime" key={"times" + i + "2"}>{timeString}</div>
->>>>>>> michaelsilver/search
       );
 
-<<<<<<< HEAD
-  getColorForTime(time) {
-    let hour = moment(time).format("H");
-    const colors = ["#E7C86F", "#F0B65A", "#ED9B59", "#E5815E", "#DB7574", "#E163AC",
-                    "#C85CE7", "#A26AE6", "#8873E5", "#6F73F1", "#606EE7", "#5780DC",
-                    "#658BD5", "#6AA4EB", "#7DB9EB", "#5FBCE2", "#38C0E2", "#66C7DD",
-                    "#6FD5DE", "#60D7C3", "#73E9A1", "#A8EA75", "#AADE6E", "#D5EB7A"];
-    return colors[parseInt(hour)];
-  }
-
-  render() {
-    this.organizeData();
-=======
       for (var j = 0; j < this.state.data[i].length; j++) {
         elements.push(
           <div className="timeevents" key={this.state.data[i][j].uid}>
@@ -131,7 +94,6 @@ class HomeFeedView extends Component {
         );
       }
     }
->>>>>>> michaelsilver/search
 
     return (
       <div className="HomeFeedView">
