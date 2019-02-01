@@ -1,3 +1,8 @@
+.active .HomeSidebarCalendar {
+  display: none;
+  visibility: hidden;
+}
+
 .HomeSidebarCalendar {
   display: flex;
   flex-direction: column;
