@@ -10,7 +10,8 @@ class HomeFeedView extends Component {
     super(props);
 
     this.state = {
-      data: []
+      data: [],
+      searching: false,
     };
 
     this.organizeData = this.organizeData.bind(this);
@@ -21,11 +22,27 @@ class HomeFeedView extends Component {
   componentWillReceiveProps(nextProps) {
     const self = this;
 
-    axios.get("https://dormspam-calendar.herokuapp.com/events/" + nextProps.selectedDay.format("YYYY-MM-DD")).then(response => {
-      self.setState({
-        data: response.data
+    if (nextProps.search !== '') {
+      // make axios request here for search
+      axios
+        .get(process.env.REACT_APP_BACKEND_URL + "/events?q=" + nextProps.search)
+        .then(res => {
+          self.setState({
+            data: res.data,
+          });
+        });
+      this.setState({
+        searching: true,
       });
-    });
+    } else {
+      axios
+        .get(process.env.REACT_APP_BACKEND_URL + "/events/" + nextProps.selectedDay.format("YYYY-MM-DD"))
+        .then(res => {
+        self.setState({
+          data: res.data
+        });
+      });
+    }
   }
 
   organizeData() {
@@ -59,7 +76,10 @@ class HomeFeedView extends Component {
         </div>
       );
 
-      const timeString = moment(sortedTimes[i]).format("h:mm a");
+      let timeString = moment(sortedTimes[i]).format("h:mm a");
+      if (this.state.searching) {
+        timeString = moment(sortedTimes[i]).format("MMMM Do YYYY, h:mm a");
+      }
 
       eventsDisplay.push(
         <div className="onetime" key={-moment(sortedTimes[i]).valueOf() * 1000 + i}>{timeString}</div>
@@ -89,10 +109,14 @@ class HomeFeedView extends Component {
     return formatted;
   }
 
+  // TODO IN PROGRESS
+  getEvents() {
+    this.state.data
+      .sort((x, y) => x.isBefore(y));
+  }
+
   render() {
     this.organizeData();
-
-    console.log(this.getAllEvents());
 
     return (
       <div className="HomeFeedView">

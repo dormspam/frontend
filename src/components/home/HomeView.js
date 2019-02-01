@@ -17,10 +17,12 @@ class HomeView extends Component {
         id: -1
       },
       day: moment(),
+      search: '',
     };
 
     this.handleSelectEvent = this.handleSelectEvent.bind(this);
     this.handleSelectDay = this.handleSelectDay.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   handleSelectEvent(event) {
@@ -41,16 +43,24 @@ class HomeView extends Component {
     });
   }
 
+  handleSearch(search) {
+    this.setState({
+      search: search,
+    });
+  }
+
   render() {
     return (
       <div className="HomeView">
         <div className="column left">
           <HomeHeaderView />
           <HomeSelectionView
+            onSearch={this.handleSearch}
             selectedDay={this.state.day}
             onSelectDay={this.handleSelectDay}
           />
           <HomeFeedView
+            search={this.state.search}
             selectedDay={this.state.day}
             selectedEvent={this.state.event}
             onSelectEvent={this.handleSelectEvent}
