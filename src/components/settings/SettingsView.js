@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from 'react-router-dom';
 import axios from "axios";
 import "./SettingsView.css";
 
@@ -11,7 +12,8 @@ class SettingsView extends Component {
 
     this.state = {
       currentItem: "Preferences",
-      loading: true
+      loading: true,
+      redirect: null,
     };
 
     axios.get(process.env.REACT_APP_BACKEND_URL + "/users/current", {
@@ -21,6 +23,7 @@ class SettingsView extends Component {
         loading: false,
         user: response.data
       });
+      console.log(response.data);
 
     }).catch(error => {
       window.location.href = process.env.REACT_APP_BACKEND_URL + "/users/oidc";
@@ -31,6 +34,17 @@ class SettingsView extends Component {
   }
 
   handleItemClick(event) {
+    const self = this;
+
+    if (event.target.getAttribute("item") === "Log Out") {
+      axios.delete(process.env.REACT_APP_BACKEND_URL + "/users/current", {
+        withCredentials: true
+      }).then(response => {
+        self.setState({
+          redirect: "/",
+        });
+      });
+    }
     this.setState({
       currentItem: event.target.getAttribute("item")
     });
@@ -43,7 +57,9 @@ class SettingsView extends Component {
   }
 
   render() {
-    if (this.state.loading === true) {
+    if (this.state.redirect !== null) {
+      return <Redirect to={this.state.redirect} />;
+    } else if (this.state.loading === true) {
       return <div />;
     }
 

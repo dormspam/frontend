@@ -102,7 +102,7 @@ class PreferencesView extends Component {
           <p>{category.description}</p>
         </div>
       </div>
-    ))
+    ));
 
     return (
       <div className={"PreferencesView" + (this.props.hidden ? " hidden" : "")}>
