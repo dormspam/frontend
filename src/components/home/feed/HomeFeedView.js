@@ -14,9 +14,7 @@ class HomeFeedView extends Component {
       searching: false,
     };
 
-    this.organizeData = this.organizeData.bind(this);
-    this.getAllEvents = this.getAllEvents.bind(this);
-    this.getEventsByTime = this.getEventsByTime.bind(this);
+    this.saveEventData = this.saveEventData.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -27,9 +25,7 @@ class HomeFeedView extends Component {
       axios
         .get(process.env.REACT_APP_BACKEND_URL + "/events?q=" + nextProps.search)
         .then(res => {
-          self.setState({
-            data: res.data,
-          });
+          self.saveEventData(res.data);
         });
       this.setState({
         searching: true,
@@ -38,89 +34,70 @@ class HomeFeedView extends Component {
       axios
         .get(process.env.REACT_APP_BACKEND_URL + "/events/" + nextProps.selectedDay.format("YYYY-MM-DD"))
         .then(res => {
-        self.setState({
-          data: res.data
-        });
+        self.saveEventData(res.data);
       });
     }
   }
 
-  organizeData() {
-    let data = this.state.data.sort((a, b) => a.start_time - b.start_time);
-    let formatted = {};
+  saveEventData(inputData) {
+    let times = [];
+    let data = inputData.sort((a, b) => moment(a.start_time).valueOf() > moment(b.start_time).valueOf());
 
-    for (let i = 0; i < data.length; i++) {
-      if (data[i].start_time in formatted) {
-        formatted[data[i].start_time].push(data[i]);
+    for (var i = 0; i < data.length; i++) {
+      if (times.length === 0) {
+        times.push([data[i]]);
       } else {
-        formatted[data[i].start_time] = [data[i]];
+        if (moment(times[times.length - 1][0].start_time).valueOf() === moment(data[i].start_time).valueOf()) {
+          times[times.length - 1].push(data[i]);
+        } else {
+          times.push([data[i]]);
+        }
       }
     }
 
-    return formatted;
+    this.setState({
+      data: times
+    });
   }
 
-  getAllEvents() {
-    let data = this.organizeData();
-    let sortedTimes = Object.keys(data);
-    let eventsDisplay = [];
+  render() {
+    let elements = [];
 
-    sortedTimes.sort();
-
-    for (let i=0; i < sortedTimes.length; i++) {
-      eventsDisplay.push(
-        <div className="timeline" key={moment(sortedTimes[i]).valueOf() * 1000 + i}>
+    for (var i = 0; i < this.state.data.length; i++) {
+      elements.push(
+        <div className="timeline" key={"times" + i + "1"}>
           <div className="sideline">
             <div className="ball"></div>
           </div>
         </div>
       );
 
-      let timeString = moment(sortedTimes[i]).format("h:mm a");
+      let timeString = moment(this.state.data[i][0].start_time).format("h:mm a");
+
       if (this.state.searching) {
-        timeString = moment(sortedTimes[i]).format("MMMM Do YYYY, h:mm a");
+        timeString = moment(this.state.data[i][0].start_time).format("MMMM Do YYYY, h:mm a");
       }
 
-      eventsDisplay.push(
-        <div className="onetime" key={-moment(sortedTimes[i]).valueOf() * 1000 + i}>{timeString}</div>
+      elements.push(
+        <div className="onetime" key={"times" + i + "2"}>{timeString}</div>
       );
 
-      eventsDisplay = eventsDisplay.concat(this.getEventsByTime(data[sortedTimes[i]]));
+      for (var j = 0; j < this.state.data[i].length; j++) {
+        elements.push(
+          <div className="timeevents" key={this.state.data[i][j].uid}>
+            <div className="sidespace" />
+            <HomeFeedEventView
+              event={this.state.data[i][j]}
+              selected={this.props.selectedEvent.uid === this.state.data[i][j].uid}
+              onClick={this.props.onSelectEvent} />
+          </div>
+        );
+      }
     }
-
-    return eventsDisplay;
-  }
-
-  getEventsByTime(events) {
-    let formatted = [];
-
-    for (let i = 0; i < events.length; i++) {
-      formatted.push(
-        <div className="timeevents" key={events[i].uid}>
-          <div className="sidespace" />
-          <HomeFeedEventView
-            event={events[i]}
-            selected={this.props.selectedEvent.uid === events[i].uid}
-            onClick={this.props.onSelectEvent} />
-        </div>
-      );
-    }
-
-    return formatted;
-  }
-
-  // TODO IN PROGRESS
-  getEvents() {
-    this.state.data
-      .sort((x, y) => x.isBefore(y));
-  }
-
-  render() {
-    this.organizeData();
 
     return (
       <div className="HomeFeedView">
-        {this.getAllEvents()}
+        {elements}
       </div>
     );
   }
