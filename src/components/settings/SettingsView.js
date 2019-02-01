@@ -14,7 +14,7 @@ class SettingsView extends Component {
       loading: true
     };
 
-    axios.get("https://dormspam-calendar.herokuapp.com/users/current", {
+    axios.get(process.env.REACT_APP_BACKEND_URL + "/users/current", {
       withCredentials: true
     }).then(response => {
       this.setState({
@@ -23,7 +23,7 @@ class SettingsView extends Component {
       });
 
     }).catch(error => {
-      window.location.href = "https://dormspam-calendar.herokuapp.com/users/oidc";
+      window.location.href = process.env.REACT_APP_BACKEND_URL + "/users/oidc";
     });
 
     this.handleItemClick = this.handleItemClick.bind(this);
