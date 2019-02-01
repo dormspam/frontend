@@ -23,7 +23,7 @@ class FrequencyView extends Component {
   handleSave() {
     const self = this;
 
-    axios.put("https://dormspam-calendar.herokuapp.com/users/current", {
+    axios.put(process.env.REACT_APP_BACKEND_URL + "/users/current", {
       frequency: parseInt(this.state.frequency, 10)
     }, {
       withCredentials: true
