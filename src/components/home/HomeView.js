@@ -13,9 +13,9 @@ class HomeView extends Component {
     super(props);
 
     this.state = {
-      event: null,
       day: moment(),
-      search: '',
+      event: null,
+      search: "",
     };
 
     this.handleSelectEvent = this.handleSelectEvent.bind(this);
@@ -36,13 +36,12 @@ class HomeView extends Component {
   handleSelectDay(m) {
     this.setState({
       day: m,
+      event: null
     });
   }
 
   handleSearch(search) {
-    this.setState({
-      search: search,
-    });
+    this.setState({ search });
   }
 
   render() {

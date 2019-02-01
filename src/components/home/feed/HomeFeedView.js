@@ -11,6 +11,7 @@ class HomeFeedView extends Component {
 
     this.state = {
       data: [],
+      searchCount: 0,
       searching: false,
     };
 
@@ -28,25 +29,35 @@ class HomeFeedView extends Component {
   componentWillReceiveProps(nextProps) {
     const self = this;
     const searching = nextProps.search.length > 0;
-
-    this.setState({
-      searching: searching
-    });
+    const searchCount = this.state.searchCount + 1;
 
     if (searching) {
       // make axios request here for search
       axios
         .get(process.env.REACT_APP_BACKEND_URL + "/events?q=" + nextProps.search)
         .then(res => {
+          if (searchCount < self.state.searchCount) {
+            return;
+          }
+
           self.saveEventData(res.data);
         });
     } else {
       axios
         .get(process.env.REACT_APP_BACKEND_URL + "/events/" + nextProps.selectedDay.format("YYYY-MM-DD"))
         .then(res => {
-        self.saveEventData(res.data);
+          if (searchCount < self.state.searchCount) {
+            return;
+          }
+
+          self.saveEventData(res.data);
       });
     }
+
+    this.setState({
+      searchCount: searchCount,
+      searching: searching
+    });
   }
 
   saveEventData(inputData) {
