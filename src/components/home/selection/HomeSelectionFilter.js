@@ -39,6 +39,9 @@ class HomeSelectionFilter extends Component {
   render() {
     return (
       <div className="HomeSelectionFilter">
+        <div className="icon">
+          <img src="/img/search.svg" alt="Search" />
+        </div>
         <input className="search" type="text" name="search" placeholder="Filter by content, category, or author..." onChange={this.handleChange} />
         <br />
       </div>
