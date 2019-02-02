@@ -1,4 +1,5 @@
 .HomeSelectionFilter {
+  display: flex;
   margin-top: 1.5em;
   margin-bottom: 30px;
 }
@@ -7,9 +8,21 @@
   font-family: "Nunito";
   letter-spacing: 0.1em;
   background-color: #EBEBEB;
-  padding-left: 30px;
+  left: 30px;
+  padding-left: 10px;
   width: 100%;
   height: 30px;
   border: none;
   outline: none;
+}
+
+.HomeSelectionFilter .icon {
+  display: grid;
+  background-color: #EBEBEB;
+  height: 30px;
+}
+
+.HomeSelectionFilter .icon img {
+  height: 17px;
+  margin: auto auto auto 5px;
 }
