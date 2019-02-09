@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import moment from "moment";
 import "./HomeView.css";
 
-import HomeSidebarCalendar from "./sidebar/HomeSidebarCalendar";
+import HomeSidebarCalendar from "./sidebar/calendar/HomeSidebarCalendar";
 import HomeHeaderView from "./header/HomeHeaderView";
 import HomeSelectionView from "./selection/HomeSelectionView";
-import HomeSidebarEventModal from "./sidebar/HomeSidebarEventModal";
+import HomeSidebarEventModal from "./sidebar/event/HomeSidebarEventModal";
 import HomeFeedView from "./feed/HomeFeedView";
 
 class HomeView extends Component {
