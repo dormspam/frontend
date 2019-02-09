@@ -29,3 +29,30 @@
   color: #55596B;
   letter-spacing: 0.05em;
 }
+
+.HomeSidebarEventModal .button {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.8em;
+  font-weight: 400;
+  color: #C7C7C7;
+  letter-spacing: 0.08em;
+  background-color: #FAFAFA;
+  padding: 1em 1em;
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.03);
+  cursor: pointer;
+}
+
+.HomeSidebarEventModal .button:hover {
+  background-color: #EEEEEE;
+}
+
+.HomeSidebarEventModal .button .left-button {
+  width: 0;
+  height: 0;
+  margin-right: 0.5em;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 8px solid #D8D8D8;
+  cursor: pointer;
+}
