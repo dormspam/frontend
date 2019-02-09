@@ -1,0 +1,33 @@
+.active .HomeSidebarCategoriesView {
+  display: none;
+  visibility: hidden;
+}
+
+.HomeSidebarCategoriesView {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.75em;
+  color: #55596B;
+  letter-spacing: 0.08em;
+  width: 85%;
+  min-width: 224px;
+  margin: 0 auto;
+  margin-top: 60px;
+}
+
+.HomeSidebarCategoriesView .category {
+  display: flex;
+  align-items: center;
+  background-color: #eeeeee;
+  cursor: pointer;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+
+.HomeSidebarCategoriesView .category:hover {
+  background-color: #E4E4E4;
+}
+
+.HomeSidebarCategoriesView .category .text {
+  margin-left: 1em;
+}

@@ -3,6 +3,7 @@ import moment from "moment";
 import "./HomeView.css";
 
 import HomeSidebarCalendar from "./sidebar/calendar/HomeSidebarCalendar";
+import HomeSidebarCategoriesView from "./sidebar/categories/HomeSidebarCategoriesView";
 import HomeHeaderView from "./header/HomeHeaderView";
 import HomeSelectionView from "./selection/HomeSelectionView";
 import HomeSidebarEventModal from "./sidebar/event/HomeSidebarEventModal";
@@ -66,6 +67,7 @@ class HomeView extends Component {
             selectedDay={this.state.day}
             onSelectDay={this.handleSelectDay}
           />
+          <HomeSidebarCategoriesView/>
           <HomeSidebarEventModal
             event={this.state.event}
           />
