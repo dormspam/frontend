@@ -9,7 +9,7 @@ class HomeSidebarEventModal extends Component {
 
     return (
       <div className="HomeSidebarEventModal">
-        <div className="button">
+        <div className="button" onClick={this.props.onSelectBack}>
           <div className="left-button" />
           <p>Back</p>
         </div>
