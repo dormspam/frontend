@@ -16,6 +16,7 @@ class HomeSelectionWeekBar extends Component {
     this.previousWeek = this.previousWeek.bind(this);
     this.nextWeek = this.nextWeek.bind(this);
     this.selectDay = this.selectDay.bind(this);
+    this.selectToday = this.selectToday.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -60,6 +61,14 @@ class HomeSelectionWeekBar extends Component {
     this.props.onSelectDay(moment(m));
   }
 
+  selectToday() {
+    const m = moment();
+    this.setState({
+      currentDate: moment(m)
+    });
+    this.props.onSelectDay(moment(m));
+  }
+
   render() {
     let dayTagsData = [];
 
@@ -82,7 +91,10 @@ class HomeSelectionWeekBar extends Component {
 
     return (
       <div className="HomeSelectionWeekBar">
-        <h1><span className="bold">{this.state.currentDate.format('dddd')}</span>, {this.state.currentDate.format('MMMM Do')}</h1>
+        <div className="header">
+          <h1><span className="bold">{this.state.currentDate.format('dddd')}</span>, {this.state.currentDate.format('MMMM Do')}</h1>
+          <h1 className="outline" onClick={this.selectToday}>Today</h1>
+        </div>
         <div className="weekbar">
           <div className="left-button" onClick={this.previousWeek} />
           <div className="weekdays">
