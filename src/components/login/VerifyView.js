@@ -11,7 +11,8 @@ class VerifyView extends Component {
       code: "",
       deleteOnUp: false,
       keyPressed: 0,
-      redirect: null
+      redirect: null,
+      showErrorText: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -65,6 +66,15 @@ class VerifyView extends Component {
 
   handleLogin() {
     const url = window.location.href;
+
+    if (!url.includes("?")) {
+      this.setState({
+        redirect: "/login"
+      });
+
+      return;
+    }
+
     const paramString = url.split("?")[1];
     const paramsList = paramString.split("&");
     const params = {};
@@ -91,6 +101,10 @@ class VerifyView extends Component {
       self.setState({
         redirect: "/"
       });
+    }).catch(error => {
+      self.setState({
+        showErrorText: true
+      });
     });
   }
 
@@ -111,13 +125,19 @@ class VerifyView extends Component {
                 onKeyDown={this.handleKeyDown} />
     });
 
+    let text = this.state.showErrorText ? (
+      <p>Hmm... that code doesn't look right to us. Please try entering it again.</p>
+    ) : (
+      <p>Please check your MIT email address for a 4-digit verification code.</p>
+    );
+
     return (
       <div className="VerifyView">
         <div className="bigger-container">
           <img className="logo" src="/img/dormspam-white.svg" alt="Logo" />
           <div className="container">
             <h1>Verify Email</h1>
-            <p>Please check your MIT email address for a 4-digit verification code.</p>
+            {text}
             <div className="code-input">
               {inputElements}
             </div>
