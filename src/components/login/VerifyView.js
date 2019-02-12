@@ -1,4 +1,6 @@
+import axios from "axios";
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import "./VerifyView.css";
 
 class VerifyView extends Component {
@@ -8,12 +10,14 @@ class VerifyView extends Component {
     this.state = {
       code: "",
       deleteOnUp: false,
-      keyPressed: 0
+      keyPressed: 0,
+      redirect: null
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleKeyUp = this.handleKeyUp.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
   }
 
   keyCodeIsNumber(code) {
@@ -59,7 +63,42 @@ class VerifyView extends Component {
     }
   }
 
+  handleLogin() {
+    const url = window.location.href;
+    const paramString = url.split("?")[1];
+    const paramsList = paramString.split("&");
+    const params = {};
+
+    for (var i = 0; i < paramsList.length; i++) {
+      const param = paramsList[i];
+
+      if (!param.includes("=")) {
+        continue;
+      }
+
+      params[param.split("=")[0]] = param.split("=")[1];
+    }
+
+    const kerberos = params["k"];
+    const self = this;
+
+    axios.post(process.env.REACT_APP_BACKEND_URL + "/users/verify", {
+      code: this.state.code,
+      kerberos: kerberos
+    }, {
+      withCredentials: true
+    }).then(response => {
+      self.setState({
+        redirect: "/"
+      });
+    });
+  }
+
   render() {
+    if (this.state.redirect !== null) {
+      return <Redirect to={this.state.redirect} />;
+    }
+
     let inputElements = [0, 1, 2, 3].map(idx => {
       return <input
                 type="text"
@@ -78,10 +117,11 @@ class VerifyView extends Component {
           <img className="logo" src="/img/dormspam-white.svg" alt="Logo" />
           <div className="container">
             <h1>Verify Email</h1>
+            <p>Please check your MIT email address for a 4-digit verification code.</p>
             <div className="code-input">
               {inputElements}
             </div>
-            <button>Login</button>
+            <button onClick={this.handleLogin}>Login</button>
           </div>
         </div>
       </div>
