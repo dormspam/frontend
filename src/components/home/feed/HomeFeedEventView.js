@@ -20,7 +20,7 @@ class HomeFeedEventView extends Component {
         <p>{this.props.event.location}</p>
         <p className={"description" + (this.props.selected ? " selected" : "")}><br />{this.props.event.description_text}</p>
       </div>
-    )
+    );
   }
 }
 

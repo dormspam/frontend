@@ -11,6 +11,7 @@ class HomeSidebarEventModal extends Component {
     return (
       <div className="HomeSidebarEventModal">
         <div className="metadata-top">
+        <img className="button" src="/img/grey-back.svg" alt="Back" onClick={this.props.onSelectBack} />
           <h3>{this.props.event.sent_from}</h3>
           <div className="minipadding"></div>
           <h3>
@@ -20,7 +21,6 @@ class HomeSidebarEventModal extends Component {
           <div className="padding"></div>
           <hr />
         </div>
-
         <h2>{this.props.event.title}</h2>
         <div dangerouslySetInnerHTML={{__html: this.props.event.description}} />
       </div>
