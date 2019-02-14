@@ -29,3 +29,45 @@
   color: #55596B;
   letter-spacing: 0.05em;
 }
+
+.HomeSidebarEventModal h3 {
+  font-size: 0.8em;
+  font-weight: 400;
+}
+
+.HomeSidebarEventModal .padding {
+  padding-top: 4em;
+}
+
+.HomeSidebarEventModal .minipadding {
+  padding-top: 0.5em;
+}
+
+.HomeSidebarEventModal hr {
+    border: 0;
+    margin: 0;
+    width: 100%;
+    height: 1px;
+    background: #EEE;
+}
+
+.HomeSidebarEventModal .metadata {
+  color: #5F63D4;
+  padding-top: 4em;
+  text-align: right;
+}
+
+.HomeSidebarEventModal .metadata-top {
+  color: #5F63D4;
+  padding-bottom: 2em;
+  text-align: right;
+}
+
+.HomeSidebarEventModal .tags {
+  font-size: 1em;
+  border: 2px solid #5F63D4;
+  border-radius: 1em;
+  margin-left: 0.5em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
