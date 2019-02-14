@@ -29,3 +29,9 @@
   color: #55596B;
   letter-spacing: 0.05em;
 }
+
+.HomeSidebarEventModal .button {
+  width: 24px;
+  margin: 5px;
+  cursor: pointer;
+}
