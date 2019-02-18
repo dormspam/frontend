@@ -1,9 +1,7 @@
 from flask import Flask, send_from_directory
-from flask_sslify import SSLify
 import os
 
 application = Flask(__name__, static_folder="build")
-sslify = SSLify(application, permanent=True)
 
 @application.route("/", defaults={"path": ""})
 @application.route("/<path:path>")
