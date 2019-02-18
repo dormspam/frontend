@@ -4,7 +4,9 @@ import { HashRouter, Route, Switch } from "react-router-dom";
 
 import EventView from "./components/event/EventView";
 import HomeView from "./components/home/HomeView";
+import LoginView from "./components/login/LoginView";
 import SettingsView from "./components/settings/SettingsView";
+import VerifyView from "./components/login/VerifyView";
 
 class App extends Component {
   render() {
@@ -21,7 +23,9 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={HomeView} />
             <Route exact path="/event/:id" component={EventView} />
+            <Route exact path="/login" component={LoginView} />
             <Route exact path="/settings" component={SettingsView} />
+            <Route exact path="/verify" component={VerifyView} />
           </Switch>
         </div>
       </HashRouter>
