@@ -7,39 +7,28 @@ class PreferencesView extends Component {
     super(props);
 
     this.state = {
-      categories: [
-        {
-          name: "Technology",
-          id: "technology",
-          description: "Computer science, hackathons, and everything in between"
-        },
-        {
-          name: "Lectures",
-          id: "lectures",
-          description: "Talks and short classes about anything you can imagine!"
-        },
-        {
-          name: "Academic Events",
-          id: "academic",
-          description: "Events held by MIT students and for MIT students, focused on academics"
-        },
-        {
-          name: "Performance Groups",
-          id: "performance",
-          description: "Dance, music, a capella, and other concerts and performances"
-        },
-        {
-          name: "Social Events",
-          id: "social",
-          description: "Parties, karaoke nights, and food-related outings"
-        }
-      ],
+      categories: [],
       preferences: props.user.settings.preferences
     };
 
+    this.saveCategories = this.saveCategories.bind(this);
     this.handleCategoryClick = this.handleCategoryClick.bind(this);
     this.handleCheck = this.handleCheck.bind(this);
     this.handleSave = this.handleSave.bind(this);
+
+    const self = this;
+
+    axios
+      .get(process.env.REACT_APP_BACKEND_URL + "/categories")
+      .then(res => {
+        self.saveCategories(res.data);
+      });
+  }
+
+  saveCategories(categories) {
+    this.setState({
+      categories: categories
+    });
   }
 
   handleCategoryClick(event) {
