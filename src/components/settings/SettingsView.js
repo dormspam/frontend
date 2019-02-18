@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from 'react-router-dom';
+import { Redirect } from "react-router-dom";
 import axios from "axios";
 import "./SettingsView.css";
 
@@ -16,6 +16,8 @@ class SettingsView extends Component {
       redirect: null,
     };
 
+    const self = this;
+
     axios.get(process.env.REACT_APP_BACKEND_URL + "/users/current", {
       withCredentials: true
     }).then(response => {
@@ -25,7 +27,9 @@ class SettingsView extends Component {
       });
 
     }).catch(error => {
-      window.location.href = process.env.REACT_APP_BACKEND_URL + "/users/oidc";
+      self.setState({
+        redirect: "/login"
+      });
     });
 
     this.handleItemClick = this.handleItemClick.bind(this);

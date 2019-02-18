@@ -2,6 +2,30 @@
   margin-top: 2em;
 }
 
+.HomeSelectionWeekBar .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.HomeSelectionWeekBar .outline {
+  color: #828ca0;
+  font-size: 0.7em;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  border: 2px solid;
+  border-radius: 50px;
+  padding: 0.3em 1em;
+  user-select: none;
+  cursor: pointer;
+}
+
+.HomeSelectionWeekBar .outline:hover {
+  border: 2px solid #5e60d7;
+  background-color: #5e60d7;
+  color: white;
+}
+
 .HomeSelectionWeekBar .weekdays {
   display: flex;
   justify-content: space-between;

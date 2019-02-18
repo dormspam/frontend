@@ -21,15 +21,18 @@ class HomeView extends Component {
 
     this.handleSelectEvent = this.handleSelectEvent.bind(this);
     this.handleSelectDay = this.handleSelectDay.bind(this);
+    this.handleClickAway = this.handleClickAway.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
   }
 
   handleSelectEvent(event) {
     if (this.state.event !== null && this.state.event.uid === event.uid) {
+      document.getElementsByClassName("column left")[0].removeEventListener('click', this.handleClickAway, false);
       this.setState({
         event: null
       });
     } else {
+      document.getElementsByClassName("column left")[0].addEventListener('click', this.handleClickAway, false);
       this.setState({ event });
     }
   }
@@ -37,6 +40,13 @@ class HomeView extends Component {
   handleSelectDay(m) {
     this.setState({
       day: m,
+      event: null
+    });
+  }
+
+  handleClickAway(event) {
+    document.getElementsByClassName("column left")[0].removeEventListener('click', this.handleClickAway, false);
+    this.setState({
       event: null
     });
   }
@@ -69,6 +79,7 @@ class HomeView extends Component {
           />
           <HomeSidebarCategoriesView/>
           <HomeSidebarEventModal
+            onSelectBack={this.handleClickAway}
             event={this.state.event}
           />
         </div>
