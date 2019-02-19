@@ -18,6 +18,7 @@ class HomeView extends Component {
       day: moment(),
       event: null,
       search: "",
+      user: { settings: { filters: [] }}
     };
 
     axios.get(process.env.REACT_APP_BACKEND_URL + "/users/current", {
@@ -32,6 +33,7 @@ class HomeView extends Component {
     this.handleSelectDay = this.handleSelectDay.bind(this);
     this.handleClickAway = this.handleClickAway.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.handleUserUpdate = this.handleUserUpdate.bind(this);
   }
 
   handleSelectEvent(event) {

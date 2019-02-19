@@ -11,24 +11,23 @@ export default class HomeSidebarCategoriesView extends Component {
       filters: props.user.settings.filters
     };
 
-    this.saveCategories = this.saveCategories.bind(this);
-    this.handleCategoryClick = this.handleCategoryClick.bind(this);
-    this.handleCheck = this.handleCheck.bind(this);
-    this.handleSave = this.handleSave.bind(this);
-
-    const self = this;
-
     axios
       .get(process.env.REACT_APP_BACKEND_URL + "/categories")
       .then(res => {
-        self.saveCategories(res.data);
+        let tempFilters = [];
+        for (let i=0; i < res.data.length; i++) {
+          tempFilters.push(res.data[i].id);
+        }
+        this.setState({
+          categories: res.data,
+          filters: tempFilters
+        });
       });
-  }
 
-  saveCategories(categories) {
-    this.setState({
-      categories: categories
-    });
+    this.handleCategoryClick = this.handleCategoryClick.bind(this);
+    this.handleCheck = this.handleCheck.bind(this);
+    this.toggleCategory = this.toggleCategory.bind(this);
+    this.handleSave = this.handleSave.bind(this);
   }
 
   handleCategoryClick(event) {
@@ -73,27 +72,30 @@ export default class HomeSidebarCategoriesView extends Component {
   }
 
   handleSave() {
-    const self = this;
-
     axios.put(process.env.REACT_APP_BACKEND_URL + "/users/current", {
       filters: this.state.filters
     }, {
       withCredentials: true
     }).then(response => {
-      self.props.onUserUpdate(response.data);
+      this.props.onUserUpdate(response.data);
     });
   }
 
   render() {
     let categoryTags = this.state.categories.map((category, i) => (
-      <div className="category" key={i} index={i} onClick={this.handleCategoryClick}>
+      <div
+          className="category"
+          key={i}
+          index={i}
+          onClick={this.handleCategoryClick}
+          style={{"backgroundColor": category.color, "color": "#FFF"}}>
         <input type="checkbox" checked={this.state.filters.includes(category.id)} onChange={this.handleCheck} />
         <div className="text">
           <h3>{category.name}</h3>
         </div>
       </div>
     ));
-
+    console.log(this.state.filters);
     return (
       <div className="HomeSidebarCategoriesView">
         {categoryTags}

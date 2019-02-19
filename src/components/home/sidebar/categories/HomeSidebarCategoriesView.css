@@ -6,7 +6,8 @@
 .HomeSidebarCategoriesView {
   display: flex;
   flex-direction: column;
-  font-size: 0.75em;
+  font-size: 0.5em;
+  font-weight: 100;
   color: #55596B;
   letter-spacing: 0.08em;
   width: 85%;
