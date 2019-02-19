@@ -53,12 +53,6 @@
 
 .HomeSidebarEventModal .metadata {
   color: #5F63D4;
-  padding-top: 4em;
-  text-align: right;
-}
-
-.HomeSidebarEventModal .metadata-top {
-  color: #5F63D4;
   padding-bottom: 2em;
   text-align: right;
 }
@@ -66,6 +60,7 @@
 .HomeSidebarEventModal .tags {
   font-size: 1em;
   border: 2px solid #5F63D4;
+  color: #000;
   border-radius: 1em;
   margin-left: 0.5em;
   padding-left: 0.5em;
