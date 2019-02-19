@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
+
+import { setupSession } from "../../utils/session";
 import "./VerifyView.css";
 
 class VerifyView extends Component {
@@ -98,6 +100,8 @@ class VerifyView extends Component {
     }, {
       withCredentials: true
     }).then(response => {
+      setupSession(response.data);
+
       self.setState({
         redirect: "/"
       });
