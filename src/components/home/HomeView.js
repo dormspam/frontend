@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import moment from "moment";
+import axios from "axios";
 import "./HomeView.css";
 
 import HomeSidebarCalendar from "./sidebar/calendar/HomeSidebarCalendar";
@@ -18,6 +19,14 @@ class HomeView extends Component {
       event: null,
       search: "",
     };
+
+    axios.get(process.env.REACT_APP_BACKEND_URL + "/users/current", {
+      withCredentials: true
+    }).then(response => {
+      this.setState({
+        user: response.data
+      });
+    });
 
     this.handleSelectEvent = this.handleSelectEvent.bind(this);
     this.handleSelectDay = this.handleSelectDay.bind(this);
@@ -55,6 +64,12 @@ class HomeView extends Component {
     this.setState({ search });
   }
 
+  handleUserUpdate(data) {
+    this.setState({
+      user: data
+    });
+  }
+
   render() {
     return (
       <div className="HomeView">
@@ -77,7 +92,10 @@ class HomeView extends Component {
             selectedDay={this.state.day}
             onSelectDay={this.handleSelectDay}
           />
-          <HomeSidebarCategoriesView/>
+          <HomeSidebarCategoriesView
+            onUserUpdate={this.handleUserUpdate}
+            user={this.state.user}
+          />
           <HomeSidebarEventModal
             onSelectBack={this.handleClickAway}
             event={this.state.event}
