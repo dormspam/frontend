@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 import moment from "moment";
 import "./HomeSidebarCalendar.css";
 
@@ -11,11 +12,28 @@ class HomeSidebarCalendar extends Component {
     this.state = {
       today: moment(),
       m: moment(),
+      frequencies: {},
+      colors: {}
     };
 
     this.previousMonth = this.previousMonth.bind(this);
     this.nextMonth = this.nextMonth.bind(this);
     this.selectDay = this.selectDay.bind(this);
+
+    axios
+      .get(process.env.REACT_APP_BACKEND_URL + "/events/frequency/" + moment().format("YYYY-MM-DD"))
+      .then(res => {
+        this.state.frequencies = res.data;
+    });
+
+    axios
+      .get(process.env.REACT_APP_BACKEND_URL + "/categories")
+      .then(res => {
+        let colorList = res.data;
+        for (let i=0; i < colorList.length; i++) {
+          this.state.colors[colorList[i].name] = colorList[i]["color"];
+        }
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -72,6 +90,17 @@ class HomeSidebarCalendar extends Component {
         active: m.isSame(this.state.today, 'day'),
         focus: m.isSame(this.state.m, 'month'),
         isToday: m.format('MMM Do YY') === moment().format('MMM Do YY'),
+        frequencies: (m.format("YYYY-MM-DD") in this.state.frequencies) ? this.state.frequencies[m.format("YYYY-MM-DD")] : {
+            "Boba": 0,
+            "Food": 1,
+            "Tech": 3,
+            "EECS-jobs-announce": 0,
+            "Recruiting": 2,
+            "Social": 0,
+            "Performance Groups": 0,
+            "Talks": 0,
+            "Other": 0
+        }
       });
     }
 
@@ -84,6 +113,8 @@ class HomeSidebarCalendar extends Component {
                     focus={day.focus}
                     isToday={day.isToday}
                     onClick={this.selectDay}
+                    frequencies={day.frequencies}
+                    colors={this.state.colors}
                   />
     );
 

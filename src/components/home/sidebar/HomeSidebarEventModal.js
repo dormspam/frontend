@@ -7,7 +7,7 @@ class HomeSidebarEventModal extends Component {
     super(props);
 
     this.state = {
-      colors: {"Other": "#5F63D4"}
+      colors: {}
     };
 
     this.getCategories = this.getCategories.bind(this);
