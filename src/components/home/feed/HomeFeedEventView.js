@@ -13,7 +13,6 @@ class HomeFeedEventView extends Component {
   }
 
   render() {
-    console.log(this.props.event.description_text);
     return (
       <div className={"HomeFeedEventView" + (this.props.selected ? " selected" : "")} style={this.props.selected ? {background: this.props.color} : {}} onClick={this.handleClick}>
         <h3 className="bold">{this.props.event.name}</h3>

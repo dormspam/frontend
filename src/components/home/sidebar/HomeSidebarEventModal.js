@@ -3,7 +3,6 @@ import "./HomeSidebarEventModal.css";
 
 class HomeSidebarEventModal extends Component {
   render() {
-    let categories = ["Tech", "Food"];
     if (this.props.event === null) {
       return <div />;
     }
