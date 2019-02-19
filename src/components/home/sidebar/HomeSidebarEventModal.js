@@ -65,7 +65,6 @@ class HomeSidebarEventModal extends Component {
           <div className="padding"></div>
           <hr />
         </div>
-        <h2>{this.props.event.title}</h2>
         <div dangerouslySetInnerHTML={{__html: this.props.event.description}} />
       </div>
     );

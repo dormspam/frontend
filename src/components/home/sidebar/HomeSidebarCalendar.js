@@ -92,9 +92,9 @@ class HomeSidebarCalendar extends Component {
         isToday: m.format('MMM Do YY') === moment().format('MMM Do YY'),
         frequencies: (m.format("YYYY-MM-DD") in this.state.frequencies) ? this.state.frequencies[m.format("YYYY-MM-DD")] : {
             "Boba": 0,
-            "Food": 1,
-            "Tech": 3,
-            "EECS-jobs-announce": 0,
+            "Food": 0,
+            "Tech": 0,
+            "EECS-jobs-announce": 1,
             "Recruiting": 2,
             "Social": 0,
             "Performance Groups": 0,
