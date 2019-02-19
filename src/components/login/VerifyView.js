@@ -1,7 +1,7 @@
-import axios from "axios";
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 
+import Users from "../../api/users";
 import { setupSession } from "../../utils/session";
 import "./VerifyView.css";
 
@@ -94,12 +94,7 @@ class VerifyView extends Component {
     const kerberos = params["k"];
     const self = this;
 
-    axios.post(process.env.REACT_APP_BACKEND_URL + "/users/verify", {
-      code: this.state.code,
-      kerberos: kerberos
-    }, {
-      withCredentials: true
-    }).then(response => {
+    Users.verify(this.state.code, kerberos).then(response => {
       setupSession(response.data);
 
       self.setState({

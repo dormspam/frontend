@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import axios from "axios";
 import moment from "moment";
-import "./HomeSidebarCalendar.css";
 
+import Categories from "../../../api/categories";
+import Events from "../../../api/events";
 import HomeSidebarCalendarDayItem from "./HomeSidebarCalendarDayItem";
+import "./HomeSidebarCalendar.css";
 
 class HomeSidebarCalendar extends Component {
   constructor(props) {
@@ -20,18 +21,13 @@ class HomeSidebarCalendar extends Component {
     this.nextMonth = this.nextMonth.bind(this);
     this.selectDay = this.selectDay.bind(this);
 
-    axios.get(process.env.REACT_APP_BACKEND_URL + "/events/frequency/" + moment().format("YYYY-MM-DD"), {
-      withCredentials: true
-    }).then(res => {
-      this.state.frequencies = res.data;
+    Events.getEventFrequencyByDate(moment().format("YYYY-MM-DD")).then(response => {
+      this.state.frequencies = response.data;
     });
 
-    axios.get(process.env.REACT_APP_BACKEND_URL + "/categories", {
-      withCredentials: true
-    }).then(res => {
-      let colorList = res.data;
-      for (let i=0; i < colorList.length; i++) {
-        this.state.colors[colorList[i].name] = colorList[i]["color"];
+    Categories.getCategories().then(response => {
+      for (let i = 0; i < response.data.length; i++) {
+        this.state.colors[response.data[i].name] = response.data[i]["color"];
       }
     });
   }

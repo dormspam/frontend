@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import axios from "axios";
+
+import Users from "../../../api/users";
 import "./FrequencyView.css";
 
 class FrequencyView extends Component {
@@ -23,10 +24,8 @@ class FrequencyView extends Component {
   handleSave() {
     const self = this;
 
-    axios.put(process.env.REACT_APP_BACKEND_URL + "/users/current", {
+    Users.updateCurrentUser({
       frequency: parseInt(this.state.frequency, 10)
-    }, {
-      withCredentials: true
     }).then(response => {
       self.props.onUserUpdate(response.data);
     });

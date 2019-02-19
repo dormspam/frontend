@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import axios from "axios";
 import moment from "moment";
-import "./HomeFeedView.css";
 
+import Events from "../../../api/events";
 import HomeFeedEventView from "./HomeFeedEventView";
+import "./HomeFeedView.css";
 
 class HomeFeedView extends Component {
   constructor(props) {
@@ -19,10 +19,8 @@ class HomeFeedView extends Component {
 
     const self = this;
 
-    axios.get(process.env.REACT_APP_BACKEND_URL + "/events/" + moment().format("YYYY-MM-DD"), {
-      withCredentials: true
-    }).then(res => {
-      self.saveEventData(res.data);
+    Events.getEventsByDate(moment().format("YYYY-MM-DD")).then(response => {
+      self.saveEventData(response.data);
     });
   }
 
@@ -33,24 +31,20 @@ class HomeFeedView extends Component {
 
     if (searching) {
       // make axios request here for search
-      axios.get(process.env.REACT_APP_BACKEND_URL + "/events?q=" + nextProps.search, {
-        withCredentials: true
-      }).then(res => {
+      Events.getEventsByQuery(nextProps.search).then(response => {
         if (searchCount < self.state.searchCount) {
           return;
         }
 
-        self.saveEventData(res.data);
+        self.saveEventData(response.data);
       });
     } else {
-      axios.get(process.env.REACT_APP_BACKEND_URL + "/events/" + nextProps.selectedDay.format("YYYY-MM-DD"), {
-        withCredentials: true
-      }).then(res => {
+      Events.getEventsByDate(nextProps.selectedDay.format("YYYY-MM-DD")).then(response => {
         if (searchCount < self.state.searchCount) {
           return;
         }
 
-        self.saveEventData(res.data);
+        self.saveEventData(response.data);
       });
     }
 
