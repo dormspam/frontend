@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
-import { HashRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import EventView from "./components/event/EventView";
 import HomeView from "./components/home/HomeView";
@@ -11,7 +11,7 @@ import VerifyView from "./components/login/VerifyView";
 class App extends Component {
   render() {
     return (
-      <HashRouter>
+      <BrowserRouter>
         <div>
           <Helmet>
             <meta charset="utf-8" />
@@ -28,7 +28,7 @@ class App extends Component {
             <Route exact path="/verify" component={VerifyView} />
           </Switch>
         </div>
-      </HashRouter>
+      </BrowserRouter>
     );
   }
 }
