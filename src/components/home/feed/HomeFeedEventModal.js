@@ -1,19 +1,65 @@
 import React, { Component } from "react";
+import axios from "axios";
 import "./HomeFeedEventModal.css";
 
 class HomeFeedEventModal extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      colors: {}
+    };
+
+    this.getCategories = this.getCategories.bind(this);
+    this.parseCategories = this.parseCategories.bind(this);
+
+    axios
+      .get(process.env.REACT_APP_BACKEND_URL + "/categories")
+      .then(res => {
+        let colorList = res.data;
+        for (let i=0; i < colorList.length; i++) {
+          this.state.colors[colorList[i].name] = colorList[i]["color"];
+        }
+    });
+  }
+
+  getCategories() {
+    let categories = this.parseCategories(this.props.event.categories);
+    let tags = [];
+    for (let i=0; i < categories.length; i++) {
+      tags.push(<span className="tags"
+                      key={"tags-" + categories[i]}
+                      style={{border: "2px solid " + this.state.colors[categories[i]],
+                              color: this.state.colors[categories[i]]}}>
+                      &#9679; {categories[i]}
+                </span>);
+    }
+    return tags;
+  }
+
+  parseCategories(categories) {
+    categories = categories.substring(1, categories.length - 1);
+    let listed = categories.split(",");
+    for (let i=0; i < listed.length; i++) {
+      listed[i] = listed[i].replace(/"/g, "");
+    }
+    return listed;
+  }
+
   render() {
     if (this.props.event === null) {
       return null;
     }
+
+    let categoryTags = this.getCategories();
+
     return (
       <div id={this.props.event.uid} class="HomeFeedEventModal">
       <img className="back" src="/img/x-button.svg" alt="Back" onClick={this.props.onSelectBack} />
           <h3>{this.props.event.sent_from}</h3>
           <div className="minipadding"></div>
           <h3>
-            <span className="tags">&#9679; Tech</span>
-            <span className="tags">&#9679; Art</span>
+            {categoryTags}
           </h3>
           <div className="padding"></div>
           <hr />
