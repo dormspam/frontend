@@ -1,0 +1,94 @@
+.HomeFeedEventModal {
+  display: inline-block;
+  vertical-align: top;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background: #FFF;
+  padding: 2.5% 4%;
+
+}
+
+.active .HomeFeedEventModal {
+  margin-top: 0px;
+}
+
+
+.HomeFeedEventModal img {
+  margin-bottom: 8px;
+  max-width: 100%;
+  float: right;
+}
+
+.HomeFeedEventModal h2 {
+  font-size: 1em;
+  font-weight: 400;
+  color: #55596B;
+  letter-spacing: 0.05em;
+  margin-top: 10px;
+  margin-bottom: 6px;
+}
+
+.HomeFeedEventModal p {
+  font-size: 0.9em;
+  font-weight: 400;
+  color: #55596B;
+  letter-spacing: 0.05em;
+}
+
+.HomeFeedEventModal h3 {
+  color: #5F63D4;
+  font-size: 0.8em;
+  font-weight: 600;
+}
+
+.HomeFeedEventModal .padding {
+  padding-top: 3em;
+}
+
+.HomeFeedEventModal .minipadding {
+  padding-top: 0.5em;
+}
+
+.HomeFeedEventModal hr {
+    border: 0;
+    margin: 0;
+    width: 100%;
+    height: 1px;
+    background: #EEE;
+}
+
+.HomeFeedEventModal .metadata {
+  color: #5F63D4;
+  padding-top: 4em;
+  text-align: right;
+}
+
+.HomeFeedEventModal .metadata-top {
+  color: #5F63D4;
+  padding-bottom: 2em;
+  text-align: right;
+}
+
+.HomeFeedEventModal .tags {
+  font-size: 1em;
+  border: 2px solid #5F63D4;
+  color: #5F63D4;
+  border-radius: 1em;
+  margin-left: 0.5em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
+.HomeFeedEventModal .back {
+  width: 24px;
+  margin: 5px;
+  cursor: pointer;
+  float: right;
+}
+
+
