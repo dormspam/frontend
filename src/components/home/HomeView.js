@@ -9,6 +9,7 @@ import HomeHeaderView from "./header/HomeHeaderView";
 import HomeSelectionView from "./selection/HomeSelectionView";
 import HomeSidebarEventModal from "./sidebar/event/HomeSidebarEventModal";
 import HomeFeedView from "./feed/HomeFeedView";
+import HomeFeedEventModal from "./feed/HomeFeedEventModal";
 
 class HomeView extends Component {
   constructor(props) {
@@ -88,6 +89,12 @@ class HomeView extends Component {
             selectedEvent={this.state.event}
             onSelectEvent={this.handleSelectEvent}
           />
+        </div>
+        <div className="modal">
+            <HomeFeedEventModal
+              event={this.state.event}
+              onSelectBack={this.handleClickAway}
+            />
         </div>
         <div className={"column right" + (this.state.event !== null ? " active" : "")}>
           <HomeSidebarCalendar

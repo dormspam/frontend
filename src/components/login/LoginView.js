@@ -1,6 +1,7 @@
-import axios from "axios";
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
+
+import Users from "../../api/users";
 import "./LoginView.css";
 
 class LoginView extends Component {
@@ -20,11 +21,7 @@ class LoginView extends Component {
     const kerberos = this.kerberosInput.current.value;
     const self = this;
 
-    axios.post(process.env.REACT_APP_BACKEND_URL + "/users/login", {
-      kerberos: kerberos
-    }, {
-      withCredentials: true
-    }).then(response => {
+    Users.login(kerberos).then(response => {
       self.setState({
         redirect: "/verify?k=" + kerberos
       });

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-import axios from "axios";
+
+import Users from "../../api/users";
 import "./SettingsView.css";
 
 import FrequencyView from "./frequency/FrequencyView";
@@ -16,9 +17,7 @@ class SettingsView extends Component {
       redirect: null,
     };
 
-    axios.get(process.env.REACT_APP_BACKEND_URL + "/users/current", {
-      withCredentials: true
-    }).then(response => {
+    Users.getCurrentUser().then(response => {
       this.setState({
         loading: false,
         user: response.data
@@ -33,14 +32,13 @@ class SettingsView extends Component {
     const self = this;
 
     if (event.target.getAttribute("item") === "Log Out") {
-      axios.delete(process.env.REACT_APP_BACKEND_URL + "/users/current", {
-        withCredentials: true
-      }).then(response => {
+      Users.logout().then(response => {
         self.setState({
           redirect: "/",
         });
       });
     }
+
     this.setState({
       currentItem: event.target.getAttribute("item")
     });

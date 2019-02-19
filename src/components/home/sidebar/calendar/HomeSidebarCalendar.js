@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import moment from "moment";
-import "./HomeSidebarCalendar.css";
 
+import Categories from "../../../api/categories";
+import Events from "../../../api/events";
 import HomeSidebarCalendarDayItem from "./HomeSidebarCalendarDayItem";
+import "./HomeSidebarCalendar.css";
 
 class HomeSidebarCalendar extends Component {
   constructor(props) {
@@ -11,11 +13,23 @@ class HomeSidebarCalendar extends Component {
     this.state = {
       today: moment(),
       m: moment(),
+      frequencies: {},
+      colors: {}
     };
 
     this.previousMonth = this.previousMonth.bind(this);
     this.nextMonth = this.nextMonth.bind(this);
     this.selectDay = this.selectDay.bind(this);
+
+    Categories.getCategories().then(response => {
+      let tempColors = {};
+      for (let i = 0; i < response.data.length; i++) {
+        tempColors[response.data[i].name] = response.data[i]["color"];
+      }
+      this.setState({
+        colors: tempColors
+      });
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -65,6 +79,12 @@ class HomeSidebarCalendar extends Component {
     const weekStart = monthStart.startOf("week");
     const weekEnd = monthEnd.endOf("week");
 
+    Events.getEventFrequencyByDate(moment(this.state.m).format("YYYY-MM-DD")).then(response => {
+      this.setState({
+        frequencies: response.data
+      });
+    });
+
     for (let m = weekStart; m.isBefore(weekEnd); m.add(1, 'days')) {
       dayTagsData.push({
         moment: m.format(),
@@ -72,6 +92,17 @@ class HomeSidebarCalendar extends Component {
         active: m.isSame(this.state.today, 'day'),
         focus: m.isSame(this.state.m, 'month'),
         isToday: m.format('MMM Do YY') === moment().format('MMM Do YY'),
+        frequencies: (m.format("YYYY-MM-DD") in this.state.frequencies) ? this.state.frequencies[m.format("YYYY-MM-DD")] : {
+            "Boba": 0,
+            "Food": 0,
+            "Tech": 0,
+            "EECS-jobs-announce": 0,
+            "Recruiting": 0,
+            "Social": 0,
+            "Performance Groups": 0,
+            "Talks": 0,
+            "Other": 0
+        }
       });
     }
 
@@ -84,6 +115,8 @@ class HomeSidebarCalendar extends Component {
                     focus={day.focus}
                     isToday={day.isToday}
                     onClick={this.selectDay}
+                    frequencies={day.frequencies}
+                    colors={this.state.colors}
                   />
     );
 

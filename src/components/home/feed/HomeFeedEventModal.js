@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 
 import Categories from "../../../api/categories";
-import "./HomeSidebarEventModal.css";
+import "./HomeFeedEventModal.css";
 
-class HomeSidebarEventModal extends Component {
+class HomeFeedEventModal extends Component {
   constructor(props) {
     super(props);
 
@@ -46,15 +46,14 @@ class HomeSidebarEventModal extends Component {
 
   render() {
     if (this.props.event === null) {
-      return <div />;
+      return null;
     }
 
     let categoryTags = this.getCategories();
 
     return (
-      <div className="HomeSidebarEventModal">
-        <div className="metadata">
-        <img className="back" src="/img/grey-back.svg" alt="Back" onClick={this.props.onSelectBack} />
+      <div id={this.props.event.uid} className="HomeFeedEventModal">
+      <img className="back" src="/img/x-button.svg" alt="Back" onClick={this.props.onSelectBack} />
           <h3>{this.props.event.sent_from}</h3>
           <div className="minipadding"></div>
           <h3>
@@ -62,11 +61,11 @@ class HomeSidebarEventModal extends Component {
           </h3>
           <div className="padding"></div>
           <hr />
-        </div>
+        <h2>{this.props.event.title}</h2>
         <div dangerouslySetInnerHTML={{__html: this.props.event.description}} />
       </div>
     );
   }
 }
 
-export default HomeSidebarEventModal;
+export default HomeFeedEventModal;

@@ -27,11 +27,17 @@
   width: 50%;
 }
 
+.HomeView .modal {
+  display: none;
+}
+
 @media (max-width: 800px) {
   .HomeView .left {
     width: 100% !important;
   }
-
+  .HomeView .modal {
+    display: inline-block !important;
+  }
   .HomeView .right {
     display: none !important;
   }
