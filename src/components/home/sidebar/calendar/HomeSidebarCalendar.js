@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import moment from "moment";
 
-import Categories from "../../../api/categories";
-import Events from "../../../api/events";
+import Categories from "../../../../api/categories";
+import Events from "../../../../api/events";
 import HomeSidebarCalendarDayItem from "./HomeSidebarCalendarDayItem";
 import "./HomeSidebarCalendar.css";
 

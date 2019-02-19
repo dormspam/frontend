@@ -88,7 +88,7 @@ export default class HomeSidebarCategoriesView extends Component {
           key={i}
           index={i}
           onClick={this.handleCategoryClick}
-          style={{"backgroundColor": category.color, "color": "#FFF"}}>
+          style={{"border": "2px solid " + category.color, "color": category.color}}>
         <input type="checkbox" checked={this.state.filters.includes(category.id)} onChange={this.handleCheck} />
         <div className="text">
           <h3>{category.name}</h3>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-
 import Users from "../../../api/users";
+import axios from "axios";
 import "./PreferencesView.css";
 
 class PreferencesView extends Component {

@@ -9,7 +9,8 @@ class LoginView extends Component {
     super(props);
 
     this.state = {
-      redirect: null
+      redirect: null,
+      pending: false,
     };
 
     this.kerberosInput = React.createRef();
@@ -18,6 +19,10 @@ class LoginView extends Component {
   }
 
   handleLogin() {
+    if (this.kerberosInput.current.value.length == 0 || this.state.pending) {
+      return;
+    }
+
     const kerberos = this.kerberosInput.current.value;
     const self = this;
 
@@ -25,6 +30,14 @@ class LoginView extends Component {
       self.setState({
         redirect: "/verify?k=" + kerberos
       });
+    });
+
+    document.getElementById("login-btn").style.backgroundColor = "#888BDE";
+    document.getElementById("login-btn").innerHTML = "Sending email to " + kerberos + "@mit.edu";
+    document.getElementById('login-btn').style.cursor = "text";
+
+    this.setState({
+      pending: true
     });
   }
 
@@ -40,7 +53,7 @@ class LoginView extends Component {
           <div className="container">
             <h1>Sign In</h1>
             <input ref={this.kerberosInput} type="text" placeholder="Enter your kerberos" />
-            <button onClick={this.handleLogin}>Login</button>
+            <button id="login-btn" onClick={this.handleLogin}>Login</button>
           </div>
         </div>
       </div>

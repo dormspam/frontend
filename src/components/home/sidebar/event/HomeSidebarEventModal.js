@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import Categories from "../../../api/categories";
+import Categories from "../../../../api/categories";
 import "./HomeSidebarEventModal.css";
 
 class HomeSidebarEventModal extends Component {

@@ -13,20 +13,20 @@
   width: 85%;
   min-width: 224px;
   margin: 0 auto;
-  margin-top: 60px;
+  margin-top: 40px;
 }
 
 .HomeSidebarCategoriesView .category {
   display: flex;
   align-items: center;
-  background-color: #eeeeee;
+  background-color: #FFF;
   cursor: pointer;
   padding: 1em;
   margin-bottom: 1em;
 }
 
 .HomeSidebarCategoriesView .category:hover {
-  background-color: #E4E4E4;
+  background-color: #F6F6F6;
 }
 
 .HomeSidebarCategoriesView .category .text {
