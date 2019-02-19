@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import axios from "axios";
+
+import Categories from "../../../api/categories";
 import "./HomeSidebarEventModal.css";
 
 class HomeSidebarEventModal extends Component {
@@ -13,13 +14,10 @@ class HomeSidebarEventModal extends Component {
     this.getCategories = this.getCategories.bind(this);
     this.parseCategories = this.parseCategories.bind(this);
 
-    axios
-      .get(process.env.REACT_APP_BACKEND_URL + "/categories")
-      .then(res => {
-        let colorList = res.data;
-        for (let i=0; i < colorList.length; i++) {
-          this.state.colors[colorList[i].name] = colorList[i]["color"];
-        }
+    Categories.getCategories().then(response => {
+      for (let i = 0; i < response.data.length; i++) {
+        this.state.colors[response.data[i].name] = response.data[i]["color"];
+      }
     });
   }
 

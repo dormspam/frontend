@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import EventView from "./components/event/EventView";
+import { isUserLoggedIn } from "./utils/session";
 import HomeView from "./components/home/HomeView";
 import LoginView from "./components/login/LoginView";
 import SettingsView from "./components/settings/SettingsView";
@@ -21,16 +21,28 @@ class App extends Component {
             <title>Dormspam</title>
           </Helmet>
           <Switch>
-            <Route exact path="/" component={HomeView} />
-            <Route exact path="/event/:id" component={EventView} />
-            <Route exact path="/login" component={LoginView} />
-            <Route exact path="/settings" component={SettingsView} />
-            <Route exact path="/verify" component={VerifyView} />
+            <DormspamRoute exact path="/" component={HomeView} />
+            <DormspamRoute exact path="/login" component={LoginView} authenticated={false} />
+            <DormspamRoute exact path="/settings" component={SettingsView} />
+            <DormspamRoute exact path="/verify" component={VerifyView} authenticated={false} />
           </Switch>
         </div>
       </BrowserRouter>
     );
   }
 }
+
+const DormspamRoute = ({ component: Component, ...rest }) => {
+  if (isUserLoggedIn() || rest.authenticated === false) {
+    return <Route
+      {...rest}
+      render={props =>
+        <Component {...props} />
+      }
+    />;
+  } else {
+    return <LoginView />;
+  }
+};
 
 export default App;
