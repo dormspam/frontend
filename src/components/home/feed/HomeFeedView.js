@@ -19,9 +19,9 @@ class HomeFeedView extends Component {
 
     const self = this;
 
-    axios
-      .get(process.env.REACT_APP_BACKEND_URL + "/events/" + moment().format("YYYY-MM-DD"))
-      .then(res => {
+    axios.get(process.env.REACT_APP_BACKEND_URL + "/events/" + moment().format("YYYY-MM-DD"), {
+      withCredentials: true
+    }).then(res => {
       self.saveEventData(res.data);
     });
   }
@@ -33,24 +33,24 @@ class HomeFeedView extends Component {
 
     if (searching) {
       // make axios request here for search
-      axios
-        .get(process.env.REACT_APP_BACKEND_URL + "/events?q=" + nextProps.search)
-        .then(res => {
-          if (searchCount < self.state.searchCount) {
-            return;
-          }
+      axios.get(process.env.REACT_APP_BACKEND_URL + "/events?q=" + nextProps.search, {
+        withCredentials: true
+      }).then(res => {
+        if (searchCount < self.state.searchCount) {
+          return;
+        }
 
-          self.saveEventData(res.data);
-        });
+        self.saveEventData(res.data);
+      });
     } else {
-      axios
-        .get(process.env.REACT_APP_BACKEND_URL + "/events/" + nextProps.selectedDay.format("YYYY-MM-DD"))
-        .then(res => {
-          if (searchCount < self.state.searchCount) {
-            return;
-          }
+      axios.get(process.env.REACT_APP_BACKEND_URL + "/events/" + nextProps.selectedDay.format("YYYY-MM-DD"), {
+        withCredentials: true
+      }).then(res => {
+        if (searchCount < self.state.searchCount) {
+          return;
+        }
 
-          self.saveEventData(res.data);
+        self.saveEventData(res.data);
       });
     }
 

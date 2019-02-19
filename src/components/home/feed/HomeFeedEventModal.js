@@ -13,9 +13,9 @@ class HomeFeedEventModal extends Component {
     this.getCategories = this.getCategories.bind(this);
     this.parseCategories = this.parseCategories.bind(this);
 
-    axios
-      .get(process.env.REACT_APP_BACKEND_URL + "/categories")
-      .then(res => {
+    axios.get(process.env.REACT_APP_BACKEND_URL + "/categories", {
+        withCredentials: true
+      }).then(res => {
         let colorList = res.data;
         for (let i=0; i < colorList.length; i++) {
           this.state.colors[colorList[i].name] = colorList[i]["color"];

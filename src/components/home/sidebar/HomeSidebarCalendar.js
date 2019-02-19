@@ -20,19 +20,19 @@ class HomeSidebarCalendar extends Component {
     this.nextMonth = this.nextMonth.bind(this);
     this.selectDay = this.selectDay.bind(this);
 
-    axios
-      .get(process.env.REACT_APP_BACKEND_URL + "/events/frequency/" + moment().format("YYYY-MM-DD"))
-      .then(res => {
-        this.state.frequencies = res.data;
+    axios.get(process.env.REACT_APP_BACKEND_URL + "/events/frequency/" + moment().format("YYYY-MM-DD"), {
+      withCredentials: true
+    }).then(res => {
+      this.state.frequencies = res.data;
     });
 
-    axios
-      .get(process.env.REACT_APP_BACKEND_URL + "/categories")
-      .then(res => {
-        let colorList = res.data;
-        for (let i=0; i < colorList.length; i++) {
-          this.state.colors[colorList[i].name] = colorList[i]["color"];
-        }
+    axios.get(process.env.REACT_APP_BACKEND_URL + "/categories", {
+      withCredentials: true
+    }).then(res => {
+      let colorList = res.data;
+      for (let i=0; i < colorList.length; i++) {
+        this.state.colors[colorList[i].name] = colorList[i]["color"];
+      }
     });
   }
 
