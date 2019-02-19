@@ -16,19 +16,12 @@ class SettingsView extends Component {
       redirect: null,
     };
 
-    const self = this;
-
     axios.get(process.env.REACT_APP_BACKEND_URL + "/users/current", {
       withCredentials: true
     }).then(response => {
       this.setState({
         loading: false,
         user: response.data
-      });
-
-    }).catch(error => {
-      self.setState({
-        redirect: "/login"
       });
     });
 
