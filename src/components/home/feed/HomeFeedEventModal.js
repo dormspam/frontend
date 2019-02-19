@@ -52,7 +52,7 @@ class HomeFeedEventModal extends Component {
     let categoryTags = this.getCategories();
 
     return (
-      <div id={this.props.event.uid} class="HomeFeedEventModal">
+      <div id={this.props.event.uid} className="HomeFeedEventModal">
       <img className="back" src="/img/x-button.svg" alt="Back" onClick={this.props.onSelectBack} />
           <h3>{this.props.event.sent_from}</h3>
           <div className="minipadding"></div>

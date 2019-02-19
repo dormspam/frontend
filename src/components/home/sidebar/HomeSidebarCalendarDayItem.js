@@ -5,20 +5,6 @@ export default class HomeSidebarCalendarDayItem extends Component {
 	constructor(props) {
 		super(props);
 
-		this.state = {
-			colors: {
-				"Boba": "#F6B957",
-				"Food": "#EE6F6F",
-				"Tech": "#A16EE5",
-				"EECS-jobs-announce": "#5A56EF",
-				"Recruiting": "#459AF6",
-				"Social": "#25C8D3",
-				"Performance Groups": "#12DAA4",
-				"Talks": "#73F23A",
-				"Other": "#D8D8D8"
-			}
-		}
-
 		this.getDayTags = this.getDayTags.bind(this);
 	}
 
@@ -32,7 +18,7 @@ export default class HomeSidebarCalendarDayItem extends Component {
 	  		if (frequencies[frequenciesSorted[i]] > 0) {
 		  		tagData.push(<span
 		  			className="tags"
-		  			style={{color: this.state.colors[frequenciesSorted[i]]}}
+		  			style={{color: this.props.colors[frequenciesSorted[i]]}}
 		  			key={"tag-" + frequenciesSorted[i]}>
 		  			&#9679;
 		  			</span>);

@@ -21,14 +21,14 @@ class HomeSidebarCalendar extends Component {
     this.nextMonth = this.nextMonth.bind(this);
     this.selectDay = this.selectDay.bind(this);
 
-    Events.getEventFrequencyByDate(moment().format("YYYY-MM-DD")).then(response => {
-      this.state.frequencies = response.data;
-    });
-
     Categories.getCategories().then(response => {
+      let tempColors = {};
       for (let i = 0; i < response.data.length; i++) {
-        this.state.colors[response.data[i].name] = response.data[i]["color"];
+        tempColors[response.data[i].name] = response.data[i]["color"];
       }
+      this.setState({
+        colors: tempColors
+      });
     });
   }
 
@@ -79,6 +79,12 @@ class HomeSidebarCalendar extends Component {
     const weekStart = monthStart.startOf("week");
     const weekEnd = monthEnd.endOf("week");
 
+    Events.getEventFrequencyByDate(moment(this.state.m).format("YYYY-MM-DD")).then(response => {
+      this.setState({
+        frequencies: response.data
+      });
+    });
+
     for (let m = weekStart; m.isBefore(weekEnd); m.add(1, 'days')) {
       dayTagsData.push({
         moment: m.format(),
@@ -90,8 +96,8 @@ class HomeSidebarCalendar extends Component {
             "Boba": 0,
             "Food": 0,
             "Tech": 0,
-            "EECS-jobs-announce": 1,
-            "Recruiting": 2,
+            "EECS-jobs-announce": 0,
+            "Recruiting": 0,
             "Social": 0,
             "Performance Groups": 0,
             "Talks": 0,
