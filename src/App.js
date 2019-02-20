@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import { isUserLoggedIn } from "./utils/session";
 import HomeView from "./components/home/HomeView";
+import EventView from "./components/event/EventView";
 import LoginView from "./components/login/LoginView";
 import SettingsView from "./components/settings/SettingsView";
 import VerifyView from "./components/login/VerifyView";
@@ -22,6 +23,7 @@ class App extends Component {
           </Helmet>
           <Switch>
             <DormspamRoute exact path="/" component={HomeView} />
+            <DormspamRoute exact path="/event/:id" component={EventView} />
             <DormspamRoute exact path="/login" component={LoginView} authenticated={false} />
             <DormspamRoute exact path="/settings" component={SettingsView} />
             <DormspamRoute exact path="/verify" component={VerifyView} authenticated={false} />
