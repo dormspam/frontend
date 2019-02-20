@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import moment from "moment";
 
+import Categories from "../../../api/categories";
 import Events from "../../../api/events";
 import HomeFeedEventView from "./HomeFeedEventView";
 import "./HomeFeedView.css";
@@ -13,14 +14,26 @@ class HomeFeedView extends Component {
       data: [],
       searchCount: 0,
       searching: false,
+      colors: {}
     };
 
     this.saveEventData = this.saveEventData.bind(this);
+    this.parseCategories = this.parseCategories.bind(this);
 
     const self = this;
 
     Events.getEventsByDate(moment().format("YYYY-MM-DD")).then(response => {
       self.saveEventData(response.data);
+    });
+
+    Categories.getCategories().then(response => {
+      let tempColors = {};
+      for (let i = 0; i < response.data.length; i++) {
+        tempColors[response.data[i].name] = response.data[i]["color"];
+      }
+      this.setState({
+        colors: tempColors
+      });
     });
   }
 
@@ -70,7 +83,7 @@ class HomeFeedView extends Component {
       return 0;
     });
 
-    for (var i = 0; i < data.length; i++) {
+    for (var i=0; i < data.length; i++) {
       if (times.length === 0) {
         times.push([data[i]]);
       } else {
@@ -82,9 +95,33 @@ class HomeFeedView extends Component {
       }
     }
 
+    for (var j=0; j < data.length; j++) {
+      data[j].categories = this.parseCategories(data[j].categories);
+    }
+
+    let filteredTimes = [];
+
+    for (var k=0; k < times.length; k++) {
+      for (var l=0; l < times[k][0].categories.length; l++) {
+        if (this.props.categories.indexOf(times[k][0].categories[l]) >= 0) {
+          filteredTimes.push(times[k]);
+          break;
+        }
+      }
+    }
+
     this.setState({
-      data: times
+      data: filteredTimes
     });
+  }
+
+  parseCategories(categories) {
+    categories = categories.substring(1, categories.length - 1);
+    let listed = categories.split(",");
+    for (let i=0; i < listed.length; i++) {
+      listed[i] = listed[i].replace(/"/g, "");
+    }
+    return listed;
   }
 
   render() {
@@ -122,7 +159,8 @@ class HomeFeedView extends Component {
             <HomeFeedEventView
               event={this.state.data[i][j]}
               selected={selected}
-              onClick={this.props.onSelectEvent} />
+              onClick={this.props.onSelectEvent}
+              colors={this.state.colors} />
           </div>
         );
       }

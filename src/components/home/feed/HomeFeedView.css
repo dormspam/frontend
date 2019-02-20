@@ -70,8 +70,8 @@
 .HomeFeedView .sideline .ball {
   background: #5F63D4;
   border-radius: 50%;
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   transform: translate(-50%, 0%);
   margin-left: 2px;
 }

@@ -16,13 +16,16 @@ export default class HomeSidebarCategoriesView extends Component {
       .then(res => {
         let tempFilters = [];
         for (let i=0; i < res.data.length; i++) {
-          tempFilters.push(res.data[i].id);
+          tempFilters.push(res.data[i].name);
         }
         this.setState({
           categories: res.data,
           filters: tempFilters
         });
+        this.props.onCategoryUpdate(tempFilters);
       });
+
+
 
     this.handleCategoryClick = this.handleCategoryClick.bind(this);
     this.handleCheck = this.handleCheck.bind(this);
@@ -46,12 +49,12 @@ export default class HomeSidebarCategoriesView extends Component {
     }
 
     // Update the category's state
-    let category = this.state.categories[target.getAttribute("index")].id;
+    let category = this.state.categories[target.getAttribute("index")].name;
     this.toggleCategory(category);
   }
 
   handleCheck(event) {
-    let category = this.state.categories[event.target.parentElement.getAttribute("index")].id;
+    let category = this.state.categories[event.target.parentElement.getAttribute("index")].name;
     this.toggleCategory(category);
   }
 
@@ -67,6 +70,8 @@ export default class HomeSidebarCategoriesView extends Component {
     this.setState({
       filters: filters
     });
+
+    this.props.onCategoryUpdate(filters);
 
     this.handleSave();
   }
@@ -88,14 +93,13 @@ export default class HomeSidebarCategoriesView extends Component {
           key={i}
           index={i}
           onClick={this.handleCategoryClick}
-          style={{"border": "2px solid " + category.color, "color": category.color}}>
-        <input type="checkbox" checked={this.state.filters.includes(category.id)} onChange={this.handleCheck} />
+          style={{"color": category.color}}>
+        <input type="checkbox" checked={this.state.filters.includes(category.name)} onChange={this.handleCheck} />
         <div className="text">
           <h3>{category.name}</h3>
         </div>
       </div>
     ));
-    console.log(this.state.filters);
     return (
       <div className="HomeSidebarCategoriesView">
         {categoryTags}

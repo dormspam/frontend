@@ -10,19 +10,25 @@ export default class HomeSidebarCalendarDayItem extends Component {
 
 	getDayTags() {
 		let frequencies = this.props.frequencies;
-		let frequenciesSorted = Object.keys(frequencies).sort(function(a,b){return frequencies[b]-frequencies[a]});
+		let frequenciesFiltered = {};
+		for (var key in frequencies) {
+			if (this.props.categories.indexOf(key) > -1) {
+				frequenciesFiltered[key] = frequencies[key];
+			}
+		}
+		let frequenciesSorted = Object.keys(frequenciesFiltered).sort(function(a,b){return frequencies[b]-frequencies[a]});
 
 		let tagData = [];
 		if (this.props.focus) {
 			for (let i=0; i < 3; i++) {
-	  		if (frequencies[frequenciesSorted[i]] > 0) {
-		  		tagData.push(<span
-		  			className="tags"
-		  			style={{color: this.props.colors[frequenciesSorted[i]]}}
-		  			key={"tag-" + frequenciesSorted[i]}>
-		  			&#9679;
-		  			</span>);
-	  		}
+		  		if (frequenciesSorted.length > i && frequencies[frequenciesSorted[i]] > 0) {
+			  		tagData.push(<span
+			  			className="tags"
+			  			style={{color: this.props.colors[frequenciesSorted[i]]}}
+			  			key={"tag-" + frequenciesSorted[i]}>
+			  			&#9632;
+			  			</span>);
+		  		}
 			}
 		}
 

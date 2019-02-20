@@ -117,6 +117,7 @@ class HomeSidebarCalendar extends Component {
                     onClick={this.selectDay}
                     frequencies={day.frequencies}
                     colors={this.state.colors}
+                    categories={this.props.categories}
                   />
     );
 

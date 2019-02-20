@@ -19,7 +19,7 @@ class LoginView extends Component {
   }
 
   handleLogin() {
-    if (this.kerberosInput.current.value.length == 0 || this.state.pending) {
+    if (this.kerberosInput.current.value.length === 0 || this.state.pending) {
       return;
     }
 

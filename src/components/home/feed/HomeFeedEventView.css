@@ -35,6 +35,11 @@
   display: none;
 }
 
+.HomeFeedEventView .dots {
+  float: right;
+  font-size: 1.5em;
+}
+
 @media (max-width: 800px) {
   .HomeFeedEventView .description.selected {
     display: block;

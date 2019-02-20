@@ -8,7 +8,7 @@
   border: 4px solid #FFF;
   height: 32px;
   width: 32px;
-  color: #C7C7C7;
+  color: #DDD;
   background-color: #FAFAFA;
   line-height: 28px;
   text-align: center;
@@ -20,7 +20,6 @@
 .HomeSidebarCalendarDayItem .day {
   padding-top: 0.55em;
   line-height: 1.32em;
-  margin-left: -0.05em;
 }
 
 .HomeSidebarCalendarDayItem .tags {

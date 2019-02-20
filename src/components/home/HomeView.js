@@ -19,7 +19,8 @@ class HomeView extends Component {
       day: moment(),
       event: null,
       search: "",
-      user: { settings: { filters: [] }}
+      user: { settings: { filters: [] }},
+      categories: []
     };
 
     axios.get(process.env.REACT_APP_BACKEND_URL + "/users/current", {
@@ -35,6 +36,7 @@ class HomeView extends Component {
     this.handleClickAway = this.handleClickAway.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.handleUserUpdate = this.handleUserUpdate.bind(this);
+    this.handleCategoryUpdate = this.handleCategoryUpdate.bind(this);
   }
 
   handleSelectEvent(event) {
@@ -73,6 +75,12 @@ class HomeView extends Component {
     });
   }
 
+  handleCategoryUpdate(categories) {
+    this.setState({
+      categories: categories
+    });
+  }
+
   render() {
     return (
       <div className="HomeView">
@@ -88,6 +96,7 @@ class HomeView extends Component {
             selectedDay={this.state.day}
             selectedEvent={this.state.event}
             onSelectEvent={this.handleSelectEvent}
+            categories={this.state.categories}
           />
         </div>
         <div className="modal">
@@ -100,10 +109,12 @@ class HomeView extends Component {
           <HomeSidebarCalendar
             selectedDay={this.state.day}
             onSelectDay={this.handleSelectDay}
+            categories={this.state.categories}
           />
           <HomeSidebarCategoriesView
             onUserUpdate={this.handleUserUpdate}
             user={this.state.user}
+            onCategoryUpdate={this.handleCategoryUpdate}
           />
           <HomeSidebarEventModal
             onSelectBack={this.handleClickAway}
