@@ -50,6 +50,16 @@
   width: 40px;
 }
 
+.VerifyView input::-webkit-outer-spin-button, .VerifyView input::-webkit-inner-spin-button {
+  display: none;
+  margin: 0;
+  -webkit-appearance: none;
+}
+
+.VerifyView input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .VerifyView button {
   background: #5f63d4;
   border: none;

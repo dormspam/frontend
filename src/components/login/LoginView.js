@@ -15,7 +15,14 @@ class LoginView extends Component {
 
     this.kerberosInput = React.createRef();
 
+    this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
+  }
+
+  handleKeyDown(event) {
+    if (event.keyCode === 13) { // enter
+      this.handleLogin();
+    }
   }
 
   handleLogin() {
@@ -52,7 +59,7 @@ class LoginView extends Component {
           <img className="logo" src="/img/dormspam-white.svg" alt="Logo" />
           <div className="container">
             <h1>Sign In</h1>
-            <input ref={this.kerberosInput} type="text" placeholder="Enter your kerberos" />
+            <input ref={this.kerberosInput} onKeyDown={this.handleKeyDown} type="text" placeholder="Enter your kerberos" />
             <button id="login-btn" onClick={this.handleLogin}>Login</button>
           </div>
         </div>

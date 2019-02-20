@@ -12,6 +12,10 @@ class Events {
   static getEventsByQuery(query) {
     return new Request("/events?q=" + query);
   }
+
+  static getEventById(id) {
+    return new Request("/events/" + id);
+  }
 }
 
 export default Events;
