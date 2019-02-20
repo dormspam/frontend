@@ -86,7 +86,8 @@ class HomeSelectionWeekBar extends Component {
       day => <HomeSelectionWeekBarDayItem
                 onClick={this.selectDay}
                 key={day.date}
-                data={day} />
+                data={day}
+                categories={this.props.categories} />
     );
 
     return (

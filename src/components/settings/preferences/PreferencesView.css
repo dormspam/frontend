@@ -1,12 +1,11 @@
 .PreferencesView {
-  height: 100%;
 }
 
 .PreferencesView .container {
   left: 50%;
   position: relative;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 0%);
 }
 
 .PreferencesView .container h1 {
@@ -18,14 +17,15 @@
 }
 
 .PreferencesView .category {
+  font-size: 0.9em;
   align-items: center;
-  border: 2px solid #5f63d4;
   cursor: pointer;
   display: inline-flex;
   margin: none;
+  margin-bottom: 1em;
   background-color: #F2F2F2;
   color: #55596B;
-  border: 0.5em solid #F9F9F9;
+  border-right: 1em solid #F9F9F9;
   letter-spacing: 0.02em;
   padding: 1em 2em;
   width: 50%;
@@ -58,7 +58,7 @@
   font-weight: 600;
   letter-spacing: 0.1em;
   margin: 24px auto 0;
-  margin-top: 3em;
+  margin-top: 1em;
   outline: none;
   padding: 6px 20px;
   transition: 0.25s ease all;

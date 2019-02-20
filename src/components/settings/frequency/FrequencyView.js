@@ -32,7 +32,7 @@ class FrequencyView extends Component {
   }
 
   render() {
-    let selectOptions = [1, 2, 3, 5, 7];
+    let selectOptions = [0, 1, 2, 3, 5, 7];
     let optionTags = selectOptions.map(frequency => (
       <option key={frequency}>{frequency}</option>
     ));
@@ -40,7 +40,7 @@ class FrequencyView extends Component {
     return (
       <div className={"FrequencyView" + (this.props.hidden ? " hidden" : "")}>
         <div className="container">
-          <h1>How often do you want your digest?</h1>
+          <h1>How often would you like your digest?</h1>
           <div className="line">
             <p>Once every</p>
             <label className="custom-select">

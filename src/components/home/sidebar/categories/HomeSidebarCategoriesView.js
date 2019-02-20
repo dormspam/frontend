@@ -89,11 +89,13 @@ export default class HomeSidebarCategoriesView extends Component {
   render() {
     let categoryTags = this.state.categories.map((category, i) => (
       <div
-          className="category"
+          className={"category"}
           key={i}
           index={i}
           onClick={this.handleCategoryClick}
-          style={{"color": category.color}}>
+          style={(this.state.filters.includes(category.name) ? {"color": category.color,
+                  "borderLeft": "3px solid " + category.color} : {"color": "#CFCFCF",
+                  "borderLeft": "3px solid #CFCFCF"})}>
         <input type="checkbox" checked={this.state.filters.includes(category.name)} onChange={this.handleCheck} />
         <div className="text">
           <h3>{category.name}</h3>

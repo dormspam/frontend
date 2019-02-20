@@ -90,6 +90,7 @@ class HomeView extends Component {
             onSearch={this.handleSearch}
             selectedDay={this.state.day}
             onSelectDay={this.handleSelectDay}
+            categories={this.state.categories}
           />
           <HomeFeedView
             search={this.state.search}

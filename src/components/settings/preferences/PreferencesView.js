@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Users from "../../../api/users";
+import Categories from "../../../api/categories";
 import axios from "axios";
 import "./PreferencesView.css";
 
@@ -9,7 +10,8 @@ class PreferencesView extends Component {
 
     this.state = {
       categories: [],
-      preferences: props.user.settings.preferences
+      preferences: props.user.settings.preferences,
+      colors: {}
     };
 
     this.saveCategories = this.saveCategories.bind(this);
@@ -24,6 +26,16 @@ class PreferencesView extends Component {
       .then(res => {
         self.saveCategories(res.data);
       });
+
+    Categories.getCategories().then(response => {
+      let tempColors = {};
+      for (let i = 0; i < response.data.length; i++) {
+        tempColors[response.data[i].name] = response.data[i]["color"];
+      }
+      this.setState({
+        colors: tempColors
+      });
+    });
   }
 
   saveCategories(categories) {
@@ -83,7 +95,11 @@ class PreferencesView extends Component {
 
   render() {
     let categoryTags = this.state.categories.map((category, i) => (
-      <div className="category" key={i} index={i} onClick={this.handleCategoryClick}>
+      <div className="category"
+          key={i}
+          index={i}
+          onClick={this.handleCategoryClick}
+          style={{"borderLeft": "3px solid " + this.state.colors[category.name]}}>
         <input type="checkbox" checked={this.state.preferences.includes(category.id)} onChange={this.handleCheck} />
         <div className="text">
           <h3>{category.name}</h3>
@@ -95,7 +111,7 @@ class PreferencesView extends Component {
     return (
       <div className={"PreferencesView" + (this.props.hidden ? " hidden" : "")}>
         <div className="container">
-          <h1>Select your preferences</h1>
+          <h1>Select your digest preferences</h1>
           {categoryTags}
           <button className="btn-pref" onClick={this.handleSave}>Save</button>
         </div>
