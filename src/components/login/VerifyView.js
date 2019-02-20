@@ -30,7 +30,7 @@ class VerifyView extends Component {
   handleChange(event) {
     let inputElements = document.getElementsByTagName("input");
 
-    if (this.state.keyPressed === 8) {
+    if (this.state.keyPressed === 8) { // backspace
       let newCode = this.state.code.substring(0, this.state.code.length - 1);
 
       this.setState({
@@ -54,6 +54,11 @@ class VerifyView extends Component {
   }
 
   handleKeyDown(event) {
+    if (event.keyCode === 13) { // enter
+      this.handleLogin();
+      return;
+    }
+
     this.setState({
       deleteOnUp: event.keyCode === 8 && event.target.value.length === 0,
       keyPressed: event.keyCode
@@ -114,7 +119,7 @@ class VerifyView extends Component {
 
     let inputElements = [0, 1, 2, 3].map(idx => {
       return <input
-                type="text"
+                type="number"
                 key={idx}
                 index={idx}
                 placeholder="0"
