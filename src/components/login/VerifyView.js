@@ -126,13 +126,14 @@ class VerifyView extends Component {
                 value={this.state.code.charAt(idx)}
                 onChange={this.handleChange}
                 onKeyUp={this.handleKeyUp}
-                onKeyDown={this.handleKeyDown} />
+                onKeyDown={this.handleKeyDown}
+                className="number-input" />
     });
 
     let text = this.state.showErrorText ? (
       <p>Hmm... that code doesn't look right to us. Please try entering it again.</p>
     ) : (
-      <p>Please check your MIT email address for a 4-digit verification code.</p>
+      <p>Please check your MIT email address for a 4-digit verification code (this might take a minute)</p>
     );
 
     return (

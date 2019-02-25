@@ -32,3 +32,15 @@
 .HomeSidebarCategoriesView .category .text {
   margin-left: 1em;
 }
+
+@media (max-width: 768px) {
+  .HomeSidebarCategoriesView {
+    font-size: 1em;
+    font-weight: 100;
+  }
+
+  .HomeSidebarCategoriesView .category {
+    padding: 1.5em;
+    margin-bottom: 1.5em;
+  }
+}

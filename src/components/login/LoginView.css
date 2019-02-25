@@ -1,13 +1,16 @@
 .LoginView {
   background: #5f63d4;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
+  min-height: 100vh;
+  min-width: 100vw;
+  letter-spacing: 0.05em;
 }
 
 .LoginView .logo {
   display: block;
   margin: 0 auto 40px;
-  width: 300px;
+  width: 250px;
 }
 
 .LoginView .bigger-container {
@@ -15,12 +18,13 @@
   position: absolute;
   top: 45%;
   transform: translate(-50%, -50%);
+  max-width: 90vw;
 }
 
 .LoginView .container {
   background: #fff;
-  box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.35);
-  padding: 32px 96px 48px;
+  box-shadow: 0px 2px 8px 2px rgba(6, 2, 25, 0.25);
+  padding: 40px;
 }
 
 .LoginView h1 {
@@ -33,14 +37,21 @@
 }
 
 .LoginView input {
-  border: 2px solid #e9e9e9;
-  border-radius: 6px;
+  background-color: #E8E8E8;
+  border: none;
   display: block;
-  font-size: 16px;
-  margin: 32px auto 42px;
-  padding: 8px;
+  font-size: 0.9em;
+  padding: 10px;
+  margin: auto;
+  margin-top: 2em;
+  margin-bottom: 2em;
   text-align: center;
   width: 240px;
+  letter-spacing: 0.05em;
+}
+
+.LoginView input:focus {
+  outline: none;
 }
 
 .LoginView button {
@@ -52,8 +63,9 @@
   display: block;
   font-family: "Nunito", sans-serif;
   font-size: 16px;
-  height: 48px;
+  height: 40px;
   margin: 0 auto;
   outline: none;
-  width: 240px;
+  width: 200px;
+  letter-spacing: 0.05em;
 }
