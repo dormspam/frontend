@@ -49,3 +49,13 @@
   border-left: 8px solid #D8D8D8;
   cursor: pointer;
 }
+
+@media (min-width: 1400px) {
+  .HomeSidebarCalendar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 280px;
+    margin: 0 auto;
+  }
+}

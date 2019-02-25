@@ -33,14 +33,13 @@
   margin-left: 1em;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 1400px) {
   .HomeSidebarCategoriesView {
-    font-size: 1em;
-    font-weight: 100;
+    font-size: 0.7em;
   }
 
   .HomeSidebarCategoriesView .category {
-    padding: 1.5em;
-    margin-bottom: 1.5em;
+    margin-top: 1.5em;
+    padding: 1.6em;
   }
 }

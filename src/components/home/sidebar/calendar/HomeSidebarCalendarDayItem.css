@@ -49,3 +49,25 @@
 .HomeSidebarCalendarDayItem.active .circle:hover {
   background-color: #464ACC;
 }
+
+@media (min-width: 1400px) {
+  .HomeSidebarCalendarDayItem .circle {
+    font-size: 0.9em;
+    border-radius: 20px;
+    border: 4px solid #FFF;
+    height: 40px;
+    width: 40px;
+    color: #DDD;
+    background-color: #FAFAFA;
+    line-height: 35px;
+    text-align: center;
+    margin: 0em;
+    cursor: pointer;
+    margin-top: 0.3em;
+  }
+
+  .HomeSidebarCalendarDayItem .tags {
+    color: #BF9BD8;
+    font-size: 12px;
+  }
+}
