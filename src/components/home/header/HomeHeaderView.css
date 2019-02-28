@@ -4,10 +4,6 @@
   justify-content: space-between;
 }
 
-.HomeHeaderView .empty-space {
-  width: 24px;
-}
-
 .HomeHeaderView .logo {
   width: 220px;
 }
@@ -24,4 +20,16 @@
 .HomeHeaderView a img {
   width: 100%;
   vertical-align: middle;
+}
+
+.HomeHeaderView .hamburger {
+  width: 24px;
+  cursor: pointer;
+  visibility: hidden;
+}
+
+@media (max-width: 800px) {
+  .HomeHeaderView .hamburger {
+    visibility: visible !important;
+  }
 }
