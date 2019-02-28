@@ -36,6 +36,12 @@ class HomeSidebarCalendar extends Component {
     this.setState({
       today: moment(nextProps.selectedDay),
     });
+
+    Events.getEventFrequencyByDate(moment(this.state.m).format("YYYY-MM-DD")).then(response => {
+      this.setState({
+        frequencies: response.data
+      });
+    });
   }
 
   previousMonth() {
@@ -78,12 +84,6 @@ class HomeSidebarCalendar extends Component {
 
     const weekStart = monthStart.startOf("week");
     const weekEnd = monthEnd.endOf("week");
-
-    Events.getEventFrequencyByDate(moment(this.state.m).format("YYYY-MM-DD")).then(response => {
-      this.setState({
-        frequencies: response.data
-      });
-    });
 
     for (let m = weekStart; m.isBefore(weekEnd); m.add(1, 'days')) {
       dayTagsData.push({
