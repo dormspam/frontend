@@ -6,7 +6,7 @@ class HomeHeaderView extends Component {
   render() {
     return (
       <div className="HomeHeaderView">
-        <img src="/img/bars-solid.svg" alt="Menu" className="hamburger"/>
+        <img src="/img/bars-solid.svg" alt="Menu" className="hamburger" onClick={this.props.onHamburgerClick}/>
         <img className="logo" src="/img/dormspam.svg" alt="Logo" />
         <Link to="/settings">
           <img src="/img/settings.svg" alt="Settings" />

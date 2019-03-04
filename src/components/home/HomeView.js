@@ -20,7 +20,8 @@ class HomeView extends Component {
       event: null,
       search: "",
       user: { settings: { filters: [] }},
-      categories: []
+      categories: [],
+      mobileMenu: false,
     };
 
     axios.get(process.env.REACT_APP_BACKEND_URL + "/users/current", {
@@ -37,6 +38,7 @@ class HomeView extends Component {
     this.handleSearch = this.handleSearch.bind(this);
     this.handleUserUpdate = this.handleUserUpdate.bind(this);
     this.handleCategoryUpdate = this.handleCategoryUpdate.bind(this);
+    this.toggleMobileMenu = this.toggleMobileMenu.bind(this);
   }
 
   handleSelectEvent(event) {
@@ -81,11 +83,18 @@ class HomeView extends Component {
     });
   }
 
+  toggleMobileMenu() {
+    this.setState({
+      mobileMenu: !this.state.mobileMenu
+    });
+  }
+
   render() {
     return (
       <div className="HomeView">
         <div className={"column left" + (this.state.event !== null ? " inactive" : "")}>
-          <HomeHeaderView />
+          <div className={"greybox" + (this.state.mobileMenu ? " active" : "")} onClick={this.toggleMobileMenu}/>
+          <HomeHeaderView onHamburgerClick={this.toggleMobileMenu}/>
           <HomeSelectionView
             onSearch={this.handleSearch}
             selectedDay={this.state.day}
@@ -106,7 +115,7 @@ class HomeView extends Component {
               onSelectBack={this.handleClickAway}
             />
         </div>
-        <div className={"column right" + (this.state.event !== null ? " active" : "")}>
+        <div className={"column right" + (this.state.mobileMenu ? " mobile" : "") + (this.state.event !== null ? " active" : "")}>
           <HomeSidebarCalendar
             selectedDay={this.state.day}
             onSelectDay={this.handleSelectDay}
