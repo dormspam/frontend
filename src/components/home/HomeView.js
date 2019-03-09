@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import moment from "moment";
 import "./HomeView.css";
 
@@ -16,16 +17,21 @@ class HomeView extends Component {
     super(props);
 
     this.state = {
+      categories: [],
       day: moment(),
       event: null,
+      redirect: null,
       search: "",
       user: { settings: { filters: [] }},
-      categories: []
     };
 
     Users.getCurrentUser().then(response => {
       this.setState({
         user: response.data
+      });
+    }).catch(error => {
+      this.setState({
+        redirect: "/login"
       });
     });
 
@@ -80,6 +86,10 @@ class HomeView extends Component {
   }
 
   render() {
+    if (this.state.redirect !== null) {
+      return <Redirect to={this.state.redirect} />;
+    }
+
     return (
       <div className="HomeView">
         <a href="https://docs.google.com/forms/d/e/1FAIpQLScdLEjdkiVAdQ2gKoA1QtD9ANvBuOrce4ZIJwbIVQz7TRkObg/viewform" target="_blank" rel="noopener noreferrer">

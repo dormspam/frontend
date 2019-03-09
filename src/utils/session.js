@@ -16,7 +16,7 @@ function getJWT() {
 }
 
 function isUserLoggedIn() {
-  return getJWT() !== null;
+  return getJWT() !== undefined;
 }
 
 function setupSession(data) {
