@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import moment from "moment";
-import axios from "axios";
 import "./HomeView.css";
 
 import HomeSidebarCalendar from "./sidebar/calendar/HomeSidebarCalendar";
@@ -10,6 +9,7 @@ import HomeSelectionView from "./selection/HomeSelectionView";
 import HomeSidebarEventModal from "./sidebar/event/HomeSidebarEventModal";
 import HomeFeedView from "./feed/HomeFeedView";
 import HomeFeedEventModal from "./feed/HomeFeedEventModal";
+import Users from "../../api/users";
 
 class HomeView extends Component {
   constructor(props) {
@@ -23,9 +23,7 @@ class HomeView extends Component {
       categories: []
     };
 
-    axios.get(process.env.REACT_APP_BACKEND_URL + "/users/current", {
-      withCredentials: true
-    }).then(response => {
+    Users.getCurrentUser().then(response => {
       this.setState({
         user: response.data
       });
@@ -84,10 +82,10 @@ class HomeView extends Component {
   render() {
     return (
       <div className="HomeView">
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLScdLEjdkiVAdQ2gKoA1QtD9ANvBuOrce4ZIJwbIVQz7TRkObg/viewform" target="_blank">
-          <div className="betaform"> beta - report bugs / suggest changes <a style={{textDecoration: "underline"}}>here</a></div>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScdLEjdkiVAdQ2gKoA1QtD9ANvBuOrce4ZIJwbIVQz7TRkObg/viewform" target="_blank" rel="noopener noreferrer">
+          <div className="betaform"> beta - report bugs / suggest changes <span style={{textDecoration: "underline"}}>here</span></div>
         </a>
-      <div className={"column left" + (this.state.event !== null ? " inactive" : "")}>
+        <div className={"column left" + (this.state.event !== null ? " inactive" : "")}>
           <div className="betaspace"></div>
           <HomeHeaderView />
           <HomeSelectionView

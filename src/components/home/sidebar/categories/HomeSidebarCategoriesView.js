@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import axios from "axios";
+
+import Categories from "../../../../api/categories";
+import Users from "../../../../api/users";
 import "./HomeSidebarCategoriesView.css";
 
 export default class HomeSidebarCategoriesView extends Component {
@@ -11,21 +13,16 @@ export default class HomeSidebarCategoriesView extends Component {
       filters: props.user.settings.filters
     };
 
-    axios
-      .get(process.env.REACT_APP_BACKEND_URL + "/categories")
-      .then(res => {
-        let tempFilters = [];
-        for (let i=0; i < res.data.length; i++) {
-          tempFilters.push(res.data[i].name);
-        }
-        this.setState({
-          categories: res.data,
-          filters: tempFilters
-        });
-        this.props.onCategoryUpdate(tempFilters);
+    Categories.getCategories().then(response => {
+      const tempFilters = response.data.map(x => x.name);
+
+      this.setState({
+        categories: response.data,
+        filters: tempFilters
       });
 
-
+      this.props.onCategoryUpdate(tempFilters);
+    });
 
     this.handleCategoryClick = this.handleCategoryClick.bind(this);
     this.handleCheck = this.handleCheck.bind(this);
@@ -77,10 +74,8 @@ export default class HomeSidebarCategoriesView extends Component {
   }
 
   handleSave() {
-    axios.put(process.env.REACT_APP_BACKEND_URL + "/users/current", {
+    Users.updateCurrentUser({
       filters: this.state.filters
-    }, {
-      withCredentials: true
     }).then(response => {
       this.props.onUserUpdate(response.data);
     });

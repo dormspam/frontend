@@ -106,6 +106,8 @@ class VerifyView extends Component {
         redirect: "/"
       });
     }).catch(error => {
+      console.log(error);
+
       self.setState({
         showErrorText: true
       });

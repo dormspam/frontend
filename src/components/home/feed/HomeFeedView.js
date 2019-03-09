@@ -43,7 +43,6 @@ class HomeFeedView extends Component {
     const searchCount = this.state.searchCount + 1;
 
     if (searching) {
-      // make axios request here for search
       Events.getEventsByQuery(nextProps.search).then(response => {
         if (searchCount < self.state.searchCount) {
           return;

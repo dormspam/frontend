@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Users from "../../../api/users";
+
 import Categories from "../../../api/categories";
-import axios from "axios";
+import Users from "../../../api/users";
 import "./PreferencesView.css";
 
 class PreferencesView extends Component {
@@ -19,20 +19,15 @@ class PreferencesView extends Component {
     this.handleCheck = this.handleCheck.bind(this);
     this.handleSave = this.handleSave.bind(this);
 
-    const self = this;
-
-    axios
-      .get(process.env.REACT_APP_BACKEND_URL + "/categories")
-      .then(res => {
-        self.saveCategories(res.data);
-      });
-
     Categories.getCategories().then(response => {
       let tempColors = {};
+
       for (let i = 0; i < response.data.length; i++) {
         tempColors[response.data[i].name] = response.data[i]["color"];
       }
+
       this.setState({
+        categories: response.data,
         colors: tempColors
       });
     });
