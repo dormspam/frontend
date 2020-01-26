@@ -92,7 +92,11 @@ class HomeView extends Component {
   render() {
     return (
       <div className="HomeView">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScdLEjdkiVAdQ2gKoA1QtD9ANvBuOrce4ZIJwbIVQz7TRkObg/viewform" target="_blank">
+          <div className="betaform"> beta - report bugs / suggest changes <a style={{textDecoration: "underline"}}>here</a></div>
+        </a>
         <div className={"column left" + (this.state.event !== null ? " inactive" : "")}>
+          <div className="betaspace"></div>
           <div className={"greybox" + (this.state.mobileMenu ? " active" : "")} onClick={this.toggleMobileMenu}/>
           <HomeHeaderView onHamburgerClick={this.toggleMobileMenu}/>
           <HomeSelectionView
@@ -116,6 +120,7 @@ class HomeView extends Component {
             />
         </div>
         <div className={"column right" + (this.state.mobileMenu ? " mobile" : "") + (this.state.event !== null ? " active" : "")}>
+          <div className="betaspace"></div>
           <HomeSidebarCalendar
             selectedDay={this.state.day}
             onSelectDay={this.handleSelectDay}
