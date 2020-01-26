@@ -20,7 +20,8 @@ class HomeView extends Component {
       event: null,
       search: "",
       user: { settings: { filters: [] }},
-      categories: []
+      categories: [],
+      mobileMenu: false,
     };
 
     axios.get(process.env.REACT_APP_BACKEND_URL + "/users/current", {
@@ -37,6 +38,7 @@ class HomeView extends Component {
     this.handleSearch = this.handleSearch.bind(this);
     this.handleUserUpdate = this.handleUserUpdate.bind(this);
     this.handleCategoryUpdate = this.handleCategoryUpdate.bind(this);
+    this.toggleMobileMenu = this.toggleMobileMenu.bind(this);
   }
 
   handleSelectEvent(event) {
@@ -81,15 +83,22 @@ class HomeView extends Component {
     });
   }
 
+  toggleMobileMenu() {
+    this.setState({
+      mobileMenu: !this.state.mobileMenu
+    });
+  }
+
   render() {
     return (
       <div className="HomeView">
         <a href="https://docs.google.com/forms/d/e/1FAIpQLScdLEjdkiVAdQ2gKoA1QtD9ANvBuOrce4ZIJwbIVQz7TRkObg/viewform" target="_blank">
           <div className="betaform"> beta - report bugs / suggest changes <a style={{textDecoration: "underline"}}>here</a></div>
         </a>
-      <div className={"column left" + (this.state.event !== null ? " inactive" : "")}>
+        <div className={"column left" + (this.state.event !== null ? " inactive" : "")}>
           <div className="betaspace"></div>
-          <HomeHeaderView />
+          <div className={"greybox" + (this.state.mobileMenu ? " active" : "")} onClick={this.toggleMobileMenu}/>
+          <HomeHeaderView onHamburgerClick={this.toggleMobileMenu}/>
           <HomeSelectionView
             onSearch={this.handleSearch}
             selectedDay={this.state.day}
@@ -110,7 +119,7 @@ class HomeView extends Component {
               onSelectBack={this.handleClickAway}
             />
         </div>
-        <div className={"column right" + (this.state.event !== null ? " active" : "")}>
+        <div className={"column right" + (this.state.mobileMenu ? " mobile" : "") + (this.state.event !== null ? " active" : "")}>
           <div className="betaspace"></div>
           <HomeSidebarCalendar
             selectedDay={this.state.day}
