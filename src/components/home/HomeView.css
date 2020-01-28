@@ -74,6 +74,10 @@
   top: 0;
   left: 0;
   width: 300px;
+  -webkit-animation-name: hamburger-expand;
+  -webkit-animation-duration: 0.5s;
+  animation-name: hamburger-expand;
+  animation-duration: 0.5s;
 }
 
 .HomeView .left .greybox {
@@ -89,4 +93,14 @@
   width: 100%;
   height: 100%;
   background: #80808080;
+}
+
+@-webkit-keyframes hamburger-expand {
+  from {width: 0px;}
+  to {width: 300px;}
+}
+
+@keyframes hamburger-expand {
+  from {width: 0px;}
+  to {width: 300px;}
 }
