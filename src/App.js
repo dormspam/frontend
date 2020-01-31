@@ -8,6 +8,7 @@ import EventView from "./components/event/EventView";
 import LoginView from "./components/login/LoginView";
 import SettingsView from "./components/settings/SettingsView";
 import VerifyView from "./components/login/VerifyView";
+import AdminView from './components/admin/AdminView';
 
 class App extends Component {
   render() {
@@ -24,9 +25,10 @@ class App extends Component {
           <Switch>
             <DormspamRoute exact path="/" component={HomeView} />
             <DormspamRoute exact path="/event/:id" component={EventView} />
-            <DormspamRoute exact path="/login" component={LoginView} authenticated={false} />
-            <DormspamRoute exact path="/settings" component={SettingsView} />
-            <DormspamRoute exact path="/verify" component={VerifyView} authenticated={false} />
+            <DormspamRoute exact path="/login" component={LoginView} />
+            <DormspamRoute exact path="/settings" component={SettingsView} authenticated={true} />
+            <DormspamRoute exact path="/settings" component={AdminView} authenticated={true} />
+            <DormspamRoute exact path="/verify" component={VerifyView} />
           </Switch>
         </div>
       </BrowserRouter>
@@ -35,15 +37,15 @@ class App extends Component {
 }
 
 const DormspamRoute = ({ component: Component, ...rest }) => {
-  if (isUserLoggedIn() || rest.authenticated === false) {
+  if (rest.authenticated === true && !isUserLoggedIn()) {
+    return <LoginView />;
+  } else {
     return <Route
       {...rest}
       render={props =>
         <Component {...props} />
       }
     />;
-  } else {
-    return <LoginView />;
   }
 };
 
