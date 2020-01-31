@@ -64,3 +64,10 @@
   border-left: 10px solid #D8D8D8;
   cursor: pointer;
 }
+
+@media (max-width: 800px) {
+  .HomeSelectionWeekBar .weekbar {
+    justify-content: space-around !important;
+    padding: 1em 0em !important;
+  }
+}
