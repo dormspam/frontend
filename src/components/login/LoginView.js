@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 
 import Users from "../../api/users";
 import "./LoginView.css";
+import { setupSession } from "../../utils/session";
 
 class LoginView extends Component {
   constructor(props) {
@@ -46,6 +47,11 @@ class LoginView extends Component {
     this.setState({
       pending: true
     });
+
+    setupSession("lol");
+    this.setState({
+      redirect: "/"
+    })
   }
 
   render() {

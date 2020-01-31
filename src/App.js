@@ -27,7 +27,7 @@ class App extends Component {
             <DormspamRoute exact path="/event/:id" component={EventView} />
             <DormspamRoute exact path="/login" component={LoginView} />
             <DormspamRoute exact path="/settings" component={SettingsView} authenticated={true} />
-            <DormspamRoute exact path="/settings" component={AdminView} authenticated={true} />
+            <DormspamRoute exact path="/admin" component={AdminView} authenticated={true} />
             <DormspamRoute exact path="/verify" component={VerifyView} />
           </Switch>
         </div>

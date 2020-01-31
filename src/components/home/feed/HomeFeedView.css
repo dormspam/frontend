@@ -18,6 +18,25 @@
   margin-left: 4px;
 }
 
+.HomeFeedView .empty-events {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+}
+
+.HomeFeedView .empty-events-icon {
+  display: inline-block;
+  width: 30%;
+  margin: 50px auto 10px auto;
+  opacity: 0.6;
+}
+
+.HomeFeedView .empty-events-label {
+  font-size: 1em;
+  color: #8C8C8C;
+  margin-left: 10px;
+}
+
 .HomeFeedView .sidespace {
   display: inline-block;
   height: 5px;

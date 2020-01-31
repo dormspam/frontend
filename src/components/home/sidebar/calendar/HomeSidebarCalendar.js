@@ -35,9 +35,11 @@ class HomeSidebarCalendar extends Component {
   componentWillReceiveProps(nextProps) {
     this.setState({
       today: moment(nextProps.selectedDay),
+      m: moment(nextProps.selectedDay)
     });
-
-    Events.getEventFrequencyByDate(moment(this.state.m).format("YYYY-MM-DD")).then(response => {
+    
+    // let freqDate = typeof nextProps !== "undefined" ? nextProps.selectedDay : this.state.m
+    Events.getEventFrequencyByDate(moment(nextProps.selectedDay).format("YYYY-MM-DD")).then(response => {
       this.setState({
         frequencies: response.data
       });
@@ -48,11 +50,21 @@ class HomeSidebarCalendar extends Component {
     this.setState({
       m: this.state.m.subtract(1, 'months')
     });
+    Events.getEventFrequencyByDate(moment(this.state.m).format("YYYY-MM-DD")).then(response => {
+      this.setState({
+        frequencies: response.data
+      });
+    });
   }
 
   nextMonth() {
     this.setState({
       m: this.state.m.add(1, 'months')
+    });
+    Events.getEventFrequencyByDate(moment(this.state.m).format("YYYY-MM-DD")).then(response => {
+      this.setState({
+        frequencies: response.data
+      });
     });
   }
 
