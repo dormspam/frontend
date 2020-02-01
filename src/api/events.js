@@ -16,6 +16,10 @@ class Events {
   static getEventById(id) {
     return new Request("/events/" + id);
   }
+
+  static getAllEvents(){
+    return new Request("/events/all")
+  }
 }
 
 export default Events;

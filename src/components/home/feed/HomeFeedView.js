@@ -68,6 +68,7 @@ class HomeFeedView extends Component {
   }
 
   saveEventData(inputData) {
+    console.log(inputData)
     let times = [];
 
     let data = inputData.sort((a, b) => {
@@ -145,7 +146,6 @@ class HomeFeedView extends Component {
       elements.push(
         <div className="onetime" key={"times" + i + "2"}>{timeString}</div>
       );
-
       for (var j = 0; j < this.state.data[i].length; j++) {
         let selected = false;
 
@@ -164,6 +164,14 @@ class HomeFeedView extends Component {
           </div>
         );
       }
+    }
+
+    console.log(elements)
+    if (elements.length === 0){
+      elements = <div className="empty-events">
+                  <img className="empty-events-icon" src="img/empty.png"/>
+                  <h1 className="empty-events-label">No events found!</h1>
+                </div>
     }
 
     return (
