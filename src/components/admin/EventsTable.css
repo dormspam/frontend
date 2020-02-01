@@ -1,0 +1,24 @@
+.EventsTable {
+    height: 1000px;
+}
+
+.EventsTable .events-link {
+    color: #5F63D4;
+}
+
+
+.EventsTable .react-grid-Main{
+height: 100%;
+}
+
+.EventsTable .react-grid-Container{
+height: 100%;
+}
+
+.EventsTable .react-grid-Grid{
+min-height: 100% !important;
+}
+
+.EventsTable .react-grid-Canvas{
+height: 100% !important;
+}

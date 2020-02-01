@@ -1,0 +1,71 @@
+.AdminView .column {
+  display: inline-block;
+  height: 100vh;
+  overflow-y: scroll;
+  padding: 48px 24px 48px 48px;
+  vertical-align: top;
+}
+
+.AdminView .left {
+  width: 20vw;
+  float: left;
+}
+
+.AdminView .left a .logo {
+  width: 150px;
+}
+
+.AdminView .left a {
+  color: #5f63d4;
+  text-decoration: none;
+}
+
+.AdminView .headertop {
+  margin-bottom: 2em;
+}
+
+.AdminView .headertop a {
+  font-size:  0.9em;
+  text-decoration: none;
+}
+
+.AdminView .left ul {
+  list-style-type: none;
+  color: #B0B9C7;
+}
+
+.AdminView .left li {
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: 400;
+  margin-bottom: 0.5em;
+  transition: 0.25s ease all;
+}
+
+.AdminView .left li:hover {
+  color: #5f64d4;
+}
+
+.AdminView .left li.active {
+  color: #5f64d4;
+}
+
+.AdminView .right {
+  background: #F9F9F9;
+  width: 80vw;
+  float: right;
+}
+
+@media (max-width: 800px) {
+  .AdminView .left {
+    display: block;
+    width: 100vw;
+    height: 100%;
+  }
+
+  .AdminView .right {
+    display: block;
+    width: 100vw;
+    height: 100%;
+  }
+}
