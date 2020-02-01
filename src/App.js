@@ -9,6 +9,7 @@ import LoginView from "./components/login/LoginView";
 import SettingsView from "./components/settings/SettingsView";
 import VerifyView from "./components/login/VerifyView";
 import AdminView from './components/admin/AdminView';
+import ApproveView from './components/event/ApproveView';
 
 class App extends Component {
   render() {
@@ -25,6 +26,7 @@ class App extends Component {
           <Switch>
             <DormspamRoute exact path="/" component={HomeView} />
             <DormspamRoute exact path="/event/:id" component={EventView} />
+            <DormspamRoute exact path="/approve/:id" component={ApproveView} />
             <DormspamRoute exact path="/login" component={LoginView} />
             <DormspamRoute exact path="/settings" component={SettingsView} authenticated={true} />
             <DormspamRoute exact path="/admin" component={AdminView} authenticated={true} />
