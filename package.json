@@ -2,7 +2,7 @@
   "name": "dormspam",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://dormsp.am",
+  "homepage": "https://dormspam.github.io/frontend/",
   "dependencies": {
     "@material-ui/core": "^4.9.0",
     "@material-ui/icons": "^4.5.1",
@@ -27,7 +27,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build && cp CNAME ./build/CNAME",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
