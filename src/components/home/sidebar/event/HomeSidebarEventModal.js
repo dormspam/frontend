@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import moment from "moment"
 import Categories from "../../../../api/categories";
 import "./HomeSidebarEventModal.css";
 
@@ -12,7 +12,7 @@ class HomeSidebarEventModal extends Component {
     };
 
     this.getCategories = this.getCategories.bind(this);
-
+    
     Categories.getCategories().then(response => {
       for (let i = 0; i < response.data.length; i++) {
         this.state.colors[response.data[i].name] = response.data[i]["color"];
@@ -40,12 +40,13 @@ class HomeSidebarEventModal extends Component {
     }
 
     let categoryTags = this.getCategories();
+    let date = this.props.event.sent_from.split("|")[0] + " on " + moment(new Date(this.props.event.sent_from.split("|")[1]).toString()).format('MM/DD/YYYY h:mm a')
 
     return (
       <div className="HomeSidebarEventModal">
         <div className="metadata">
         <img className="back" src="/img/grey-back.svg" alt="Back" onClick={this.props.onSelectBack} />
-          <h3>{this.props.event.sent_from}</h3>
+          <h3>{date}</h3>
           <div className="minipadding"></div>
           <h3>
             {categoryTags}
