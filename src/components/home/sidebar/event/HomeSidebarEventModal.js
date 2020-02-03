@@ -40,7 +40,7 @@ class HomeSidebarEventModal extends Component {
     }
 
     let categoryTags = this.getCategories();
-    let date = this.props.event.sent_from.split("|")[0] + " on " + moment(new Date(this.props.event.sent_from.split("|")[1]).toString()).format('MM/DD/YYYY h:mm a')
+    let date = this.props.event.sent_from.split("on")[0] + " on " + moment(new Date(this.props.event.sent_from.split("on")[1]).toString()).format('MM/DD/YYYY h:mm a')
 
     return (
       <div className="HomeSidebarEventModal">
