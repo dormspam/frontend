@@ -8,7 +8,7 @@ import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 
-ReactGA.initialize("UA-134713779-1");
+ReactGA.initialize("UA-38208507-9");
 ReactGA.pageview(window.location.pathname + window.location.search);
 
 // If you want your app to work offline and load faster, you can change
