@@ -13,11 +13,11 @@ class HomeFeedEventModal extends Component {
 
     this.getCategories = this.getCategories.bind(this);
 
-    Categories.getCategories().then(response => {
-      for (let i = 0; i < response.data.length; i++) {
-        this.state.colors[response.data[i].name] = response.data[i]["color"];
-      }
-    });
+    // Categories.getCategories().then(response => {
+    //   for (let i = 0; i < response.data.length; i++) {
+    //     this.state.colors[response.data[i].name] = response.data[i]["color"];
+    //   }
+    // });
   }
 
   getCategories() {

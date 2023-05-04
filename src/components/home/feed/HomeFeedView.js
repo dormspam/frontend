@@ -23,18 +23,20 @@ class HomeFeedView extends Component {
     const self = this;
 
     Events.getEventsByDate(moment().format("YYYY-MM-DD")).then(response => {
-      self.saveEventData(response.data);
+      console.log("HEREERE")
+      console.log(response.events)
+      self.saveEventData(response.events);
     });
 
-    Categories.getCategories().then(response => {
-      let tempColors = {};
-      for (let i = 0; i < response.data.length; i++) {
-        tempColors[response.data[i].name] = response.data[i]["color"];
-      }
-      this.setState({
-        colors: tempColors
-      });
-    });
+    // Categories.getCategories().then(response => {
+    //   let tempColors = {};
+    //   for (let i = 0; i < response.data.length; i++) {
+    //     tempColors[response.data[i].name] = response.data[i]["color"];
+    //   }
+    //   this.setState({
+    //     colors: tempColors
+    //   });
+    // });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -44,13 +46,13 @@ class HomeFeedView extends Component {
 
     if (searching) {
       // make axios request here for search
-      Events.getEventsByQuery(nextProps.search).then(response => {
-        if (searchCount < self.state.searchCount) {
-          return;
-        }
+      // Events.getEventsByQuery(nextProps.search).then(response => {
+      //   if (searchCount < self.state.searchCount) {
+      //     return;
+      //   }
 
-        self.saveEventData(response.data);
-      });
+      //   self.saveEventData(response.data);
+      // });
     } else {
       Events.getEventsByDate(nextProps.selectedDay.format("YYYY-MM-DD")).then(response => {
         if (searchCount < self.state.searchCount) {
@@ -114,6 +116,7 @@ class HomeFeedView extends Component {
     this.setState({
       data: filteredTimes
     });
+    console.log('heiheheiheie', filteredTimes)
   }
 
   parseCategories(categories) {

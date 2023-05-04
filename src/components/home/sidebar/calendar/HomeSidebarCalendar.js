@@ -21,15 +21,15 @@ class HomeSidebarCalendar extends Component {
     this.nextMonth = this.nextMonth.bind(this);
     this.selectDay = this.selectDay.bind(this);
 
-    Categories.getCategories().then(response => {
-      let tempColors = {};
-      for (let i = 0; i < response.data.length; i++) {
-        tempColors[response.data[i].name] = response.data[i]["color"];
-      }
-      this.setState({
-        colors: tempColors
-      });
-    });
+    // Categories.getCategories().then(response => {
+    //   let tempColors = {};
+    //   for (let i = 0; i < response.data.length; i++) {
+    //     tempColors[response.data[i].name] = response.data[i]["color"];
+    //   }
+    //   this.setState({
+    //     colors: tempColors
+    //   });
+    // });
   }
 
   componentWillReceiveProps(nextProps) {
