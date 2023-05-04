@@ -12,14 +12,16 @@ class HomeFeedEventView extends Component {
     this.props.onClick(this.props.event);
   }
 
+
   render() {
     let dotTags = [];
-    for (let i=0; i < this.props.event.categories.length; i++) {
+    // TODO: implement dots
+    for (let i=0; i < this.props.event.tags.length; i++) {
       dotTags.push(<span className="dots" style={{"color": this.props.colors[this.props.event.categories[i]]}} key={"dots-" + this.props.event.categories[i]}>&#9632;</span>);
     }
     return (
       <div className={"HomeFeedEventView" + (this.props.selected ? " selected" : "")} style={this.props.selected ? {background: this.props.color} : {}} onClick={this.handleClick}>
-        <h3 className="bold">{this.props.event.name}</h3>
+        <h3 className="bold">{this.props.event.title}</h3>
         <p>{this.props.event.location} {dotTags}</p>
         <p className={"description" + (this.props.selected ? " selected" : "")}><br />{this.props.event.description_text}</p>
       </div>

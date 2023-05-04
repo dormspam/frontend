@@ -18,18 +18,15 @@ class Events {
   }
 
   static getEventsByDate(formattedDate) {
-    const [year, month, day] = formattedDate.split('-').map(Number);
-    console.log(year, month);
-  
-    return fetch("https://dormdigest.xvm.mit.edu:8432/get_events_by_month", {
+
+    return fetch("https://dormdigest.xvm.mit.edu:8432/get_events_by_date", {
       method: "POST",
       headers: {
         "accept": "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        month: month,
-        year: year
+        from_date: formattedDate,
       })
     })
     .then(response => {

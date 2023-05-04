@@ -25,7 +25,7 @@ class HomeFeedView extends Component {
     Events.getEventsByDate(moment().format("YYYY-MM-DD")).then(response => {
       console.log("HEREERE")
       console.log(response.events)
-      self.saveEventData(response.events);
+      self.saveEventData(response);
     });
 
     // Categories.getCategories().then(response => {
@@ -58,8 +58,7 @@ class HomeFeedView extends Component {
         if (searchCount < self.state.searchCount) {
           return;
         }
-
-        self.saveEventData(response.data);
+        self.saveEventData(response);
       });
     }
 
@@ -69,11 +68,18 @@ class HomeFeedView extends Component {
     });
   }
 
-  saveEventData(inputData) {
-    console.log(inputData)
+  saveEventData(eventData) {
+    eventData.events.forEach((event, index) => {
+      if (eventData.tags[index]) {
+        event.tags = eventData.tags[index];
+      }
+    });
+
+    const events = eventData.events;
+
     let times = [];
 
-    let data = inputData.sort((a, b) => {
+    let data = events.sort((a, b) => {
       let aTime = moment(a.start_time).valueOf();
       let bTime = moment(b.start_time).valueOf();
 
@@ -86,6 +92,7 @@ class HomeFeedView extends Component {
       return 0;
     });
 
+
     for (var i=0; i < data.length; i++) {
       if (times.length === 0) {
         times.push([data[i]]);
@@ -97,35 +104,52 @@ class HomeFeedView extends Component {
         }
       }
     }
-
     for (var j=0; j < data.length; j++) {
-      data[j].categories = this.parseCategories(data[j].categories);
+      data[j].tags = this.parseCategories(data[j].tags);
     }
 
-    let filteredTimes = [];
+    console.log('teset', data)
 
-    for (var k=0; k < times.length; k++) {
-      for (var l=0; l < times[k][0].categories.length; l++) {
-        if (this.props.categories.indexOf(times[k][0].categories[l]) >= 0) {
-          filteredTimes.push(times[k]);
-          break;
-        }
-      }
-    }
+
+    // let filteredTimes = [];
+    //
+    // for (var k=0; k < times.length; k++) {
+    //   for (var l=0; l < times[k][0].tags.length; l++) {
+    //     if (this.props.categories.indexOf(times[k][0].tags[l]) >= 0) {
+    //       filteredTimes.push(times[k]);
+    //       break;
+    //     }
+    //   }
+    // }
+    console.log('heiheheiheie', times)
 
     this.setState({
-      data: filteredTimes
+      data: times
     });
-    console.log('heiheheiheie', filteredTimes)
+    console.log('heiheheiheie', times)
   }
 
+  // parseCategories(categories) {
+  //   categories = categories.substring(1, categories.length - 1);
+  //   let listed = categories.split(",");
+  //   for (let i=0; i < listed.length; i++) {
+  //     listed[i] = listed[i].replace(/"/g, "");
+  //   }
+  //   return listed;
+  // }
+
   parseCategories(categories) {
-    categories = categories.substring(1, categories.length - 1);
-    let listed = categories.split(",");
-    for (let i=0; i < listed.length; i++) {
-      listed[i] = listed[i].replace(/"/g, "");
-    }
-    return listed;
+    const tags = [
+      "OTHER",
+      "FOOD",
+      "CAREER",
+      "FUNDRAISING",
+      "APPLICATION",
+      "PERFORMANCE",
+      "BOBA",
+      "TALKS"
+    ];
+    return categories.map(category => tags[category]);
   }
 
   render() {
@@ -139,12 +163,16 @@ class HomeFeedView extends Component {
           </div>
         </div>
       );
+      console.log('something', this.state.data)
+      let timeString = moment(`${this.state.data[i][0].start_date}T${this.state.data[i][0].start_time}`)
+      console.log('something', timeString)
 
-      let timeString = moment(this.state.data[i][0].start_time).format("h:mm a");
+      timeString = timeString.format("h:mm a");
+      console.log('something', timeString)
 
-      if (this.state.searching) {
-        timeString = moment(this.state.data[i][0].start_time).format("MMMM Do YYYY, h:mm a");
-      }
+      // if (this.state.searching) {
+      //   timeString = moment(this.state.data[i][0].start_time).format("MMMM Do YYYY, h:mm a");
+      // }
 
       elements.push(
         <div className="onetime" key={"times" + i + "2"}>{timeString}</div>
