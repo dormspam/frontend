@@ -23,8 +23,6 @@ class HomeFeedView extends Component {
     const self = this;
 
     Events.getEventsByDate(moment().format("YYYY-MM-DD")).then(response => {
-      console.log("HEREERE")
-      console.log(response.events)
       self.saveEventData(response);
     });
 
@@ -45,6 +43,7 @@ class HomeFeedView extends Component {
     const searchCount = this.state.searchCount + 1;
 
     if (searching) {
+      // filter based on title
       // make axios request here for search
       // Events.getEventsByQuery(nextProps.search).then(response => {
       //   if (searchCount < self.state.searchCount) {
