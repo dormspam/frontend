@@ -26,6 +26,7 @@ class Events {
       },
       body: JSON.stringify({
         from_date: formattedDate,
+        include_description: true
       })
     })
     .then(response => {

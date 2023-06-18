@@ -27,7 +27,7 @@ class PreferencesView extends Component {
         self.saveCategories(res.data);
       });
 
-    Categories.getCategories().then(response => {
+    Categories.getCategoriesColorMapping().then(response => {
       let tempColors = {};
       for (let i = 0; i < response.data.length; i++) {
         tempColors[response.data[i].name] = response.data[i]["color"];

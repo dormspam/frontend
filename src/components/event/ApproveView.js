@@ -90,7 +90,7 @@ export default class ApproveView extends Component {
             <p> Type: {this.getColorNames(this.state.event.type)} </p>
             <Button href={"/events/" + this.props.match.params.id}>See Event</Button>
             <br />
-            <div dangerouslySetInnerHTML={{__html: this.state.event.description}} />
+            <div dangerouslySetInnerHTML={{__html: this.state.event.description_html}} />
           </Card>
         </Col>
 {/*        <Col lg="12" xl="6">:

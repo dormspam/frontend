@@ -21,7 +21,7 @@ class HomeSidebarCalendar extends Component {
     this.nextMonth = this.nextMonth.bind(this);
     this.selectDay = this.selectDay.bind(this);
 
-    // Categories.getCategories().then(response => {
+    // Categories.getCategoriesColorMapping().then(response => {
     //   let tempColors = {};
     //   for (let i = 0; i < response.data.length; i++) {
     //     tempColors[response.data[i].name] = response.data[i]["color"];

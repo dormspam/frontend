@@ -8,12 +8,12 @@ class HomeSidebarEventModal extends Component {
     super(props);
 
     this.state = {
-      colors: {...Categories.getCategories()}  //Shallow copy
+      colors: {...Categories.getCategoriesColorMapping()}  //Shallow copy
     };
 
     this.getCategories = this.getCategories.bind(this);
     
-    // Categories.getCategories().then(response => {
+    // Categories.getCategoriesColorMapping().then(response => {
     //   for (let i = 0; i < response.data.length; i++) {
     //     this.state.colors[response.data[i].name] = response.data[i]["color"];
     //   }
@@ -54,7 +54,7 @@ class HomeSidebarEventModal extends Component {
           <div className="padding"></div>
           <hr />
         </div>
-        <div dangerouslySetInnerHTML={{__html: this.props.event.description}} />
+        <div dangerouslySetInnerHTML={{__html: this.props.event.description_html}} />
       </div>
     );
   }

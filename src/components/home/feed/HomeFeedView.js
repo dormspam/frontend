@@ -26,7 +26,7 @@ class HomeFeedView extends Component {
       self.saveEventData(response);
     });
 
-    // Categories.getCategories().then(response => {
+    // Categories.getCategoriesColorMapping().then(response => {
     //   let tempColors = {};
     //   for (let i = 0; i < response.data.length; i++) {
     //     tempColors[response.data[i].name] = response.data[i]["color"];
@@ -139,16 +139,7 @@ class HomeFeedView extends Component {
   // }
 
   parseCategories(categories) {
-    const tags = [
-      "OTHER",
-      "FOOD",
-      "CAREER",
-      "FUNDRAISING",
-      "APPLICATION",
-      "PERFORMANCE",
-      "BOBA",
-      "TALKS"
-    ];
+    const tags = Categories.getCategoriesList();
     return categories.map(category => tags[category]);
   }
 

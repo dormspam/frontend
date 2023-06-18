@@ -42,7 +42,7 @@ class HomeView extends Component {
   }
 
   handleSelectEvent(event) {
-    if (this.state.event !== null && this.state.event.uid === event.uid) {
+    if (this.state.event !== null && this.state.event.id === event.id) {
       document.getElementsByClassName("column left")[0].removeEventListener('click', this.handleClickAway, false);
       this.setState({
         event: null

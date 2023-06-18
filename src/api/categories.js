@@ -13,10 +13,15 @@ const CATEGORIES_COLORS = {
   'SOCIAL':"#25C8D3"
 }
 
+const CATEGORIES = Object.keys(CATEGORIES_COLORS);
 class Categories {
-  static getCategories() {
+  static getCategoriesColorMapping() {
     return CATEGORIES_COLORS;
   }
+  static getCategoriesList(){
+    return CATEGORIES;
+  }
+
 }
 
 export default Categories;

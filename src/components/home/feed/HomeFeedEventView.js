@@ -32,7 +32,7 @@ class HomeFeedEventView extends Component {
       <div className={"HomeFeedEventView" + (this.props.selected ? " selected" : "")} style={this.props.selected ? {background: this.props.color} : {}} onClick={this.handleClick}>
         <h3 className="bold">{this.props.event.title}</h3>
         <p>{this.props.event.location} {dotTags}</p>
-        <p className={"description" + (this.props.selected ? " selected" : "")}><br />{this.props.event.description_text}</p>
+        <p className={"description" + (this.props.selected ? " selected" : "")}><br />{this.props.event.description}</p>
       </div>
     );
   }
