@@ -8,7 +8,7 @@ class HomeSidebarEventModal extends Component {
     super(props);
 
     this.state = {
-      colors: {}
+      colors: {...Categories.getCategories()}  //Shallow copy
     };
 
     this.getCategories = this.getCategories.bind(this);
@@ -21,7 +21,7 @@ class HomeSidebarEventModal extends Component {
   }
 
   getCategories() {
-    let categories = this.props.event.categories;
+    let categories = this.props.event.tags;
     let tags = [];
     for (let i=0; i < categories.length; i++) {
       tags.push(<span className="tags"
@@ -40,7 +40,7 @@ class HomeSidebarEventModal extends Component {
     }
 
     let categoryTags = this.getCategories();
-    let date = this.props.event.sent_from.split("on")[0] + " on " + moment(new Date(this.props.event.sent_from.split("on")[1]).toString()).format('MM/DD/YYYY h:mm a')
+    let date = this.props.event.user_email + " on " + moment(new Date(this.props.event.date_created).toString()).format('MM/DD/YYYY h:mm a')
 
     return (
       <div className="HomeSidebarEventModal">

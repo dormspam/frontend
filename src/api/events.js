@@ -1,24 +1,23 @@
 import Request from "./request";
 
 class Events {
-  static getEventFrequencyByDate(date) {
+  static getEventFrequencyByDate(date) { //Unsupported
     return new Request("https://dormdigest.xvm.mit.edu:8432/events/frequency/" + date);
   }
 
-  static getEventsByQuery(query) {
+  static getEventsByQuery(query) { //Unsupported
     return new Request("https://dormdigest.xvm.mit.edu:8432/events?q=" + query);
   }
 
-  static getEventById(id) {
+  static getEventById(id) { //Unsupported
     return new Request("https://dormdigest.xvm.mit.edu:8432/events/" + id);
   }
 
-  static getAllEvents() {
+  static getAllEvents() { //Unsupported
     return new Request("https://dormdigest.xvm.mit.edu:8432/events/all");
   }
 
   static getEventsByDate(formattedDate) {
-
     return fetch("https://dormdigest.xvm.mit.edu:8432/get_events_by_date", {
       method: "POST",
       headers: {

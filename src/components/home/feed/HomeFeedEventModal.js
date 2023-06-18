@@ -8,7 +8,7 @@ class HomeFeedEventModal extends Component {
     super(props);
 
     this.state = {
-      colors: {}
+      colors: {...Categories.getCategories()}  //Shallow copy
     };
 
     this.getCategories = this.getCategories.bind(this);
@@ -21,7 +21,8 @@ class HomeFeedEventModal extends Component {
   }
 
   getCategories() {
-    let categories = this.props.event.categories;
+    console.log(this.props.event);
+    let categories = this.props.event.tags;
     let tags = [];
     for (let i=0; i < categories.length; i++) {
       tags.push(<span className="tags"

@@ -70,7 +70,8 @@ class HomeFeedView extends Component {
   saveEventData(eventData) {
     eventData.events.forEach((event, index) => {
       if (eventData.tags[index]) {
-        event.tags = eventData.tags[index];
+        event.tags = eventData.tags[index]; //Name of categories associated with the event
+        event.user_email = eventData.users[index]; //Email of the user who sent/submitted the event
       }
     });
 
