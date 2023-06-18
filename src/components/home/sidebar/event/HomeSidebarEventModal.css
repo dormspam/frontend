@@ -30,6 +30,13 @@
   letter-spacing: 0.05em;
 }
 
+
+.HomeSidebarEventModal h2 {
+  font-size: 1.2em;
+  font-weight: 900;
+  text-align: left;
+}
+
 .HomeSidebarEventModal h3 {
   font-size: 0.8em;
   font-weight: 600;
