@@ -14,7 +14,7 @@ class HomeFeedView extends Component {
       data: [],
       searchCount: 0,
       searching: false,
-      colors: {}
+      colors: Categories.getCategoriesColorMapping()
     };
 
     this.saveEventData = this.saveEventData.bind(this);

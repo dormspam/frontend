@@ -3,6 +3,7 @@ import moment from "moment";
 import axios from "axios";
 import "./HomeView.css";
 
+import Categories from "../../api/categories";
 import HomeSidebarCalendar from "./sidebar/calendar/HomeSidebarCalendar";
 import HomeSidebarCategoriesView from "./sidebar/categories/HomeSidebarCategoriesView";
 import HomeHeaderView from "./header/HomeHeaderView";
@@ -20,7 +21,7 @@ class HomeView extends Component {
       event: null,
       search: "",
       user: { settings: { filters: [] }},
-      categories: [],
+      categories: Categories.getCategoriesList(),
       mobileMenu: false,
     };
 

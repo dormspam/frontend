@@ -1,8 +1,22 @@
 import Request from "./request";
+import Categories from "./categories";
 
 class Events {
-  static getEventFrequencyByDate(date) { //Unsupported
-    return new Request("https://dormdigest.xvm.mit.edu:8432/events/frequency/" + date);
+
+  static getEventFrequencyByDateForMonth(month, year) { 
+    //return new Request("https://dormdigest.xvm.mit.edu:8432/events/frequency/" + date);
+    const results = this.getCategoryFrequencyByMonth(month, year).then(eventsJSON => {
+      console.log(eventsJSON);
+      const rawCategoryFrequency = eventsJSON["frequency"]; //Holds dictionary mapping day of month to frequency of categories on that day
+      const parsedCategoryFrequency = {};
+
+      for (const [day, rawFrequencyDict] of Object.entries(rawCategoryFrequency)) {
+        parsedCategoryFrequency[day] = Categories.parseCategoryNameFrequency(rawFrequencyDict);
+      }
+      console.log("Category frequency results:", parsedCategoryFrequency);
+      return parsedCategoryFrequency;
+    });
+    return results;
   }
 
   static getEventsByQuery(query) { //Unsupported
@@ -17,7 +31,34 @@ class Events {
     return new Request("https://dormdigest.xvm.mit.edu:8432/events/all");
   }
 
-  static getEventsByDate(formattedDate) {
+  static getCategoryFrequencyByMonth(month, year) {
+    return fetch("https://dormdigest.xvm.mit.edu:8432/get_event_category_frequency_for_month", {
+      method: "POST",
+      headers: {
+        "accept": "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        month: month,
+        year: year,
+      })
+    })
+    .then(response => {
+      console.log("Got frequency response:",response);
+      if (response.ok) {
+        return response.json();
+      } else {
+        console.error('Error:', response.status, response.statusText);
+        throw new Error('Error fetching data');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      throw error;
+    });
+  }
+
+  static getEventsByDate(formattedDate, includeDescription=true) {
     return fetch("https://dormdigest.xvm.mit.edu:8432/get_events_by_date", {
       method: "POST",
       headers: {
@@ -26,7 +67,7 @@ class Events {
       },
       body: JSON.stringify({
         from_date: formattedDate,
-        include_description: true
+        include_description: includeDescription
       })
     })
     .then(response => {

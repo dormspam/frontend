@@ -1,6 +1,5 @@
 import Request from "./request";
 
-
 const CATEGORIES_COLORS = {
   'OTHER': "#888888",
   'FOOD': "#EE6F6F",
@@ -13,15 +12,36 @@ const CATEGORIES_COLORS = {
   'SOCIAL':"#25C8D3"
 }
 
-const CATEGORIES = Object.keys(CATEGORIES_COLORS);
+const CATEGORIES = Object.keys(CATEGORIES_COLORS); //Name of all available categories
 class Categories {
   static getCategoriesColorMapping() {
+    //Return mapping of category name to its corresponding color
     return CATEGORIES_COLORS;
   }
   static getCategoriesList(){
+    //Return list of available categories
     return CATEGORIES;
   }
 
+  static getCategoriesEmptyFrequency(){
+    //Return mapping of category name to 0 (to be used as a starting frequency list)
+    const frequency = {};
+    for (const category of CATEGORIES) {
+      frequency[category] = 0;
+    }
+    return frequency;
+  }
+
+  static parseCategoryNameFrequency(categoryNumFrequency) {
+    //Given a object mapping category names => their frequency (doesn't necessarily contain all categories),
+    //return a object mapping category names => their frequency (with all categories)
+    const categoryNameFrequency = this.getCategoriesEmptyFrequency(); //Initialize full category object of zeroes (IMPORTANT)
+
+    for (const [categoryName, categoryFrequency] of Object.entries(categoryNumFrequency)) {
+      categoryNameFrequency[categoryName] = categoryFrequency;
+    };
+    return categoryNameFrequency;
+  }
 }
 
 export default Categories;

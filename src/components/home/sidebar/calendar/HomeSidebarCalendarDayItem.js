@@ -38,7 +38,7 @@ export default class HomeSidebarCalendarDayItem extends Component {
 	render() {
 		let tagData = this.getDayTags();
 		return (
-		  <div className={"HomeSidebarCalendarDayItem" + (this.props.active ? " active" : "") + (this.props.focus ? " focus" : "") + (this.props.isToday ? " today" : "")} moment={this.props.moment} onClick={this.props.onClick}>
+		  <div className={"HomeSidebarCalendarDayItem" + (this.props.active ? " active" : "") + (this.props.focus ? " focus" : "") + (this.props.isToday ? " today" : "") + (this.props.hasEvent ? " hasEvent" : "")} moment={this.props.moment} onClick={this.props.onClick}>
 		    <div className="circle">
 		      <p className="day">{this.props.day}
 		      	<br />
