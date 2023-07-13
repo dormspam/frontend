@@ -6,14 +6,12 @@ class Events {
   static getEventFrequencyByDateForMonth(month, year) { 
     //return new Request("https://dormdigest.xvm.mit.edu:8432/events/frequency/" + date);
     const results = this.getCategoryFrequencyByMonth(month, year).then(eventsJSON => {
-      console.log(eventsJSON);
       const rawCategoryFrequency = eventsJSON["frequency"]; //Holds dictionary mapping day of month to frequency of categories on that day
       const parsedCategoryFrequency = {};
 
       for (const [day, rawFrequencyDict] of Object.entries(rawCategoryFrequency)) {
         parsedCategoryFrequency[day] = Categories.parseCategoryNameFrequency(rawFrequencyDict);
       }
-      console.log("Category frequency results:", parsedCategoryFrequency);
       return parsedCategoryFrequency;
     });
     return results;
@@ -44,7 +42,6 @@ class Events {
       })
     })
     .then(response => {
-      console.log("Got frequency response:",response);
       if (response.ok) {
         return response.json();
       } else {

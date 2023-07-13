@@ -25,13 +25,13 @@ class HomeView extends Component {
       mobileMenu: false,
     };
 
-    axios.get(process.env.REACT_APP_BACKEND_URL + "/users/current", {
-      withCredentials: true
-    }).then(response => {
-      this.setState({
-        user: response.data
-      });
-    });
+    // axios.get(process.env.REACT_APP_BACKEND_URL + "/users/current", {
+    //   withCredentials: true
+    // }).then(response => {
+    //   this.setState({
+    //     user: response.data
+    //   });
+    // });
 
     this.handleSelectEvent = this.handleSelectEvent.bind(this);
     this.handleSelectDay = this.handleSelectDay.bind(this);

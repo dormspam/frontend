@@ -108,9 +108,6 @@ class HomeFeedView extends Component {
       data[j].tags = this.parseCategories(data[j].tags);
     }
 
-    console.log('teset', data)
-
-
     // let filteredTimes = [];
     //
     // for (var k=0; k < times.length; k++) {
@@ -121,12 +118,10 @@ class HomeFeedView extends Component {
     //     }
     //   }
     // }
-    console.log('heiheheiheie', times)
 
     this.setState({
       data: times
     });
-    console.log('heiheheiheie', times)
   }
 
   // parseCategories(categories) {
@@ -154,12 +149,8 @@ class HomeFeedView extends Component {
           </div>
         </div>
       );
-      console.log('something', this.state.data)
       let timeString = moment(`${this.state.data[i][0].start_date}T${this.state.data[i][0].start_time}`)
-      console.log('something', timeString)
-
       timeString = timeString.format("h:mm a");
-      console.log('something', timeString)
 
       // if (this.state.searching) {
       //   timeString = moment(this.state.data[i][0].start_time).format("MMMM Do YYYY, h:mm a");
@@ -188,7 +179,6 @@ class HomeFeedView extends Component {
       }
     }
 
-    console.log(elements)
     if (elements.length === 0){
       elements = <div className="empty-events">
                   <img className="empty-events-icon" src="img/empty.png"/>

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./HomeSidebarCategoriesView.css";
-
+import Categories from "../../../../api/categories";
 export default class HomeSidebarCategoriesView extends Component {
   constructor(props) {
     super(props);
@@ -11,20 +11,27 @@ export default class HomeSidebarCategoriesView extends Component {
       filters: props.user.settings.filters
     };
 
-    axios
-      .get(process.env.REACT_APP_BACKEND_URL + "/categories")
-      .then(res => {
-        let tempFilters = [];
-        for (let i=0; i < res.data.length; i++) {
-          tempFilters.push(res.data[i].name);
-        }
-        this.setState({
-          categories: res.data,
-          filters: tempFilters
-        });
-        this.props.onCategoryUpdate(tempFilters);
-      });
+    const tempFilters = [...Categories.getCategoriesList()]; //Define separately to get reference for onCategoryUpdate
 
+    this.setState({
+      categories: {...Categories.getCategoriesColorMapping()},
+      filters: tempFilters
+    });
+    this.props.onCategoryUpdate(tempFilters);
+
+    // axios
+    //   .get(process.env.REACT_APP_BACKEND_URL + "/categories")
+    //   .then(res => {
+    //     let tempFilters = [];
+    //     for (let i=0; i < res.data.length; i++) {
+    //       tempFilters.push(res.data[i].name);
+    //     }
+    //     this.setState({
+    //       categories: res.data,
+    //       filters: tempFilters
+    //     });
+    //     this.props.onCategoryUpdate(tempFilters);
+    //   });
 
 
     this.handleCategoryClick = this.handleCategoryClick.bind(this);
@@ -87,21 +94,27 @@ export default class HomeSidebarCategoriesView extends Component {
   }
 
   render() {
-    let categoryTags = this.state.categories.map((category, i) => (
-      <div
+    let categoryTags = [];
+
+    const index = 0;
+    for(const [categoryName, categoryColor] of Object.entries(this.state.categories)) {
+      categoryTags.append((<div
           className={"category"}
-          key={i}
-          index={i}
+          key={index}
+          index={index}
           onClick={this.handleCategoryClick}
-          style={(this.state.filters.includes(category.name) ? {"color": category.color,
-                  "borderLeft": "3px solid " + category.color} : {"color": "#CFCFCF",
+          style={(this.state.filters.includes(categoryName) ? {"color": categoryColor,
+                  "borderLeft": "3px solid " + categoryColor} : {"color": "#CFCFCF",
                   "borderLeft": "3px solid #CFCFCF"})}>
-        <input type="checkbox" checked={this.state.filters.includes(category.name)} onChange={this.handleCheck} />
+        <input type="checkbox" checked={this.state.filters.includes(categoryName)} onChange={this.handleCheck} />
         <div className="text">
-          <h3>{category.name}</h3>
+          <h3>{categoryName}</h3>
         </div>
       </div>
-    ));
+    ))
+    index++;
+  };
+
     return (
       <div className="HomeSidebarCategoriesView">
         {categoryTags}
