@@ -6,6 +6,10 @@
   "dependencies": {
     "@material-ui/core": "^4.9.0",
     "@material-ui/icons": "^4.5.1",
+    "@types/jest": "^29.5.3",
+    "@types/node": "^20.4.2",
+    "@types/react": "^16.14.43",
+    "@types/react-dom": "^18.2.7",
     "axios": "^0.18.1",
     "classnames": "^2.2.6",
     "material-ui": "^0.20.2",
@@ -24,10 +28,10 @@
   },
   "scripts": {
     "TODO": "TODO: fix the package so that it doesn't need this",
-    "start": "export SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
-    "build": "export SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts build",
-    "test": "export SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts test",
-    "eject": "export SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts eject",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
@@ -42,6 +46,7 @@
   ],
   "devDependencies": {
     "gh-pages": "^2.0.1",
-    "react-error-overlay": "6.0.9"
+    "react-error-overlay": "6.0.9",
+    "typescript": "^5.1.6"
   }
 }
