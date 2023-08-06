@@ -11,6 +11,7 @@ import HomeSelectionView from "./selection/HomeSelectionView";
 import HomeSidebarEventModal from "./sidebar/event/HomeSidebarEventModal";
 import HomeFeedView from "./feed/HomeFeedView";
 import HomeFeedEventModal from "./feed/HomeFeedEventModal";
+import LocalData from "../../api/localdata";
 
 class HomeView extends Component {
   constructor(props) {
@@ -20,8 +21,8 @@ class HomeView extends Component {
       day: moment(),
       event: null,
       search: "",
-      user: { settings: { filters: [] }},
-      categories: Categories.getCategoriesList(),
+      user: { settings: { filters: LocalData.getCategoryFilters() }}, //Categories that the user has selected
+      categories: Categories.getCategoriesList(), //Should be a list of category names
       mobileMenu: false,
     };
 
@@ -78,7 +79,7 @@ class HomeView extends Component {
     });
   }
 
-  handleCategoryUpdate(categories) {
+  handleCategoryUpdate(categories) { //Should never be called
     this.setState({
       categories: categories
     });

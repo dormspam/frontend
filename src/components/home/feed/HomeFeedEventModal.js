@@ -21,7 +21,6 @@ class HomeFeedEventModal extends Component {
   }
 
   getCategories() {
-    console.log(this.props.event);
     let categories = this.props.event.tags;
     let tags = [];
     for (let i=0; i < categories.length; i++) {
