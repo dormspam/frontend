@@ -22,9 +22,9 @@ class HomeFeedView extends Component {
 
     const self = this;
 
-    Events.getEventsByDate(moment().format("YYYY-MM-DD")).then(response => {
-      self.saveEventData(response);
-    });
+    // Events.getEventsByDate(moment().format("YYYY-MM-DD")).then(response => {
+    //   self.saveEventData(response);
+    // });
 
     // Categories.getCategoriesColorMapping().then(response => {
     //   let tempColors = {};
@@ -72,6 +72,8 @@ class HomeFeedView extends Component {
       if (eventData.tags[index]) {
         event.tags = eventData.tags[index]; //Name of categories associated with the event
         event.user_email = eventData.users[index]; //Email of the user who sent/submitted the event
+        event.description = eventData.descriptions[index]; //Plaintext email description
+        event.description_html = eventData.descriptions_html[index]; //HTML email description
       }
     });
 
