@@ -95,7 +95,7 @@ class HomeView extends Component {
     return (
       <div className="HomeView">
         <a href="https://docs.google.com/forms/d/e/1FAIpQLScdLEjdkiVAdQ2gKoA1QtD9ANvBuOrce4ZIJwbIVQz7TRkObg/viewform" target="_blank">
-          <div className="betaform"> beta - report bugs / suggest changes <a style={{textDecoration: "underline"}}>here</a></div>
+          <div className="betaform"> beta - report bugs / suggest changes <p style={{textDecoration: "underline", display: "inline-block"}}>here</p></div>
         </a>
         <div className={"column left" + (this.state.event !== null ? " inactive" : "")}>
           <div className="betaspace"></div>

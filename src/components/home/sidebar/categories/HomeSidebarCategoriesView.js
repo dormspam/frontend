@@ -54,12 +54,12 @@ export default class HomeSidebarCategoriesView extends Component {
       target = event.target.parentElement.parentElement;
     }
     // Update the category's state
-    let category = target.getAttribute("categoryName");
+    let category = target.getAttribute("categoryname");
     this.toggleCategory(category);
   }
 
   handleCheck(event) {
-    let category = event.target.parentElement.getAttribute("categoryName");
+    let category = event.target.parentElement.getAttribute("categoryname");
     this.toggleCategory(category);
   }
 
@@ -107,7 +107,7 @@ export default class HomeSidebarCategoriesView extends Component {
     for(const [categoryName, categoryColor] of Object.entries(this.state.categories)) {
       categoryTags.push((<div
           className={"category"}
-          categoryName={categoryName}
+          categoryname={categoryName}
           key={index}
           index={index}
           onClick={this.handleCategoryClick}

@@ -22,9 +22,9 @@ class HomeFeedView extends Component {
 
     const self = this;
 
-    // Events.getEventsByDate(moment().format("YYYY-MM-DD")).then(response => {
-    //   self.saveEventData(response);
-    // });
+    Events.getEventsByDate(moment().format("YYYY-MM-DD")).then(response => {
+      self.saveEventData(response);
+    });
 
     // Categories.getCategoriesColorMapping().then(response => {
     //   let tempColors = {};
@@ -165,11 +165,12 @@ class HomeFeedView extends Component {
         let selected = false;
 
         if (this.props.selectedEvent !== null) {
-          selected = this.props.selectedEvent.uid === this.state.data[i][j].uid;
+          selected = this.props.selectedEvent.id === this.state.data[i][j].id;
         }
+        
 
         elements.push(
-          <div className="timeevents" key={this.state.data[i][j].uid}>
+          <div className="timeevents" key={this.state.data[i][j].id}>
             <div className="sidespace" />
             <HomeFeedEventView
               event={this.state.data[i][j]}
