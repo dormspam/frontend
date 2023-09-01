@@ -9,7 +9,8 @@ const CATEGORIES_COLORS = {
   'PERFORMANCE':"#12DAA4",
   'BOBA':"#F6B957",
   'TALKS':"#73F23A",
-  'SOCIAL':"#25C8D3"
+  'SOCIAL':"#25C8D3",
+  'SALE':"#b5b504"
 }
 
 const CATEGORIES = Object.keys(CATEGORIES_COLORS); //Name of all available categories
