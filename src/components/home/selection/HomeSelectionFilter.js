@@ -42,7 +42,7 @@ class HomeSelectionFilter extends Component {
         <div className="icon">
           <img src="/img/search.svg" alt="Search" />
         </div>
-        <input className="search" type="text" name="search" placeholder="Search by content..." onChange={this.handleChange} />
+        <input className="search" type="text" name="search" placeholder="SEARCH FEATURE COMING SOON..." onChange={this.handleChange} />
         <br />
       </div>
     );
