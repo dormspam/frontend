@@ -20,7 +20,7 @@ export default class HomeSidebarCalendarDayItem extends Component {
 
 		let tagData = [];
 		if (this.props.focus) {
-			for (let i=0; i < 3; i++) {
+			for (let i=0; i < 2; i++) {
 		  		if (frequenciesSorted.length > i && frequencies[frequenciesSorted[i]] > 0) {
 			  		tagData.push(<span
 			  			className="tags"

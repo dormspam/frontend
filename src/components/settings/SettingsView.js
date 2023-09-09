@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 import Users from "../../api/users";
 import "./SettingsView.css";
@@ -52,7 +52,7 @@ class SettingsView extends Component {
 
   render() {
     if (this.state.redirect !== null) {
-      return <Redirect to={this.state.redirect} />;
+      return <Navigate to={this.state.redirect} />;
     } else if (this.state.loading === true) {
       return <div />;
     }
@@ -73,7 +73,7 @@ class SettingsView extends Component {
             <a href="/">
               <img src="/img/back.svg" alt="Settings" />
               <br />
-              <img className="logo" src="/img/dormspam.svg" alt="Logo" />
+              <img className="logo" src="/img/dormdigest.svg" alt="Logo" />
             </a>
           </div>
           <ul>

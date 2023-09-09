@@ -21,13 +21,6 @@ class HomeSidebarCalendar extends Component {
     this.nextMonth = this.nextMonth.bind(this);
     this.selectDay = this.selectDay.bind(this);
 
-    const month = moment(this.state.m).month() + 1; //Moment is zero-indexed, need value from 1 to 12
-    const year = moment(this.state.m).year();
-    Events.getEventFrequencyByDateForMonth(month,year).then(response => {
-      this.setState({
-        frequencies: response
-      });
-    });
     // Categories.getCategoriesColorMapping().then(response => {
     //   let tempColors = {};
     //   for (let i = 0; i < response.data.length; i++) {
@@ -37,6 +30,16 @@ class HomeSidebarCalendar extends Component {
     //     colors: tempColors
     //   });
     // });
+  }
+
+  componentDidMount() {
+    const month = moment(this.state.m).month() + 1; //Moment is zero-indexed, need value from 1 to 12
+    const year = moment(this.state.m).year();
+    Events.getEventFrequencyByDateForMonth(month,year).then(response => {
+      this.setState({
+        frequencies: response
+      });
+    });
   }
 
   componentWillReceiveProps(nextProps) {

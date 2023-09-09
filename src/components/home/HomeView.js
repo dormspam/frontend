@@ -12,6 +12,7 @@ import HomeSidebarEventModal from "./sidebar/event/HomeSidebarEventModal";
 import HomeFeedView from "./feed/HomeFeedView";
 import HomeFeedEventModal from "./feed/HomeFeedEventModal";
 import LocalData from "../../api/localdata";
+import { AuthStatus } from "../../auth/authProvider";
 
 class HomeView extends Component {
   constructor(props) {
@@ -94,7 +95,7 @@ class HomeView extends Component {
   render() {
     return (
       <div className="HomeView">
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLScdLEjdkiVAdQ2gKoA1QtD9ANvBuOrce4ZIJwbIVQz7TRkObg/viewform" target="_blank">
+        <a href="https://forms.gle/74z5cuE6fvCe3TLZ9" target="_blank">
           <div className="betaform"> beta - report bugs / suggest changes <p style={{textDecoration: "underline", display: "inline-block"}}>here</p></div>
         </a>
         <div className={"column left" + (this.state.event !== null ? " inactive" : "")}>
@@ -122,6 +123,7 @@ class HomeView extends Component {
             />
         </div>
         <div className={"column right" + (this.state.mobileMenu ? " mobile" : "") + (this.state.event !== null ? " active" : "")}>
+          <AuthStatus/>
           <div className="betaspace"></div>
           <HomeSidebarCalendar
             selectedDay={this.state.day}
