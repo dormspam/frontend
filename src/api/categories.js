@@ -1,16 +1,16 @@
 
 
 const CATEGORIES_COLORS = {
-  'OTHER': "#888888",
-  'FOOD': "#EE6F6F",
-  'CAREER': "#459AF6",
-  'FUNDRAISING':"#A16EE5",
-  'APPLICATION':"#459AF6",
-  'PERFORMANCE':"#12DAA4",
-  'BOBA':"#F6B957",
-  'TALKS':"#73F23A",
-  'SOCIAL':"#25C8D3",
-  'SALE':"#b5b504"
+  'OTHER': "gray",
+  'FOOD': "#D92120",
+  'CAREER': "#E7742F",
+  'FUNDRAISING':"#DFA53A",
+  'APPLICATION':"#B1BE4E",
+  'PERFORMANCE':"#6DB388",
+  'BOBA':"#57A3AD",
+  'TALKS':"#4683C1",
+  'SOCIAL':"#3F4EA1",
+  'SALE':"#781C81"
 }
 
 const CATEGORIES = Object.keys(CATEGORIES_COLORS); //Name of all available categories
