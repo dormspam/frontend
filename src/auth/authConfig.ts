@@ -18,8 +18,12 @@ interface AuthConfig {
     //client_secret: string,         //The client application's identifier (as registered with the OIDC provider) - DO NOT EXPOSE PUBLICLY
     scope: string; //The scope being requested from the OIDC provider
 
-    idtoken_localstorage_name: string; //Name to be given to variable in Local Storage that contains the user's id_token
-    //(upon successful authentication)
+    idtoken_localstorage_name: string;   //Name of variable in Local Storage that contains the user's id_token
+                                         //(upon successful authentication)
+    sessionid_localstorage_name: string; //Name of session ID variable in localStorage
+                                         //(upon successful authentication)
+    useremail_localstoragge_name: string; //Name of user email variable in localStorage
+                                          //(upon successful authentication)
     state_length: number; //The byte length of `state` variable to be sent as part of login request
     nonce_length: number; //The byte length of `state` variable to be generated as part of login flow
     state_localstorage_name: string; //Name of state variable stored in LocalStorage
@@ -49,6 +53,8 @@ export const AUTH_CONFIG: AuthConfig = {
     scope: "openid email", //depends on your application needs
 
     idtoken_localstorage_name: "id_token",
+    sessionid_localstorage_name: "session_id",
+    useremail_localstoragge_name: "email",
     state_length: 32, //Note: OIDC docs has no requirement on length
     //(though can't be infinite), as long as it's long enough to be unguessable
     nonce_length: 32,

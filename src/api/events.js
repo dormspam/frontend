@@ -1,8 +1,7 @@
 import Request from "./request";
 import Categories from "./categories";
-
+import LocalData from "./localdata";
 class Events {
-
   static getEventFrequencyByDateForMonth(month, year) { 
     //return new Request("https://dormdigest.xvm.mit.edu:8432/events/frequency/" + date);
     const results = this.getCategoryFrequencyByMonth(month, year).then(eventsJSON => {
@@ -39,6 +38,7 @@ class Events {
       body: JSON.stringify({
         month: month,
         year: year,
+        auth: LocalData.getUserAuthInfo()
       })
     })
     .then(response => {
@@ -64,7 +64,8 @@ class Events {
       },
       body: JSON.stringify({
         from_date: formattedDate,
-        include_description: includeDescription
+        include_description: includeDescription,
+        auth: LocalData.getUserAuthInfo()
       })
     })
     .then(response => {

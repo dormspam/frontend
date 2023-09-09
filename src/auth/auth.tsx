@@ -6,6 +6,7 @@ import { useSearchParams, useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useAuth } from "./authProvider";
 import { opkService } from "./pktoken";
+import "./auth.css";
 
 /**
  * Expected response for server to return to user's browser after querying /login endpoint
@@ -17,6 +18,7 @@ interface loginResponse {
     //If success, these values should be populated. Else, empty string.
     id_token: string;
     email: string;
+    session_id: string;
 }
 
 /**
@@ -103,8 +105,9 @@ function OidcResponseHandler() {
             if (data.success) {
                 //Login was successful! Expect id_token
                 setLoginMsg("Login successful!");
-                localStorage.setItem(AUTH_CONFIG.idtoken_localstorage_name, data.id_token); //Save id_token to local storage
-
+                localStorage.setItem(AUTH_CONFIG.idtoken_localstorage_name, data.id_token);     //Save id_token to local storage
+                localStorage.setItem(AUTH_CONFIG.useremail_localstoragge_name, data.email);
+                localStorage.setItem(AUTH_CONFIG.sessionid_localstorage_name, data.session_id); //Save session_id to local storage
                 const pktoken = await opkService.generatePKToken(data.id_token);
                 console.log("PKTOKEN GENERATED", pktoken);
                 const ver = await opkService.verifyPKToken(pktoken);
@@ -124,7 +127,7 @@ function OidcResponseHandler() {
         sendCode();
     }, [navigate, code, auth, location]);
 
-    return <div>{loginMsg}</div>;
+    return <div className="OidcResponseHandler"><h1>{loginMsg}</h1></div>;
 }
 
 export { redirectToLogin, OidcResponseHandler };

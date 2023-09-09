@@ -22,6 +22,7 @@ interface AuthConfig {
     //Client-specific configs 
     redirect_uri: string,           ///Endpoint to receive authorization response 
     login_uri: string,              //Backend URI to handle user code
+    session_id_uri: string,         //Backend URI to handle assigning new session IDs
     client_id: string,              //The client application's identifier (as registered with the OIDC provider)
     client_secret: string,         //The client application's identifier (as registered with the OIDC provider) - DO NOT EXPOSE PUBLICLY
     scope: string,                  //The scope being requested from the OIDC provider
@@ -53,6 +54,7 @@ export const AUTH_CONFIG: AuthConfig = {
     //Client-specific configs 
     redirect_uri: DOMAIN_URI + "/oidc-response", 
     login_uri: DOMAIN_URI + "/api/login",
+    session_id_uri: DOMAIN_URI + ":8432/create_session", //Note: Currently using port 8432 for Python backend
     client_id: "9bac6dfd-c36f-4d3d-9a30-5ff5e7cf68dd", //Safe to save client-side
     client_secret: secrets["client_secret"], 
     scope: "openid email",                             //depends on your application needs

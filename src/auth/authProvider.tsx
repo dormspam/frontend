@@ -4,7 +4,10 @@ import {
   useLocation,
   Navigate,
 } from "react-router-dom";
+
+import "./authProvider.css";
 import { AUTH_CONFIG } from "./authConfig";
+import LocalData from "../api/localdata";
 
 /****************************************************************************************/
 /** Definition for Auth Context API *****************************************************/
@@ -28,6 +31,8 @@ function AuthProvider({ children }: { children: React.ReactNode }): React.ReactE
   let signout = (callback: VoidFunction) => {
     setUser(null);
     localStorage.removeItem(AUTH_CONFIG.idtoken_localstorage_name);
+    localStorage.removeItem(AUTH_CONFIG.useremail_localstoragge_name);
+    localStorage.removeItem(AUTH_CONFIG.sessionid_localstorage_name);
     callback();
   };
 
@@ -48,20 +53,25 @@ function AuthStatus(): React.ReactElement {
   let navigate = useNavigate();
 
   if (!auth.user) {
-    return <p>You are not logged in.</p>;
+    return (
+    <div className="AuthStatus">
+      <p>You are not logged in.</p>
+    </div>);
   }
 
   return (
+    <div className="AuthStatus">
     <p>
-      Welcome {auth.user}!{" "}
+      Welcome <strong>{auth.user}</strong>!{" "}
       <button
         onClick={() => {
-          auth.signout(() => navigate("/"));
+          auth.signout(() => navigate("/login"));
         }}
       >
         Sign out
       </button>
     </p>
+    </div>
   );
 }
 
@@ -72,6 +82,13 @@ function AuthStatus(): React.ReactElement {
 function RequireAuth({ children }: { children: JSX.Element }): React.ReactElement {
   let auth = useAuth();
   let location = useLocation();
+  let navigate = useNavigate();
+
+  if(LocalData.isUserLoggedIn()){
+    const user_email = LocalData.getUserEmail();
+    auth.signin(user_email, () => {});
+    return children;
+  }
 
   if (!auth.user) {
       // Redirect them to the /login page, but save the current location they were

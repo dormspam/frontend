@@ -29,6 +29,7 @@ interface loginResponse {
     //If success, these values should be populated. Else, empty string.
     id_token: string, 
     email: string,
+    session_id: string
 }
 
 /**

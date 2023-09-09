@@ -5,6 +5,8 @@ import jwkToPem from "jwk-to-pem";
 import { AUTH_CONFIG } from "./authConfig";
 import { eqSet } from "./authHelper";
 import { jwkResponse, loginResponse, oidcToken, userInfoResponse, idToken } from "./authType";
+import { getSessionId } from "./authSession";
+
 /**
  * Handles the login procedure given an OpenID auth code (which may or may not be valid)
  */
@@ -15,7 +17,8 @@ async function handleLogin(req: Request, res: Response) {
         success: true,
         error_msg: "",
         id_token: "",
-        email: ""
+        email: "",
+        session_id: ""
     };
     /**
      * Helper function: Instruct the client browser to clear the nonce cookie
@@ -146,9 +149,18 @@ async function handleLogin(req: Request, res: Response) {
             const profileResults = await getUserInfo(oidcJSON.access_token, decoded);
 
             if (profileResults.success) {
-                userResponse.success = true;
-                userResponse.id_token = oidcJSON.id_token;
-                userResponse.email = profileResults.email;
+                //With the email, proceed to get user's session ID
+                const sessionIdResults = await getSessionId(profileResults.email);
+
+                if(sessionIdResults.success){
+                    userResponse.success = true;
+                    userResponse.id_token = oidcJSON.id_token;
+                    userResponse.email = profileResults.email;
+                    userResponse.session_id = sessionIdResults.session_id;
+                } else {
+                    userResponse.success = false;
+                    userResponse.error_msg = sessionIdResults.error_msg;
+                }
                 clearNonceCookie();
                 res.status(200).json(userResponse);
             } else {

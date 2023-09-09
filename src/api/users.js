@@ -1,11 +1,11 @@
 import Request from "./request";
 
 class Users {
-  static getCurrentUser() {
+  static getCurrentUser() { //Unsupported
     return new Request("/users/current");
   }
 
-  static login(kerberos) {
+  static login(kerberos) { //Unsupported
     return new Request("/users/login", {
       data: {
         kerberos: kerberos,
@@ -14,7 +14,7 @@ class Users {
     });
   }
 
-  static logout() {
+  static logout() { //Unsupported
     sessionStorage.clear();
 
     return new Request("/users/current", {
@@ -22,14 +22,14 @@ class Users {
     });
   }
 
-  static updateCurrentUser(data) {
+  static updateCurrentUser(data) { //Unsupported
     return new Request("/users/current", {
       data: data,
       method: "put"
     });
   }
 
-  static verify(code, kerberos) {
+  static verify(code, kerberos) { //Unsupported
     return new Request("/users/verify", {
       data: {
         code: code,
