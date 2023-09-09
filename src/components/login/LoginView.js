@@ -34,8 +34,6 @@ class LoginView extends Component {
             <h1>Sign In</h1>
             <br></br>
             <button id="login-btn" onClick={this.handleLogin}>Login</button>
-            <br></br>
-            <p><b>Note:</b> Authentication is sometimes slow on first login, please be patient!</p>
           </div>
         </div>
       </div>
