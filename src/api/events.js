@@ -10,8 +10,8 @@ const axiosCached = setupCache(axios.create(), {
 });
 
 //Caching parameters
-const GET_FREQUENCY_BY_MONTH_EXPIRATION = 1000 * 60 * 60 * 1; //1 hour in miliseconds
-const GET_EVENTS_BY_DATE_EXPIRATION = 1000 * 60 * 60 * 1; //1 hour in miliseconds
+const GET_FREQUENCY_BY_MONTH_EXPIRATION = 1000 * 60 * 60 * 6; //6 hours in miliseconds
+const GET_EVENTS_BY_DATE_EXPIRATION = 1000 * 60 * 60 * 6; //6 hours in miliseconds
 
 class Events {
   static getEventFrequencyByDateForMonth(month, year) { 
