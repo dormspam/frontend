@@ -84,13 +84,14 @@ function RequireAuth({ children }: { children: JSX.Element }): React.ReactElemen
   let location = useLocation();
   let navigate = useNavigate();
 
-  if(LocalData.isUserLoggedIn()){
-    const user_email = LocalData.getUserEmail();
-    auth.signin(user_email, () => {});
-    return children;
-  }
+  React.useEffect(()=>{
+    if(LocalData.isUserLoggedIn()){
+      const user_email = LocalData.getUserEmail();
+      auth.signin(user_email, () => {}); //Properly sign in user to AuthProvider
+    }
+  },[auth]);
 
-  if (!auth.user) {
+  if (!LocalData.isUserLoggedIn()) {
       // Redirect them to the /login page, but save the current location they were
       // trying to go to when they were redirected. This allows us to send them
       // along to that page after they login, which is a nicer user experience
