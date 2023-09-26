@@ -1,71 +1,38 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
-import Users from "../../api/users";
 import "./LoginView.css";
-import { setupSession } from "../../utils/session";
-
+import { redirectToLogin } from "../../auth/auth";
 class LoginView extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      redirect: null,
-      pending: false,
-    };
-
-    this.kerberosInput = React.createRef();
-
-    this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
   }
 
-  handleKeyDown(event) {
-    if (event.keyCode === 13) { // enter
-      this.handleLogin();
-    }
-  }
-
   handleLogin() {
-    if (this.kerberosInput.current.value.length === 0 || this.state.pending) {
-      return;
-    }
-
-    const kerberos = this.kerberosInput.current.value;
-    const self = this;
-
-    Users.login(kerberos).then(response => {
-      self.setState({
-        redirect: "/verify?k=" + kerberos
-      });
-    });
 
     document.getElementById("login-btn").style.backgroundColor = "#888BDE";
-    document.getElementById("login-btn").innerHTML = "Sending email to " + kerberos + "@mit.edu";
+    document.getElementById("login-btn").innerHTML = "Sending you to OIDC servers";
     document.getElementById('login-btn').style.cursor = "text";
-
-    this.setState({
-      pending: true
-    });
-
-    setupSession("lol");
-    this.setState({
-      redirect: "/"
-    })
+    
+    redirectToLogin();
   }
 
   render() {
-    if (this.state.redirect !== null) {
-      return <Redirect to={this.state.redirect} />;
-    }
-
     return (
       <div className="LoginView">
         <div className="bigger-container">
-          <img className="logo" src="/img/dormspam-white.svg" alt="Logo" />
+          <img className="logo" src="/img/dormdigest-white.svg" alt="Logo" />
+          <div className="container">
+            <p><b>DormDigest</b> is a student-run project that automatically parses <a href="https://how-to-dormspam.mit.edu/">dormspam emails</a> by type onto a web calendar. We require authentication to login to protect the privacy of students emails.</p>
+            <br></br>
+            <p> This project is maintained by <b>SIPB</b>, the <a href="https://sipb.mit.edu/">Student Information Processing Board</a>, and we welcome contributions! Our website has a Python <a href="https://github.com/sipb/dormdigest-backend/">backend</a>, and a React <a href="https://github.com/sipb/dormdigest-frontend/">frontend</a>. You can generally meet us in person at SIPB meetings each Monday at 19:30 in our office, W20-557.</p>
+            </div>
+          <div className="betaspace"></div>
           <div className="container">
             <h1>Sign In</h1>
-            <input ref={this.kerberosInput} onKeyDown={this.handleKeyDown} type="text" placeholder="Enter your kerberos" />
+            <br></br>
             <button id="login-btn" onClick={this.handleLogin}>Login</button>
           </div>
         </div>

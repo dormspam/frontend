@@ -14,20 +14,30 @@ class HomeSidebarCalendar extends Component {
       today: moment(),
       m: moment(),
       frequencies: {},
-      colors: {}
+      colors: {...Categories.getCategoriesColorMapping()},
     };
 
     this.previousMonth = this.previousMonth.bind(this);
     this.nextMonth = this.nextMonth.bind(this);
     this.selectDay = this.selectDay.bind(this);
 
-    Categories.getCategories().then(response => {
-      let tempColors = {};
-      for (let i = 0; i < response.data.length; i++) {
-        tempColors[response.data[i].name] = response.data[i]["color"];
-      }
+    // Categories.getCategoriesColorMapping().then(response => {
+    //   let tempColors = {};
+    //   for (let i = 0; i < response.data.length; i++) {
+    //     tempColors[response.data[i].name] = response.data[i]["color"];
+    //   }
+    //   this.setState({
+    //     colors: tempColors
+    //   });
+    // });
+  }
+
+  componentDidMount() {
+    const month = moment(this.state.m).month() + 1; //Moment is zero-indexed, need value from 1 to 12
+    const year = moment(this.state.m).year();
+    Events.getEventFrequencyByDateForMonth(month,year).then(response => {
       this.setState({
-        colors: tempColors
+        frequencies: response
       });
     });
   }
@@ -39,9 +49,11 @@ class HomeSidebarCalendar extends Component {
     });
     
     // let freqDate = typeof nextProps !== "undefined" ? nextProps.selectedDay : this.state.m
-    Events.getEventFrequencyByDate(moment(nextProps.selectedDay).format("YYYY-MM-DD")).then(response => {
+    const month = moment(this.state.m).month() + 1; //Moment is zero-indexed, need value from 1 to 12
+    const year = moment(this.state.m).year();
+    Events.getEventFrequencyByDateForMonth(month,year).then(response => {
       this.setState({
-        frequencies: response.data
+        frequencies: response
       });
     });
   }
@@ -50,9 +62,11 @@ class HomeSidebarCalendar extends Component {
     this.setState({
       m: this.state.m.subtract(1, 'months')
     });
-    Events.getEventFrequencyByDate(moment(this.state.m).format("YYYY-MM-DD")).then(response => {
+    const month = moment(this.state.m).month() + 1; //Moment is zero-indexed, need value from 1 to 12
+    const year = moment(this.state.m).year();
+    Events.getEventFrequencyByDateForMonth(month,year).then(response => {
       this.setState({
-        frequencies: response.data
+        frequencies: response
       });
     });
   }
@@ -61,9 +75,11 @@ class HomeSidebarCalendar extends Component {
     this.setState({
       m: this.state.m.add(1, 'months')
     });
-    Events.getEventFrequencyByDate(moment(this.state.m).format("YYYY-MM-DD")).then(response => {
+    const month = moment(this.state.m).month() + 1; //Moment is zero-indexed, need value from 1 to 12
+    const year = moment(this.state.m).year();
+    Events.getEventFrequencyByDateForMonth(month,year).then(response => {
       this.setState({
-        frequencies: response.data
+        frequencies: response
       });
     });
   }
@@ -100,23 +116,14 @@ class HomeSidebarCalendar extends Component {
     for (let m = weekStart; m.isBefore(weekEnd); m.add(1, 'days')) {
       dayTagsData.push({
         moment: m.format(),
-        date: m.date(),
-        active: m.isSame(this.state.today, 'day'),
-        focus: m.isSame(this.state.m, 'month'),
-        isToday: m.format('MMM Do YY') === moment().format('MMM Do YY'),
-        frequencies: (m.format("YYYY-MM-DD") in this.state.frequencies) ? this.state.frequencies[m.format("YYYY-MM-DD")] : {
-            "Boba": 0,
-            "Food": 0,
-            "Tech": 0,
-            "EECS-jobs-announce": 0,
-            "Recruiting": 0,
-            "Social": 0,
-            "Performance Groups": 0,
-            "Talks": 0,
-            "Other": 0
-        }
-      });
-    }
+        date: m.date(), //Day number
+        active: m.isSame(this.state.today, 'day'), //Whether it's clicked on by user
+        focus: m.isSame(this.state.m, 'month'),    //Whether it's in focus (e.g. part of the currently viewed month)
+        isToday: m.format('MMM Do YY') === moment().format('MMM Do YY'), 
+        hasEvent: (m.format("YYYY-MM-DD") in this.state.frequencies), //Has at least one event happening in it
+        frequencies: (m.format("YYYY-MM-DD") in this.state.frequencies) ? this.state.frequencies[m.format("YYYY-MM-DD")] : Categories.getCategoriesEmptyFrequency()
+    });
+  }
 
     const dayTags = dayTagsData.map(
       (day, i) => <HomeSidebarCalendarDayItem
@@ -126,6 +133,7 @@ class HomeSidebarCalendar extends Component {
                     active={day.active}
                     focus={day.focus}
                     isToday={day.isToday}
+                    hasEvent={day.hasEvent}
                     onClick={this.selectDay}
                     frequencies={day.frequencies}
                     colors={this.state.colors}

@@ -77,7 +77,7 @@ export class AdminView extends Component {
             <a href="/">
               <img src="/img/back.svg" alt="Admin Settings" />
               <br />
-              <img className="logo" src="/img/dormspam.svg" alt="Logo" />
+              <img className="logo" src="/img/dormdigest.svg" alt="Logo" />
             </a>
           </div>
           <ul>

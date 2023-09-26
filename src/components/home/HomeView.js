@@ -3,6 +3,7 @@ import moment from "moment";
 import axios from "axios";
 import "./HomeView.css";
 
+import Categories from "../../api/categories";
 import HomeSidebarCalendar from "./sidebar/calendar/HomeSidebarCalendar";
 import HomeSidebarCategoriesView from "./sidebar/categories/HomeSidebarCategoriesView";
 import HomeHeaderView from "./header/HomeHeaderView";
@@ -10,6 +11,8 @@ import HomeSelectionView from "./selection/HomeSelectionView";
 import HomeSidebarEventModal from "./sidebar/event/HomeSidebarEventModal";
 import HomeFeedView from "./feed/HomeFeedView";
 import HomeFeedEventModal from "./feed/HomeFeedEventModal";
+import LocalData from "../../api/localdata";
+import { AuthStatus } from "../../auth/authProvider";
 
 class HomeView extends Component {
   constructor(props) {
@@ -19,18 +22,18 @@ class HomeView extends Component {
       day: moment(),
       event: null,
       search: "",
-      user: { settings: { filters: [] }},
-      categories: [],
+      user: { settings: { filters: LocalData.getCategoryFilters() }}, //Categories that the user has selected
+      categories: Categories.getCategoriesList(), //Should be a list of category names
       mobileMenu: false,
     };
 
-    axios.get(process.env.REACT_APP_BACKEND_URL + "/users/current", {
-      withCredentials: true
-    }).then(response => {
-      this.setState({
-        user: response.data
-      });
-    });
+    // axios.get(process.env.REACT_APP_BACKEND_URL + "/users/current", {
+    //   withCredentials: true
+    // }).then(response => {
+    //   this.setState({
+    //     user: response.data
+    //   });
+    // });
 
     this.handleSelectEvent = this.handleSelectEvent.bind(this);
     this.handleSelectDay = this.handleSelectDay.bind(this);
@@ -42,7 +45,7 @@ class HomeView extends Component {
   }
 
   handleSelectEvent(event) {
-    if (this.state.event !== null && this.state.event.uid === event.uid) {
+    if (this.state.event !== null && this.state.event.id === event.id) {
       document.getElementsByClassName("column left")[0].removeEventListener('click', this.handleClickAway, false);
       this.setState({
         event: null
@@ -77,7 +80,7 @@ class HomeView extends Component {
     });
   }
 
-  handleCategoryUpdate(categories) {
+  handleCategoryUpdate(categories) { //Should never be called
     this.setState({
       categories: categories
     });
@@ -92,8 +95,8 @@ class HomeView extends Component {
   render() {
     return (
       <div className="HomeView">
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLScdLEjdkiVAdQ2gKoA1QtD9ANvBuOrce4ZIJwbIVQz7TRkObg/viewform" target="_blank">
-          <div className="betaform"> beta - report bugs / suggest changes <a style={{textDecoration: "underline"}}>here</a></div>
+        <a href="https://forms.gle/74z5cuE6fvCe3TLZ9" target="_blank">
+          <div className="betaform"> beta - report bugs / suggest changes <p style={{textDecoration: "underline", display: "inline-block"}}>here</p></div>
         </a>
         <div className={"column left" + (this.state.event !== null ? " inactive" : "")}>
           <div className="betaspace"></div>
@@ -120,6 +123,7 @@ class HomeView extends Component {
             />
         </div>
         <div className={"column right" + (this.state.mobileMenu ? " mobile" : "") + (this.state.event !== null ? " active" : "")}>
+          <AuthStatus/>
           <div className="betaspace"></div>
           <HomeSidebarCalendar
             selectedDay={this.state.day}

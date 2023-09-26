@@ -1,5 +1,11 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+#Application secrets
+secrets.json 
+api_secrets.json
+key.pem
+cert.pem
+
 # dependencies
 /node_modules
 /.pnp
@@ -9,6 +15,7 @@
 /coverage
 
 # production
+/build_backup
 /build
 /server/.elasticbeanstalk
 /server/build

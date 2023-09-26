@@ -37,6 +37,11 @@
   color: #FFF;
 }
 
+.HomeSidebarCalendarDayItem.hasEvent .circle {
+  background-color: #62d65a;
+  color: #fff;
+}
+
 .HomeSidebarCalendarDayItem.active .circle {
   background-color: #5F63D4;
   color: #fff;
@@ -46,9 +51,15 @@
   background-color: #E4E4E4;
 }
 
+.HomeSidebarCalendarDayItem.hasEvent .circle:hover {
+  background-color: #33cc28;
+  color: #fff;
+}
+
 .HomeSidebarCalendarDayItem.active .circle:hover {
   background-color: #464ACC;
 }
+
 
 @media (min-width: 1400px) {
   .HomeSidebarCalendarDayItem .circle {

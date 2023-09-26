@@ -14,7 +14,7 @@ class HomeFeedView extends Component {
       data: [],
       searchCount: 0,
       searching: false,
-      colors: {}
+      colors: Categories.getCategoriesColorMapping()
     };
 
     this.saveEventData = this.saveEventData.bind(this);
@@ -23,18 +23,18 @@ class HomeFeedView extends Component {
     const self = this;
 
     Events.getEventsByDate(moment().format("YYYY-MM-DD")).then(response => {
-      self.saveEventData(response.data);
+      self.saveEventData(response);
     });
 
-    Categories.getCategories().then(response => {
-      let tempColors = {};
-      for (let i = 0; i < response.data.length; i++) {
-        tempColors[response.data[i].name] = response.data[i]["color"];
-      }
-      this.setState({
-        colors: tempColors
-      });
-    });
+    // Categories.getCategoriesColorMapping().then(response => {
+    //   let tempColors = {};
+    //   for (let i = 0; i < response.data.length; i++) {
+    //     tempColors[response.data[i].name] = response.data[i]["color"];
+    //   }
+    //   this.setState({
+    //     colors: tempColors
+    //   });
+    // });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -43,21 +43,21 @@ class HomeFeedView extends Component {
     const searchCount = this.state.searchCount + 1;
 
     if (searching) {
+      // filter based on title
       // make axios request here for search
-      Events.getEventsByQuery(nextProps.search).then(response => {
-        if (searchCount < self.state.searchCount) {
-          return;
-        }
+      // Events.getEventsByQuery(nextProps.search).then(response => {
+      //   if (searchCount < self.state.searchCount) {
+      //     return;
+      //   }
 
-        self.saveEventData(response.data);
-      });
+      //   self.saveEventData(response.data);
+      // });
     } else {
       Events.getEventsByDate(nextProps.selectedDay.format("YYYY-MM-DD")).then(response => {
         if (searchCount < self.state.searchCount) {
           return;
         }
-
-        self.saveEventData(response.data);
+        self.saveEventData(response);
       });
     }
 
@@ -67,11 +67,21 @@ class HomeFeedView extends Component {
     });
   }
 
-  saveEventData(inputData) {
-    console.log(inputData)
+  saveEventData(eventData) {
+    eventData.events.forEach((event, index) => {
+      if (eventData.tags[index]) {
+        event.tags = eventData.tags[index]; //Name of categories associated with the event
+        event.user_email = eventData.users[index]; //Email of the user who sent/submitted the event
+        event.description = eventData.descriptions[index]; //Plaintext email description
+        event.description_html = eventData.descriptions_html[index]; //HTML email description
+      }
+    });
+
+    const events = eventData.events;
+
     let times = [];
 
-    let data = inputData.sort((a, b) => {
+    let data = events.sort((a, b) => {
       let aTime = moment(a.start_time).valueOf();
       let bTime = moment(b.start_time).valueOf();
 
@@ -84,6 +94,7 @@ class HomeFeedView extends Component {
       return 0;
     });
 
+
     for (var i=0; i < data.length; i++) {
       if (times.length === 0) {
         times.push([data[i]]);
@@ -95,34 +106,38 @@ class HomeFeedView extends Component {
         }
       }
     }
-
     for (var j=0; j < data.length; j++) {
-      data[j].categories = this.parseCategories(data[j].categories);
+      data[j].tags = this.parseCategories(data[j].tags);
     }
 
-    let filteredTimes = [];
-
-    for (var k=0; k < times.length; k++) {
-      for (var l=0; l < times[k][0].categories.length; l++) {
-        if (this.props.categories.indexOf(times[k][0].categories[l]) >= 0) {
-          filteredTimes.push(times[k]);
-          break;
-        }
-      }
-    }
+    // let filteredTimes = [];
+    //
+    // for (var k=0; k < times.length; k++) {
+    //   for (var l=0; l < times[k][0].tags.length; l++) {
+    //     if (this.props.categories.indexOf(times[k][0].tags[l]) >= 0) {
+    //       filteredTimes.push(times[k]);
+    //       break;
+    //     }
+    //   }
+    // }
 
     this.setState({
-      data: filteredTimes
+      data: times
     });
   }
 
+  // parseCategories(categories) {
+  //   categories = categories.substring(1, categories.length - 1);
+  //   let listed = categories.split(",");
+  //   for (let i=0; i < listed.length; i++) {
+  //     listed[i] = listed[i].replace(/"/g, "");
+  //   }
+  //   return listed;
+  // }
+
   parseCategories(categories) {
-    categories = categories.substring(1, categories.length - 1);
-    let listed = categories.split(",");
-    for (let i=0; i < listed.length; i++) {
-      listed[i] = listed[i].replace(/"/g, "");
-    }
-    return listed;
+    const tags = Categories.getCategoriesList();
+    return categories.map(category => tags[category]);
   }
 
   render() {
@@ -136,12 +151,12 @@ class HomeFeedView extends Component {
           </div>
         </div>
       );
+      let timeString = moment(`${this.state.data[i][0].start_date}T${this.state.data[i][0].start_time}`)
+      timeString = timeString.format("h:mm a");
 
-      let timeString = moment(this.state.data[i][0].start_time).format("h:mm a");
-
-      if (this.state.searching) {
-        timeString = moment(this.state.data[i][0].start_time).format("MMMM Do YYYY, h:mm a");
-      }
+      // if (this.state.searching) {
+      //   timeString = moment(this.state.data[i][0].start_time).format("MMMM Do YYYY, h:mm a");
+      // }
 
       elements.push(
         <div className="onetime" key={"times" + i + "2"}>{timeString}</div>
@@ -150,11 +165,12 @@ class HomeFeedView extends Component {
         let selected = false;
 
         if (this.props.selectedEvent !== null) {
-          selected = this.props.selectedEvent.uid === this.state.data[i][j].uid;
+          selected = this.props.selectedEvent.id === this.state.data[i][j].id;
         }
+        
 
         elements.push(
-          <div className="timeevents" key={this.state.data[i][j].uid}>
+          <div className="timeevents" key={this.state.data[i][j].id}>
             <div className="sidespace" />
             <HomeFeedEventView
               event={this.state.data[i][j]}
@@ -166,7 +182,6 @@ class HomeFeedView extends Component {
       }
     }
 
-    console.log(elements)
     if (elements.length === 0){
       elements = <div className="empty-events">
                   <img className="empty-events-icon" src="img/empty.png"/>
