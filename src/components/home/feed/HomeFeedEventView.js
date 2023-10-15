@@ -25,17 +25,32 @@ class HomeFeedEventView extends Component {
 
   render() {
     let dotTags = [];
-    // TODO: implement dots
-    for (let i=0; i < this.props.event.tags.length; i++) {
-      dotTags.push(<span className="dots" style={{"color": this.colors[this.props.event.tags[i]]}} key={"dots-" + this.props.event.tags[i]}>&#9632;</span>);
+    let rsvp_tag = "";
+    let color;
+    let RSVP = null;
+    if (this.props.event.tags.includes('RSVP')) {
+      rsvp_tag = "RSVP";
+      color = Categories.getCategoriesColorMapping()["RSVP"];
+      RSVP = <h3 style={{ borderColor: color, color: color }}>{rsvp_tag}</h3>;
     }
+    // TODO: implement dots
+    for (let i = 0; i < this.props.event.tags.length; i++) {
+      dotTags.push(<span className="dots" style={{ "color": this.colors[this.props.event.tags[i]] }} key={"dots-" + this.props.event.tags[i]}>&#9632;</span>);
+    }
+
     return (
-      <div className={"HomeFeedEventView" + (this.props.selected ? " selected" : "")} style={this.props.selected ? {background: this.props.color} : {}} onClick={this.handleClick}>
-        <h3 className="bold">{this.props.event.title}</h3>
-        <p>{this.props.event.location} {dotTags}</p>
-        <p className={"description" + (this.props.selected ? " selected" : "")}><br />{this.props.event.description}</p>
-      </div>
-    );
+      <div className={"HomeFeedEventView" + (this.props.selected ? " selected" : "")} style={this.props.selected ? { background: this.props.color } : {}} onClick={this.handleClick}>
+        <div className="left">
+          <h3 className="bold">{this.props.event.title}</h3>
+          <p><br></br>{this.props.event.location}</p>
+        </div>
+        <div className="right">
+          {RSVP}
+          <p><br></br>{dotTags}</p>
+        </div>
+      </div >
+    )
+
   }
 }
 

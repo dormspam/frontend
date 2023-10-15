@@ -2,15 +2,15 @@
 
 const CATEGORIES_COLORS = {
   'OTHER': "gray",
-  'FOOD': "#D92120",
-  'CAREER': "#E7742F",
-  'FUNDRAISING':"#f7a205",
-  'APPLICATION':"#72e30e",
-  'PERFORMANCE':"#49c478",
-  'BOBA':"#17acbf",
-  'TALKS':"#0c6ac9",
-  'SOCIAL':"#233fdb",
-  'SALE':"#af04bf"
+  'FOOD': "#dc050c",
+  'CAREER': "#e8601c",
+  'FUNDRAISING': "#f1932d",
+  'APPLICATION': "#f6c141",
+  'PERFORMANCE': "#f7f056",
+  'BOBA': "#cae0ab",
+  'TALKS': "#90c987",
+  'SALE': "#4eb265",
+  'RSVP': "#7bafde"
 }
 
 const CATEGORIES = Object.keys(CATEGORIES_COLORS); //Name of all available categories
@@ -19,12 +19,12 @@ class Categories {
     //Return mapping of category name to its corresponding color
     return CATEGORIES_COLORS;
   }
-  static getCategoriesList(){
+  static getCategoriesList() {
     //Return list of available categories
     return CATEGORIES;
   }
 
-  static getCategoriesEmptyFrequency(){
+  static getCategoriesEmptyFrequency() {
     //Return mapping of category name to 0 (to be used as a starting frequency list)
     const frequency = {};
     for (const category of CATEGORIES) {

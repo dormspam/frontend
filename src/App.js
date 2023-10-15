@@ -17,32 +17,32 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-      <AuthProvider>
-      <div>
-        <Helmet>
-          <meta charset="utf-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=yes" />
-          <meta name="theme-color" content="#5f63d4" />
-          <link href="https://fonts.googleapis.com/css?family=Fredoka+One|Nunito:300,400,600,700" rel="stylesheet"/>
-          <title>DormDigest</title>
-        </Helmet>
-        <Routes>
-          <Route exact path="/" element={
-            <RequireAuth>
-            <HomeView/>
-            </RequireAuth>
-          } />
-          {/* <Route path="/login" element={<LoginPage />} /> */}
-          <Route path="/oidc-response" element={<OidcResponseHandler />} />
-          <Route exact path="/event/:id" element={<EventView/>} />
-          <Route exact path="/approve/:id" element={<ApproveView/>} />
-          <Route exact path="/login" element={<LoginView/>} />
-          <Route exact path="/settings" element={<SettingsView/>} authenticated={true} />
-          <Route exact path="/admin" element={<AdminView/>} authenticated={true} />
-          <Route exact path="/verify" element={<VerifyView/>} />
-        </Routes>
-      </div>
-      </AuthProvider>
+        <AuthProvider>
+          <div>
+            <Helmet>
+              <meta charset="utf-8" />
+              <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=yes" />
+              <meta name="theme-color" content="#5f63d4" />
+              <link href="https://fonts.googleapis.com/css?family=Fredoka+One|Nunito:300,400,600,700" rel="stylesheet" />
+              <title>DormDigest</title>
+            </Helmet>
+            <Routes>
+              <Route exact path="/" element={
+                <RequireAuth>
+                  <HomeView />
+                </RequireAuth>
+              } />
+              {/* <Route path="/login" element={<LoginPage />} /> */}
+              <Route path="/oidc-response" element={<OidcResponseHandler />} />
+              <Route exact path="/event/:id" element={<EventView />} />
+              <Route exact path="/approve/:id" element={<ApproveView />} />
+              <Route exact path="/login" element={<LoginView />} />
+              <Route exact path="/settings" element={<SettingsView />} authenticated={true} />
+              <Route exact path="/admin" element={<AdminView />} authenticated={true} />
+              <Route exact path="/verify" element={<VerifyView />} />
+            </Routes>
+          </div>
+        </AuthProvider>
       </BrowserRouter>
     );
   }
