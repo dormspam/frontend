@@ -83,15 +83,20 @@ async function handleLogin(req: Request, res: Response) {
 
     //Verify that user provided us with necessary scope
     const hasToken = oidcJSON.hasOwnProperty("id_token");
+
     const hasScope = oidcJSON.hasOwnProperty("scope");
     const expectedScope = new Set(AUTH_CONFIG.scope.split(" "));
     const givenScope =
         hasScope && oidcJSON.scope ? new Set<String>(oidcJSON.scope.split(" ")) : new Set<String>();
-    const hasFullScope = eqSet(expectedScope, givenScope);
-    if (!hasFullScope || !hasToken) {
-        respondWithError("User Error: Please make sure you allow the necessary scopes!");
-        return;
-    }
+
+    // WARNING: Returning the list of requested scopes is specific to OIDC Pilot *only*
+    //          Don't depend on this field being populated in normal OIDC servers
+
+    // const hasFullScope = eqSet(expectedScope, givenScope);
+    // if (!hasFullScope || !hasToken) {
+    //     respondWithError("User Error: Please make sure you allow the necessary scopes!");
+    //     return;
+    // }
 
     //Check token_type is correct
     const correctTokenType = oidcJSON.token_type === AUTH_CONFIG.tokenType;

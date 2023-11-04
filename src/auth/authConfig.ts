@@ -31,24 +31,24 @@ interface AuthConfig {
     nonce_cookie_options: CookieSetOptions;
 }
 
-const OIDC_AUTHORITY_URI = "https://oidc.mit.edu";
+const OIDC_AUTHORITY_URI = "https://uplink.mit.edu";
 const DOMAIN_URI = "https://dormdigest.xvm.mit.edu";
 
 export const AUTH_CONFIG: AuthConfig = {
     //OIDC provider-specific configs
-    auth_endpoint: OIDC_AUTHORITY_URI + "/authorize",
-    token_endpoint: OIDC_AUTHORITY_URI + "/token",
-    user_info_endpoint: OIDC_AUTHORITY_URI + "/userinfo",
-    public_key: OIDC_AUTHORITY_URI + "/jwk",
+    auth_endpoint: OIDC_AUTHORITY_URI + "/touchstone/oidc/authorization",
+    token_endpoint: OIDC_AUTHORITY_URI + "/oidc/token",
+    user_info_endpoint: OIDC_AUTHORITY_URI + "/oidc/userinfo",
+    public_key: OIDC_AUTHORITY_URI + "/oidc/jwks",
     response_type: "code",
     grantType: "authorization_code", //mandated by MIT OIDC server
     tokenType: "Bearer", //mandated by MIT OIDC server
-    tokenIssuer: "https://oidc.mit.edu/", //NOTE the trailing slash
+    tokenIssuer: "https://uplink.mit.edu", //NOTE the trailing slash
 
     //Client-specific configs
     redirect_uri: DOMAIN_URI + "/oidc-response",
     login_uri: DOMAIN_URI + "/api/login",
-    client_id: "9bac6dfd-c36f-4d3d-9a30-5ff5e7cf68dd", //Safe to save client-side
+    client_id: "OPaphMA7aH5p", //Safe to save client-side
     //client_secret: secrets["client_secret"],
     scope: "openid email", //depends on your application needs
 

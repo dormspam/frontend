@@ -13,7 +13,7 @@ class LoginView extends Component {
   handleLogin() {
 
     document.getElementById("login-btn").style.backgroundColor = "#888BDE";
-    document.getElementById("login-btn").innerHTML = "Sending you to OIDC servers";
+    document.getElementById("login-btn").innerHTML = "Sending you to Touchstone";
     document.getElementById('login-btn').style.cursor = "text";
     
     redirectToLogin();
