@@ -2,6 +2,7 @@
 
 #Application secrets
 secrets.json 
+secrets_bk.json
 api_secrets.json
 key.pem
 cert.pem

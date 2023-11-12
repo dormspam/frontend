@@ -28,9 +28,7 @@ class App extends Component {
             </Helmet>
             <Routes>
               <Route exact path="/" element={
-                <RequireAuth>
                   <HomeView />
-                </RequireAuth>
               } />
               {/* <Route path="/login" element={<LoginPage />} /> */}
               <Route path="/oidc-response" element={<OidcResponseHandler />} />
