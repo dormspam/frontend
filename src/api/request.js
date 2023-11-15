@@ -6,7 +6,7 @@ class Request {
   constructor(endpoint, parameters = {}) {
     // Default request options for axios
     let options = {
-      method: "GET",
+      method: "POST",
       url: BASE_URL + endpoint,
       withCredentials: true
     };
@@ -21,8 +21,9 @@ class Request {
 
     // Pass request body and URL parameters
     options["params"] = parameters["params"];
+    options["body"] = parameters["body"];
 
-    // Perform the request
+    // Perform the requests
     axios(options).then(response => {
       if (typeof this.then !== "undefined") {
         this.then(response);
@@ -46,3 +47,4 @@ class Request {
 }
 
 export default Request;
+

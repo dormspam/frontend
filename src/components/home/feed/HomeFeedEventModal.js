@@ -8,20 +8,20 @@ class HomeFeedEventModal extends Component {
     super(props);
 
     this.state = {
-      colors: {}
+      colors: {...Categories.getCategoriesColorMapping()}  //Shallow copy
     };
 
     this.getCategories = this.getCategories.bind(this);
 
-    Categories.getCategories().then(response => {
-      for (let i = 0; i < response.data.length; i++) {
-        this.state.colors[response.data[i].name] = response.data[i]["color"];
-      }
-    });
+    // Categories.getCategoriesColorMapping().then(response => {
+    //   for (let i = 0; i < response.data.length; i++) {
+    //     this.state.colors[response.data[i].name] = response.data[i]["color"];
+    //   }
+    // });
   }
 
   getCategories() {
-    let categories = this.props.event.categories;
+    let categories = this.props.event.tags;
     let tags = [];
     for (let i=0; i < categories.length; i++) {
       tags.push(<span className="tags"
@@ -42,9 +42,9 @@ class HomeFeedEventModal extends Component {
     let categoryTags = this.getCategories();
 
     return (
-      <div id={this.props.event.uid} className="HomeFeedEventModal">
+      <div id={this.props.event.id} className="HomeFeedEventModal">
       <img className="back" src="/img/x-button.svg" alt="Back" onClick={this.props.onSelectBack} />
-          <h3>{this.props.event.sent_from}</h3>
+          <h3>{this.props.event.user_email}</h3>
           <div className="minipadding"></div>
           <h3>
             {categoryTags}
@@ -52,7 +52,7 @@ class HomeFeedEventModal extends Component {
           <div className="padding"></div>
           <hr />
         <h2>{this.props.event.title}</h2>
-        <div dangerouslySetInnerHTML={{__html: this.props.event.description}} />
+        <div dangerouslySetInnerHTML={{__html: this.props.event.description_html}} />
       </div>
     );
   }

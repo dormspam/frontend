@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 import Users from "../../api/users";
 import { setupSession } from "../../utils/session";
@@ -114,7 +114,7 @@ class VerifyView extends Component {
 
   render() {
     if (this.state.redirect !== null) {
-      return <Redirect to={this.state.redirect} />;
+      return <Navigate to={this.state.redirect} />;
     }
 
     let inputElements = [0, 1, 2, 3].map(idx => {

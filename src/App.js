@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Routes, } from "react-router-dom";
 
 import { isUserLoggedIn } from "./utils/session";
 import HomeView from "./components/home/HomeView";
@@ -10,45 +10,56 @@ import SettingsView from "./components/settings/SettingsView";
 import VerifyView from "./components/login/VerifyView";
 import AdminView from './components/admin/AdminView';
 import ApproveView from './components/event/ApproveView';
+import { AuthProvider, RequireAuth } from "./auth/authProvider";
+import { OidcResponseHandler } from "./auth/auth";
 
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div>
-          <Helmet>
-            <meta charset="utf-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=yes" />
-            <meta name="theme-color" content="#5f63d4" />
-            <link href="https://fonts.googleapis.com/css?family=Fredoka+One|Nunito:300,400,600,700" rel="stylesheet" />
-            <title>Dormspam</title>
-          </Helmet>
-          <Switch>
-            <DormspamRoute exact path="/" component={HomeView} />
-            <DormspamRoute exact path="/event/:id" component={EventView} />
-            <DormspamRoute exact path="/approve/:id" component={ApproveView} />
-            <DormspamRoute exact path="/login" component={LoginView} />
-            <DormspamRoute exact path="/settings" component={SettingsView} authenticated={true} />
-            <DormspamRoute exact path="/admin" component={AdminView} authenticated={true} />
-            <DormspamRoute exact path="/verify" component={VerifyView} />
-          </Switch>
-        </div>
+        <AuthProvider>
+          <div>
+            <Helmet>
+              <meta charset="utf-8" />
+              <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=yes" />
+              <meta name="theme-color" content="#5f63d4" />
+              <link href="https://fonts.googleapis.com/css?family=Fredoka+One|Nunito:300,400,600,700" rel="stylesheet" />
+              <title>DormDigest</title>
+            </Helmet>
+            <Routes>
+              <Route exact path="/" element={
+                <RequireAuth>
+                  <HomeView />
+                </RequireAuth>
+              } />
+              {/* <Route path="/login" element={<LoginPage />} /> */}
+              <Route path="/oidc-response" element={<OidcResponseHandler />} />
+              <Route exact path="/event/:id" element={<EventView />} />
+              <Route exact path="/approve/:id" element={<ApproveView />} />
+              <Route exact path="/login" element={<LoginView />} />
+              <Route exact path="/settings" element={<SettingsView />} authenticated={true} />
+              <Route exact path="/admin" element={<AdminView />} authenticated={true} />
+              <Route exact path="/verify" element={<VerifyView />} />
+            </Routes>
+          </div>
+        </AuthProvider>
       </BrowserRouter>
     );
   }
 }
 
-const DormspamRoute = ({ component: Component, ...rest }) => {
-  if (rest.authenticated === true && !isUserLoggedIn()) {
-    return <LoginView />;
-  } else {
-    return <Route
-      {...rest}
-      render={props =>
-        <Component {...props} />
-      }
-    />;
-  }
-};
+
+// const DormspamRoute = ({ component: Component, ...rest }) => {
+//   if (rest.authenticated === true && !isUserLoggedIn()) {
+//     return <LoginView />;
+//   } else {
+//     return <Route
+//       {...rest}
+//       render={props =>
+//         <Component {...props} />
+//       }
+//     />;
+//   }
+// };
 
 export default App;

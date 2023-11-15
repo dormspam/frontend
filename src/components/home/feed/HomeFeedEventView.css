@@ -1,5 +1,5 @@
 .HomeFeedEventView {
-  display: inline-block;
+  display: flex;
   font-size: 0.75em;
   color: #55596B;
   letter-spacing: 0.08em;
@@ -10,6 +10,40 @@
   width: 92%;
   margin-bottom: 1.5em;
 }
+
+.HomeFeedEventView .left {
+  all: inherit;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 0px;
+  float: left;
+}
+
+.HomeFeedEventView .right {
+  all: inherit;
+  width: 20%;
+  display: flex;
+  margin: 0px;
+  flex-direction: column;
+  align-items: center;
+  float: left;
+
+}
+
+.HomeFeedEventView .right h3 {
+  font-size: 1em;
+  border: 2px solid #5F63D4;
+  color: #000;
+  border-radius: 1em;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  padding-left: 0.6em;
+  padding-right: 0.5em;
+  text-align: center;
+}
+
+
 
 .HomeFeedEventView h2 {
   font-size: 1.2em;
@@ -28,7 +62,7 @@
 
 .HomeFeedEventView:hover {
   background: #FFF;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.05);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05);
 }
 
 .HomeFeedEventView .description {
