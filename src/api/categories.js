@@ -24,8 +24,26 @@ class Categories {
     return CATEGORIES;
   }
 
+  static getCategoriesStringMapping(category_ints) {
+    //Returns list of category names given a list of category integers
+    let category_strings = []
+    for (let category of category_ints) {
+      category_strings.push(CATEGORIES[category]);
+    }
+    return category_strings
+  }
+
+  static getCategoriesIntMapping(category_strings) {
+    //Returns list of category int representations given a list of cateogry strings
+    let category_ints = []
+    for (let category of category_strings) {
+      category_ints.push((CATEGORIES.indexOf(category)));
+    }
+    return category_ints
+  }
+
   static getCategoriesEmptyFrequency() {
-    //Return mapping of category name to 0 (to be used as a starting frequency list)
+    //Returns mapping of category name to 0 (to be used as a starting frequency list)
     const frequency = {};
     for (const category of CATEGORIES) {
       frequency[category] = 0;

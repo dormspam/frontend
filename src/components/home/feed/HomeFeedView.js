@@ -5,6 +5,7 @@ import Categories from "../../../api/categories";
 import Events from "../../../api/events";
 import HomeFeedEventView from "./HomeFeedEventView";
 import "./HomeFeedView.css";
+import LocalData from "../../../api/localdata";
 
 class HomeFeedView extends Component {
   constructor(props) {
@@ -19,7 +20,6 @@ class HomeFeedView extends Component {
 
     this.saveEventData = this.saveEventData.bind(this);
     this.parseCategories = this.parseCategories.bind(this);
-
     const self = this;
 
     Events.getEventsByDate(moment().format("YYYY-MM-DD")).then(response => {
@@ -66,18 +66,31 @@ class HomeFeedView extends Component {
       searching: searching
     });
   }
-
   saveEventData(eventData) {
     eventData.events.forEach((event, index) => {
       if (eventData.tags[index]) {
-        event.tags = eventData.tags[index]; //Name of categories associated with the event
+        const event_tags = eventData.tags[index]; //Name of categories associated with the event
+        event.tags = event_tags;
         event.user_email = eventData.users[index]; //Email of the user who sent/submitted the event
         event.description = eventData.descriptions[index]; //Plaintext email description
         event.description_html = eventData.descriptions_html[index]; //HTML email description
       }
     });
 
-    const events = eventData.events;
+    //Getting a integer representation of the categories the user has selected since event.tags is a list of ints
+    let current_categories = Categories.getCategoriesIntMapping(LocalData.getCategoryFilters());
+
+    //Creating a new list matchingEvents that contains events that have categories matching with the categories the user has selected
+    const matchingEvents = eventData.events.filter((event) => {
+
+      //Creating a list of current_categories(categories that user wants to be shown) that are also in the event tags the event has
+      let matching_categories = current_categories.filter(cat => event.tags.includes(cat));
+
+      //If this list has an element, adding the event to the list of matchingEvents
+      return matching_categories.length > 0;
+    })
+
+    const events = matchingEvents;
 
     let times = [];
 
@@ -95,7 +108,7 @@ class HomeFeedView extends Component {
     });
 
 
-    for (var i=0; i < data.length; i++) {
+    for (var i = 0; i < data.length; i++) {
       if (times.length === 0) {
         times.push([data[i]]);
       } else {
@@ -106,7 +119,7 @@ class HomeFeedView extends Component {
         }
       }
     }
-    for (var j=0; j < data.length; j++) {
+    for (var j = 0; j < data.length; j++) {
       data[j].tags = this.parseCategories(data[j].tags);
     }
 
@@ -167,7 +180,7 @@ class HomeFeedView extends Component {
         if (this.props.selectedEvent !== null) {
           selected = this.props.selectedEvent.id === this.state.data[i][j].id;
         }
-        
+
 
         elements.push(
           <div className="timeevents" key={this.state.data[i][j].id}>
@@ -182,11 +195,11 @@ class HomeFeedView extends Component {
       }
     }
 
-    if (elements.length === 0){
+    if (elements.length === 0) {
       elements = <div className="empty-events">
-                  <img className="empty-events-icon" src="img/empty.png"/>
-                  <h1 className="empty-events-label">No events found!</h1>
-                </div>
+        <img className="empty-events-icon" src="img/empty.png" />
+        <h1 className="empty-events-label">No events found!</h1>
+      </div>
     }
 
     return (
