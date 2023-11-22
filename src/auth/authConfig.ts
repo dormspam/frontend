@@ -32,7 +32,7 @@ interface AuthConfig {
 }
 
 const OIDC_AUTHORITY_URI = "https://petrock.mit.edu";
-const DOMAIN_URI = "https://dormdigest.xvm.mit.edu";
+const DOMAIN_URI = "https://dormdigest.mit.edu";
 
 export const AUTH_CONFIG: AuthConfig = {
     //OIDC provider-specific configs
@@ -44,7 +44,7 @@ export const AUTH_CONFIG: AuthConfig = {
     grantType: "authorization_code", //mandated by MIT OIDC server
     tokenType: "Bearer", //mandated by MIT OIDC server
     tokenIssuer: OIDC_AUTHORITY_URI,
-     
+
     //Client-specific configs
     redirect_uri: DOMAIN_URI + "/oidc-response",
     login_uri: DOMAIN_URI + "/api/login",

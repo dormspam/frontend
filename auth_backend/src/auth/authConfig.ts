@@ -37,7 +37,7 @@ interface AuthConfig {
 } 
 
 const OIDC_AUTHORITY_URI = "https://petrock.mit.edu"; 
-const DOMAIN_URI = "https://dormdigest.xvm.mit.edu"
+const DOMAIN_URI = "https://dormdigest.mit.edu";
 
 export const AUTH_CONFIG: AuthConfig = {
 
