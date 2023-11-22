@@ -28,7 +28,7 @@ class Categories {
 
   static getDefaultCategoryTags() {
     //Return a list of integers representing the default category (normally 'Other')
-    const DEFAULT_CATEGORY_INDEX = CATEGORIES_COLORS.indexOf(DEFAULT_CATEGORY);
+    const DEFAULT_CATEGORY_INDEX = CATEGORIES.indexOf(DEFAULT_CATEGORY);
     return [DEFAULT_CATEGORY_INDEX];
   }
 
