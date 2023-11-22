@@ -63,7 +63,7 @@ function AuthStatus(): React.ReactElement {
     <div className="AuthStatus">
     <p>
       Welcome <strong>{auth.user}</strong>!{" "}
-      <button
+      <button className="outline"
         onClick={() => {
           auth.signout(() => navigate("/login"));
         }}
