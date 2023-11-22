@@ -31,7 +31,7 @@ interface AuthConfig {
     nonce_cookie_options: CookieSetOptions;
 }
 
-const OIDC_AUTHORITY_URI = "https://uplink.mit.edu";
+const OIDC_AUTHORITY_URI = "https://petrock.mit.edu";
 const DOMAIN_URI = "https://dormdigest.xvm.mit.edu";
 
 export const AUTH_CONFIG: AuthConfig = {
@@ -43,12 +43,12 @@ export const AUTH_CONFIG: AuthConfig = {
     response_type: "code",
     grantType: "authorization_code", //mandated by MIT OIDC server
     tokenType: "Bearer", //mandated by MIT OIDC server
-    tokenIssuer: "https://uplink.mit.edu", //NOTE the trailing slash
-
+    tokenIssuer: OIDC_AUTHORITY_URI,
+     
     //Client-specific configs
     redirect_uri: DOMAIN_URI + "/oidc-response",
     login_uri: DOMAIN_URI + "/api/login",
-    client_id: "OPaphMA7aH5p", //Safe to save client-side
+    client_id: "szs7ZpAB9HJn", //Safe to save client-side
     //client_secret: secrets["client_secret"],
     scope: "openid email", //depends on your application needs
 
