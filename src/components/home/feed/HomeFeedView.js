@@ -70,7 +70,11 @@ class HomeFeedView extends Component {
     eventData.events.forEach((event, index) => {
       if (eventData.tags[index]) {
         const event_tags = eventData.tags[index]; //Name of categories associated with the event
-        event.tags = event_tags;
+        if(event_tags && event_tags.length > 0) {
+          event.tags = event_tags;
+        } else {
+          event.tags = Categories.getDefaultCategoryTags();
+        }
         event.user_email = eventData.users[index]; //Email of the user who sent/submitted the event
         event.description = eventData.descriptions[index]; //Plaintext email description
         event.description_html = eventData.descriptions_html[index]; //HTML email description

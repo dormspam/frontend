@@ -13,6 +13,8 @@ const CATEGORIES_COLORS = {
   'RSVP': "#7bafde"
 }
 
+const DEFAULT_CATEGORY = 'OTHER'; //If an event doesn't have any tags, we will assign it this category
+
 const CATEGORIES = Object.keys(CATEGORIES_COLORS); //Name of all available categories
 class Categories {
   static getCategoriesColorMapping() {
@@ -22,6 +24,12 @@ class Categories {
   static getCategoriesList() {
     //Return list of available categories
     return CATEGORIES;
+  }
+
+  static getDefaultCategoryTags() {
+    //Return a list of integers representing the default category (normally 'Other')
+    const DEFAULT_CATEGORY_INDEX = CATEGORIES_COLORS.indexOf(DEFAULT_CATEGORY);
+    return [DEFAULT_CATEGORY_INDEX];
   }
 
   static getCategoriesStringMapping(category_ints) {
