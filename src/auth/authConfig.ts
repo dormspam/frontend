@@ -48,7 +48,7 @@ export const AUTH_CONFIG: AuthConfig = {
     //Client-specific configs
     redirect_uri: DOMAIN_URI + "/oidc-response",
     login_uri: DOMAIN_URI + "/api/login",
-    client_id: "szs7ZpAB9HJn", //Safe to save client-side
+    client_id: "MR4tKgYk33uR", //Safe to save client-side
     //client_secret: secrets["client_secret"],
     scope: "openid email", //depends on your application needs
 

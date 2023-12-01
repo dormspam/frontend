@@ -55,7 +55,7 @@ export const AUTH_CONFIG: AuthConfig = {
     redirect_uri: DOMAIN_URI + "/oidc-response", 
     login_uri: DOMAIN_URI + "/api/login",
     session_id_uri: DOMAIN_URI + ":8432/create_session", //Note: Currently using port 8432 for Python backend
-    client_id: "szs7ZpAB9HJn", //Safe to save client-side
+    client_id: "MR4tKgYk33uR", //Safe to save client-side
     client_secret: secrets["client_secret"], 
     scope: "openid email",                             //depends on your application needs
 
