@@ -6,6 +6,7 @@ import Events from "../../../api/events";
 import HomeFeedEventView from "./HomeFeedEventView";
 import "./HomeFeedView.css";
 import LocalData from "../../../api/localdata";
+import { FilterEventsBySearchAndCategories } from "../../../utils/filters";
 
 class HomeFeedView extends Component {
   constructor(props) {
@@ -42,28 +43,14 @@ class HomeFeedView extends Component {
     const searching = nextProps.search.length > 0;
     const searchCount = this.state.searchCount + 1;
 
-    if (searching) {
-      // filter based on title
-      // make axios request here for search
-      // Events.getEventsByQuery(nextProps.search).then(response => {
-      //   if (searchCount < self.state.searchCount) {
-      //     return;
-      //   }
 
-      //   self.saveEventData(response.data);
-      // });
-    } else {
-      Events.getEventsByDate(nextProps.selectedDay.format("YYYY-MM-DD")).then(response => {
-        if (searchCount < self.state.searchCount) {
-          return;
-        }
-        self.saveEventData(response);
-      });
-    }
+    Events.getEventsByDate(nextProps.selectedDay.format("YYYY-MM-DD")).then(response => {
+      self.saveEventData(response);
+    });
 
     this.setState({
       searchCount: searchCount,
-      searching: searching
+      searching: searching,
     });
   }
   saveEventData(eventData) {
@@ -81,18 +68,16 @@ class HomeFeedView extends Component {
       }
     });
 
-    //Getting a integer representation of the categories the user has selected since event.tags is a list of ints
-    let current_categories = Categories.getCategoriesIntMapping(LocalData.getCategoryFilters());
-
-    //Creating a new list matchingEvents that contains events that have categories matching with the categories the user has selected
-    const matchingEvents = eventData.events.filter((event) => {
-
-      //Creating a list of current_categories(categories that user wants to be shown) that are also in the event tags the event has
-      let matching_categories = current_categories.filter(cat => event.tags.includes(cat));
-
-      //If this list has an element, adding the event to the list of matchingEvents
-      return matching_categories.length > 0;
-    })
+    // Getting what the user is searching
+    let search_target = null;
+    if (this.state.searchCount + 1 < this.state.searchCount) {
+      search_target = "";
+    }
+    else {
+      search_target = (this.props.search);
+    }
+    //Creating a new list matchingEvents that contains events that have categories matching with the categories the user has selected and words the user has searched
+    const matchingEvents = FilterEventsBySearchAndCategories(eventData, search_target);
 
     const events = matchingEvents;
 
@@ -127,30 +112,10 @@ class HomeFeedView extends Component {
       data[j].tags = this.parseCategories(data[j].tags);
     }
 
-    // let filteredTimes = [];
-    //
-    // for (var k=0; k < times.length; k++) {
-    //   for (var l=0; l < times[k][0].tags.length; l++) {
-    //     if (this.props.categories.indexOf(times[k][0].tags[l]) >= 0) {
-    //       filteredTimes.push(times[k]);
-    //       break;
-    //     }
-    //   }
-    // }
-
     this.setState({
       data: times
     });
   }
-
-  // parseCategories(categories) {
-  //   categories = categories.substring(1, categories.length - 1);
-  //   let listed = categories.split(",");
-  //   for (let i=0; i < listed.length; i++) {
-  //     listed[i] = listed[i].replace(/"/g, "");
-  //   }
-  //   return listed;
-  // }
 
   parseCategories(categories) {
     const tags = Categories.getCategoriesList();
@@ -170,10 +135,6 @@ class HomeFeedView extends Component {
       );
       let timeString = moment(`${this.state.data[i][0].start_date}T${this.state.data[i][0].start_time}`)
       timeString = timeString.format("h:mm a");
-
-      // if (this.state.searching) {
-      //   timeString = moment(this.state.data[i][0].start_time).format("MMMM Do YYYY, h:mm a");
-      // }
 
       elements.push(
         <div className="onetime" key={"times" + i + "2"}>{timeString}</div>
