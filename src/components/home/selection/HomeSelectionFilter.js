@@ -31,18 +31,22 @@ class HomeSelectionFilter extends Component {
       isOpen: !this.state.isOpen
     });
   }
-
   handleChange(event) {
     this.props.onSearch(event.target.value);
   }
-
   render() {
     return (
       <div className="HomeSelectionFilter">
         <div className="icon">
           <img src="/img/search.svg" alt="Search" />
         </div>
-        <input className="search" type="text" name="search" placeholder="SEARCH FEATURE COMING SOON..." onChange={this.handleChange} />
+        <input
+          className="search"
+          type="text"
+          name="search"
+          placeholder="Search for substring"
+          onChange={this.handleChange}
+        />
         <br />
       </div>
     );
